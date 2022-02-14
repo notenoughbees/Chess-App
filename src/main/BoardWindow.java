@@ -109,75 +109,99 @@ public class BoardWindow {
 		frame.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
 		
 		a8 = new JToggleButton("");
+		a8.setBackground(Color.WHITE);
 		frame.getContentPane().add(a8);
 		
 		b8 = new JToggleButton("");
+		b8.setBackground(Color.BLACK);
 		frame.getContentPane().add(b8);
 		
 		c8 = new JToggleButton("");
+		c8.setBackground(Color.WHITE);
 		frame.getContentPane().add(c8);
 		
 		d8 = new JToggleButton("");
+		d8.setBackground(Color.BLACK);
 		frame.getContentPane().add(d8);
 		
 		e8 = new JToggleButton("");
+		e8.setBackground(Color.WHITE);
 		frame.getContentPane().add(e8);
 		
 		f8 = new JToggleButton("");
+		f8.setBackground(Color.BLACK);
 		frame.getContentPane().add(f8);
 		
 		g8 = new JToggleButton("");
+		g8.setBackground(Color.WHITE);
 		frame.getContentPane().add(g8);
 		
 		h8 = new JToggleButton("");
+		h8.setBackground(Color.BLACK);
 		frame.getContentPane().add(h8);
 		
 		a7 = new JToggleButton("");
+		a7.setBackground(Color.BLACK);
 		frame.getContentPane().add(a7);
 		
 		b7 = new JToggleButton("");
+		b7.setBackground(Color.WHITE);
 		frame.getContentPane().add(b7);
 		
 		c7 = new JToggleButton("");
+		c7.setBackground(Color.BLACK);
 		frame.getContentPane().add(c7);
 		
 		d7 = new JToggleButton("");
+		d7.setBackground(Color.WHITE);
 		frame.getContentPane().add(d7);
 		
 		e7 = new JToggleButton("");
+		e7.setBackground(Color.BLACK);
 		frame.getContentPane().add(e7);
 		
 		f7 = new JToggleButton("");
+		f7.setBackground(Color.WHITE);
 		frame.getContentPane().add(f7);
 		
 		g7 = new JToggleButton("");
+		g7.setBackground(Color.BLACK);
 		frame.getContentPane().add(g7);
 		
 		h7 = new JToggleButton("");
+		h7.setBackground(Color.WHITE);
 		frame.getContentPane().add(h7);
 		
 		a6 = new JToggleButton("");
+		a6.setBackground(Color.WHITE);
 		frame.getContentPane().add(a6);
 		
 		b6 = new JToggleButton("");
+		b6.setBackground(Color.BLACK);
 		frame.getContentPane().add(b6);
 		
 		c6 = new JToggleButton("");
+		c6.setBackground(Color.WHITE);
 		frame.getContentPane().add(c6);
 		
 		d6 = new JToggleButton("");
+		d6.setBackground(Color.BLACK);
 		frame.getContentPane().add(d6);
 		
 		e6 = new JToggleButton("");
+		e6.setBackground(Color.WHITE);
 		frame.getContentPane().add(e6);
 		
 		f6 = new JToggleButton("");
+		f6.setBackground(Color.BLACK);
 		frame.getContentPane().add(f6);
 		
 		g6 = new JToggleButton("");
+		g6.setBackground(Color.WHITE);
 		frame.getContentPane().add(g6);
 		
 		h6 = new JToggleButton("");
+		h6.setBackground(Color.BLACK);
 		frame.getContentPane().add(h6);
 		
 		a5 = new JToggleButton("");
@@ -189,21 +213,27 @@ public class BoardWindow {
 		frame.getContentPane().add(b5);
 		
 		c5 = new JToggleButton("");
+		c5.setBackground(Color.BLACK);
 		frame.getContentPane().add(c5);
 		
 		d5 = new JToggleButton("");
+		d5.setBackground(Color.WHITE);
 		frame.getContentPane().add(d5);
 		
 		e5 = new JToggleButton("");
+		e5.setBackground(Color.BLACK);
 		frame.getContentPane().add(e5);
 		
 		f5 = new JToggleButton("");
+		f5.setBackground(Color.WHITE);
 		frame.getContentPane().add(f5);
 		
 		g5 = new JToggleButton("");
+		g5.setBackground(Color.BLACK);
 		frame.getContentPane().add(g5);
 		
 		h5 = new JToggleButton("");
+		h5.setBackground(Color.WHITE);
 		frame.getContentPane().add(h5);
 		
 		a4 = new JToggleButton("");
