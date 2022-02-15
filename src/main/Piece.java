@@ -19,6 +19,7 @@ public class Piece {
 		placePiece(pieceColour, pieceType, pieceNumber, square);
 	}
 	
+
 	
 	
 	

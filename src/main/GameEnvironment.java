@@ -1,14 +1,11 @@
 package main;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
-public class Setup
+public class GameEnvironment
 {
-	
-	
-	
-	
-	
+	static String currentPlayer;
 	
 	
 	public static void openBoardWindow() {
@@ -16,6 +13,98 @@ public class Setup
 		BoardWindow boardWindow = new BoardWindow();
 	}
 
+	
+	////////
+	
+	
+	public static String playGame(String humanPlayer) 
+	{
+		if (humanPlayer == "white")
+			{currentPlayer = humanPlayer;}
+		else
+			{currentPlayer = "";}
+		while(gameOver() == false)
+		{
+			playOneTurn(currentPlayer, humanPlayer); //pass in humanPlayer for if they are the current player
+			currentPlayer = switchPlayers(currentPlayer);
+			
+		}
+			
+			
+		String outcome = "";
+		return outcome;
+	}
+	
+	
+	public static boolean gameOver()
+	{
+		return true;
+	}
+	
+	
+	public static void playOneTurn(String currentPlayer, String humanPlayer)
+	{
+		if (currentPlayer == humanPlayer)
+		{
+			makeHumanMove();
+		}
+		else
+		{
+			makeComputerMove();
+		}
+	}
+	
+	
+	public static String switchPlayers(String currentPlayer)
+	{
+		if (currentPlayer == "white")
+			{return "black";}
+		return "white";
+	}
+	
+	public static void makeHumanMove()
+	{
+		
+	}
+	
+	
+	public static void makeComputerMove()
+	{
+		ArrayList<String> empty_squares = findEmptySquares();
+		
+	}
+	
+	
+	public static ArrayList<String> findEmptySquares()
+	{
+		ArrayList<String> emptySquares = new ArrayList<String>();
+		//for(row in )
+			
+			
+			
+			
+			
+			
+			
+		return emptySquares;
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@SuppressWarnings("unused")
 	public static void main(String[] args)
 	{
@@ -53,7 +142,10 @@ public class Setup
 		Queen blackQueen = new Queen(Color.red, "Q", 1, BoardWindow.getD8());
 		King blackKing = new King(Color.red, "K", 1, BoardWindow.getE8());
 		
-		
+		//play the game and get the outcome (win, lose, draw, or stalemate)
+		String humanPlayer = "white";
+		String outcome = playGame(humanPlayer);
+		System.out.println(outcome);
 		
 		
 	}
