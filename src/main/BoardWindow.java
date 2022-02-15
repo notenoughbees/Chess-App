@@ -6,74 +6,75 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JToggleButton;
+import java.awt.Font;
 
 public class BoardWindow {
-
-	private JFrame frame;
-	private static JToggleButton a1;
-	private static JToggleButton b1;
-	private static JToggleButton c1;
-	private static JToggleButton d1;
-	private static JToggleButton e1;
-	private static JToggleButton f1;
-	private static JToggleButton g1;
-	private static JToggleButton h1;
-	private static JToggleButton a2;
-	private static JToggleButton b2;
-	private static JToggleButton c2;
-	private static JToggleButton d2;
-	private static JToggleButton e2;
-	private static JToggleButton f2;
-	private static JToggleButton g2;
-	private static JToggleButton h2;
-	private static JToggleButton a3;
-	private static JToggleButton b3;
-	private static JToggleButton c3;
-	private static JToggleButton d3;
-	private static JToggleButton e3;
-	private static JToggleButton f3;
-	private static JToggleButton g3;
-	private static JToggleButton h3;
-	private static JToggleButton a4;
-	private static JToggleButton b4;
-	private static JToggleButton c4;
-	private static JToggleButton d4;
-	private static JToggleButton e4;
-	private static JToggleButton f4;
-	private static JToggleButton g4;
-	private static JToggleButton h4;
-	private static JToggleButton a5;
-	private static JToggleButton b5;
-	private static JToggleButton c5;
-	private static JToggleButton d5;
-	private static JToggleButton e5;
-	private static JToggleButton f5;
-	private static JToggleButton g5;
-	private static JToggleButton h5;
-	private static JToggleButton a6;
-	private static JToggleButton b6;
-	private static JToggleButton c6;
-	private static JToggleButton d6;
-	private static JToggleButton e6;
-	private static JToggleButton f6;
-	private static JToggleButton g6;
-	private static JToggleButton h6;
-	private static JToggleButton a7;
-	private static JToggleButton b7;
-	private static JToggleButton c7;
-	private static JToggleButton d7;
-	private static JToggleButton e7;
-	private static JToggleButton f7;
-	private static JToggleButton g7;
-	private static JToggleButton h7;
-	private static JToggleButton a8;
-	private static JToggleButton b8;
-	private static JToggleButton c8;
-	private static JToggleButton d8;
-	private static JToggleButton e8;
-	private static JToggleButton f8;
-	private static JToggleButton g8;
-	private static JToggleButton h8;
+	//initialise instance variables
+	private JFrame frmChessApp;
+	private static JToggleButton a1 = new JToggleButton("");
+	private static JToggleButton b1 = new JToggleButton("");
+	private static JToggleButton c1 = new JToggleButton("");
+	private static JToggleButton d1 = new JToggleButton("");
+	private static JToggleButton e1 = new JToggleButton("");
+	private static JToggleButton f1 = new JToggleButton("");
+	private static JToggleButton g1 = new JToggleButton("");
+	private static JToggleButton h1 = new JToggleButton("");
+	private static JToggleButton a2 = new JToggleButton("");
+	private static JToggleButton b2 = new JToggleButton("");
+	private static JToggleButton c2 = new JToggleButton("");
+	private static JToggleButton d2 = new JToggleButton("");
+	private static JToggleButton e2 = new JToggleButton("");
+	private static JToggleButton f2 = new JToggleButton("");
+	private static JToggleButton g2 = new JToggleButton("");
+	private static JToggleButton h2 = new JToggleButton("");
+	private static JToggleButton a3 = new JToggleButton("");
+	private static JToggleButton b3 = new JToggleButton("");
+	private static JToggleButton c3 = new JToggleButton("");
+	private static JToggleButton d3 = new JToggleButton("");
+	private static JToggleButton e3 = new JToggleButton("");
+	private static JToggleButton f3 = new JToggleButton("");
+	private static JToggleButton g3 = new JToggleButton("");
+	private static JToggleButton h3 = new JToggleButton("");
+	private static JToggleButton a4 = new JToggleButton("");
+	private static JToggleButton b4 = new JToggleButton("");
+	private static JToggleButton c4 = new JToggleButton("");
+	private static JToggleButton d4 = new JToggleButton("");
+	private static JToggleButton e4 = new JToggleButton("");
+	private static JToggleButton f4 = new JToggleButton("");
+	private static JToggleButton g4 = new JToggleButton("");
+	private static JToggleButton h4 = new JToggleButton("");
+	private static JToggleButton a5 = new JToggleButton("");
+	private static JToggleButton b5 = new JToggleButton("");
+	private static JToggleButton c5 = new JToggleButton("");
+	private static JToggleButton d5 = new JToggleButton("");
+	private static JToggleButton e5 = new JToggleButton("");
+	private static JToggleButton f5 = new JToggleButton("");
+	private static JToggleButton g5 = new JToggleButton("");
+	private static JToggleButton h5 = new JToggleButton("");
+	private static JToggleButton a6 = new JToggleButton("");
+	private static JToggleButton b6 = new JToggleButton("");
+	private static JToggleButton c6 = new JToggleButton("");
+	private static JToggleButton d6 = new JToggleButton("");
+	private static JToggleButton e6 = new JToggleButton("");
+	private static JToggleButton f6 = new JToggleButton("");
+	private static JToggleButton g6 = new JToggleButton("");
+	private static JToggleButton h6 = new JToggleButton("");
+	private static JToggleButton a7 = new JToggleButton("");
+	private static JToggleButton b7 = new JToggleButton("");
+	private static JToggleButton c7 = new JToggleButton("");
+	private static JToggleButton d7 = new JToggleButton("");
+	private static JToggleButton e7 = new JToggleButton("");
+	private static JToggleButton f7 = new JToggleButton("");
+	private static JToggleButton g7 = new JToggleButton("");
+	private static JToggleButton h7 = new JToggleButton("");
+	private static JToggleButton a8 = new JToggleButton("");
+	private static JToggleButton b8 = new JToggleButton("");
+	private static JToggleButton c8 = new JToggleButton("");
+	private static JToggleButton d8 = new JToggleButton("");
+	private static JToggleButton e8 = new JToggleButton("");
+	private static JToggleButton f8 = new JToggleButton("");
+	private static JToggleButton g8 = new JToggleButton("");
+	private static JToggleButton h8 = new JToggleButton("");
 
 	/**
 	 * Launch the application.
@@ -83,7 +84,7 @@ public class BoardWindow {
 			public void run() {
 				try {
 					BoardWindow window = new BoardWindow();
-					window.frame.setVisible(true);
+					window.frmChessApp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -96,273 +97,274 @@ public class BoardWindow {
 	 */
 	public BoardWindow() {
 		initialize();
-		frame.setVisible(true); //show the window
+		frmChessApp.setVisible(true); //show the window
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
+		frmChessApp = new JFrame();
+		frmChessApp.setTitle("Chess App");
+		frmChessApp.setBounds(100, 100, 450, 450);
+		frmChessApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmChessApp.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
 		
-		a8 = new JToggleButton("");
 		a8.setBackground(Color.WHITE);
-		frame.getContentPane().add(a8);
+		a8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a8);
 		
-		b8 = new JToggleButton("");
 		b8.setBackground(Color.BLACK);
-		frame.getContentPane().add(b8);
+		b8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b8);
 		
-		c8 = new JToggleButton("");
 		c8.setBackground(Color.WHITE);
-		frame.getContentPane().add(c8);
+		c8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c8);
 		
-		d8 = new JToggleButton("");
 		d8.setBackground(Color.BLACK);
-		frame.getContentPane().add(d8);
+		d8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d8);
 		
-		e8 = new JToggleButton("");
 		e8.setBackground(Color.WHITE);
-		frame.getContentPane().add(e8);
+		e8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e8);
 		
-		f8 = new JToggleButton("");
 		f8.setBackground(Color.BLACK);
-		frame.getContentPane().add(f8);
+		f8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f8);
 		
-		g8 = new JToggleButton("");
 		g8.setBackground(Color.WHITE);
-		frame.getContentPane().add(g8);
+		g8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g8);
 		
-		h8 = new JToggleButton("");
 		h8.setBackground(Color.BLACK);
-		frame.getContentPane().add(h8);
+		h8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h8);
 		
-		a7 = new JToggleButton("");
 		a7.setBackground(Color.BLACK);
-		frame.getContentPane().add(a7);
+		a7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a7);
 		
-		b7 = new JToggleButton("");
 		b7.setBackground(Color.WHITE);
-		frame.getContentPane().add(b7);
+		b7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b7);
 		
-		c7 = new JToggleButton("");
 		c7.setBackground(Color.BLACK);
-		frame.getContentPane().add(c7);
+		c7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c7);
 		
-		d7 = new JToggleButton("");
 		d7.setBackground(Color.WHITE);
-		frame.getContentPane().add(d7);
+		d7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d7);
 		
-		e7 = new JToggleButton("");
 		e7.setBackground(Color.BLACK);
-		frame.getContentPane().add(e7);
+		e7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e7);
 		
-		f7 = new JToggleButton("");
 		f7.setBackground(Color.WHITE);
-		frame.getContentPane().add(f7);
+		f7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f7);
 		
-		g7 = new JToggleButton("");
 		g7.setBackground(Color.BLACK);
-		frame.getContentPane().add(g7);
+		g7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g7);
 		
-		h7 = new JToggleButton("");
 		h7.setBackground(Color.WHITE);
-		frame.getContentPane().add(h7);
+		h7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h7);
 		
-		a6 = new JToggleButton("");
 		a6.setBackground(Color.WHITE);
-		frame.getContentPane().add(a6);
+		a6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a6);
 		
-		b6 = new JToggleButton("");
 		b6.setBackground(Color.BLACK);
-		frame.getContentPane().add(b6);
+		b6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b6);
 		
-		c6 = new JToggleButton("");
 		c6.setBackground(Color.WHITE);
-		frame.getContentPane().add(c6);
+		c6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c6);
 		
-		d6 = new JToggleButton("");
 		d6.setBackground(Color.BLACK);
-		frame.getContentPane().add(d6);
+		d6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d6);
 		
-		e6 = new JToggleButton("");
 		e6.setBackground(Color.WHITE);
-		frame.getContentPane().add(e6);
+		e6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e6);
 		
-		f6 = new JToggleButton("");
 		f6.setBackground(Color.BLACK);
-		frame.getContentPane().add(f6);
+		f6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f6);
 		
-		g6 = new JToggleButton("");
 		g6.setBackground(Color.WHITE);
-		frame.getContentPane().add(g6);
+		g6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g6);
 		
-		h6 = new JToggleButton("");
 		h6.setBackground(Color.BLACK);
-		frame.getContentPane().add(h6);
+		h6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h6);
 		
-		a5 = new JToggleButton("");
 		a5.setBackground(Color.BLACK);
-		frame.getContentPane().add(a5);
+		a5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a5);
 		
-		b5 = new JToggleButton("");
 		b5.setBackground(Color.WHITE);
-		frame.getContentPane().add(b5);
+		b5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b5);
 		
-		c5 = new JToggleButton("");
 		c5.setBackground(Color.BLACK);
-		frame.getContentPane().add(c5);
+		c5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c5);
 		
-		d5 = new JToggleButton("");
 		d5.setBackground(Color.WHITE);
-		frame.getContentPane().add(d5);
+		d5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d5);
 		
-		e5 = new JToggleButton("");
 		e5.setBackground(Color.BLACK);
-		frame.getContentPane().add(e5);
+		e5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e5);
 		
-		f5 = new JToggleButton("");
 		f5.setBackground(Color.WHITE);
-		frame.getContentPane().add(f5);
+		f5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f5);
 		
-		g5 = new JToggleButton("");
 		g5.setBackground(Color.BLACK);
-		frame.getContentPane().add(g5);
+		g5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g5);
 		
-		h5 = new JToggleButton("");
 		h5.setBackground(Color.WHITE);
-		frame.getContentPane().add(h5);
+		h5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h5);
 		
-		a4 = new JToggleButton("");
 		a4.setBackground(Color.WHITE);
-		frame.getContentPane().add(a4);
+		a4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a4);
 		
-		b4 = new JToggleButton("");
 		b4.setBackground(Color.BLACK);
-		frame.getContentPane().add(b4);
+		b4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b4);
 		
-		c4 = new JToggleButton("");
 		c4.setBackground(Color.WHITE);
-		frame.getContentPane().add(c4);
+		c4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c4);
 		
-		d4 = new JToggleButton("");
 		d4.setBackground(Color.BLACK);
-		frame.getContentPane().add(d4);
+		d4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d4);
 		
-		e4 = new JToggleButton("");
 		e4.setBackground(Color.WHITE);
-		frame.getContentPane().add(e4);
+		e4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e4);
 		
-		f4 = new JToggleButton("");
 		f4.setBackground(Color.BLACK);
-		frame.getContentPane().add(f4);
+		f4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f4);
 		
-		g4 = new JToggleButton("");
 		g4.setBackground(Color.WHITE);
-		frame.getContentPane().add(g4);
+		g4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g4);
 		
-		h4 = new JToggleButton("");
 		h4.setBackground(Color.BLACK);
-		frame.getContentPane().add(h4);
+		h4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h4);
 		
-		a3 = new JToggleButton("");
 		a3.setBackground(Color.BLACK);
-		frame.getContentPane().add(a3);
+		a3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a3);
 		
-		b3 = new JToggleButton("");
 		b3.setBackground(Color.WHITE);
-		frame.getContentPane().add(b3);
+		b3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b3);
 		
-		c3 = new JToggleButton("");
 		c3.setBackground(Color.BLACK);
-		frame.getContentPane().add(c3);
+		c3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c3);
 		
-		d3 = new JToggleButton("");
 		d3.setBackground(Color.WHITE);
-		frame.getContentPane().add(d3);
+		d3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d3);
 		
-		e3 = new JToggleButton("");
 		e3.setBackground(Color.BLACK);
-		frame.getContentPane().add(e3);
+		e3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e3);
 		
-		f3 = new JToggleButton("");
 		f3.setBackground(Color.WHITE);
-		frame.getContentPane().add(f3);
+		f3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f3);
 		
-		g3 = new JToggleButton("");
 		g3.setBackground(Color.BLACK);
-		frame.getContentPane().add(g3);
+		g3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g3);
 		
-		h3 = new JToggleButton("");
 		h3.setBackground(Color.WHITE);
-		frame.getContentPane().add(h3);
+		h3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h3);
 		
-		a2 = new JToggleButton("");
 		a2.setBackground(Color.WHITE);
-		frame.getContentPane().add(a2);
+		a2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a2);
 		
-		b2 = new JToggleButton("");
 		b2.setBackground(Color.BLACK);
-		frame.getContentPane().add(b2);
+		b2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b2);
 		
-		c2 = new JToggleButton("");
 		c2.setBackground(Color.WHITE);
-		frame.getContentPane().add(c2);
+		c2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c2);
 		
-		d2 = new JToggleButton("");
 		d2.setBackground(Color.BLACK);
-		frame.getContentPane().add(d2);
+		d2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d2);
 		
-		e2 = new JToggleButton("");
 		e2.setBackground(Color.WHITE);
-		frame.getContentPane().add(e2);
+		e2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e2);
 		
-		f2 = new JToggleButton("");
 		f2.setBackground(Color.BLACK);
-		frame.getContentPane().add(f2);
+		f2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f2);
 		
-		g2 = new JToggleButton("");
 		g2.setBackground(Color.WHITE);
-		frame.getContentPane().add(g2);
+		g2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g2);
 		
-		h2 = new JToggleButton("");
 		h2.setBackground(Color.BLACK);
-		frame.getContentPane().add(h2);
+		h2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h2);
 		
-		a1 = new JToggleButton("");
 		a1.setBackground(Color.BLACK);
-		frame.getContentPane().add(a1);
+		a1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(a1);
 		
-		b1 = new JToggleButton("");
 		b1.setBackground(Color.WHITE);
-		frame.getContentPane().add(b1);
+		b1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(b1);
 		
-		c1 = new JToggleButton("");
 		c1.setBackground(Color.BLACK);
-		frame.getContentPane().add(c1);
+		c1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(c1);
 		
-		d1 = new JToggleButton("");
 		d1.setBackground(Color.WHITE);
-		frame.getContentPane().add(d1);
+		d1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(d1);
 		
-		e1 = new JToggleButton("");
 		e1.setBackground(Color.BLACK);
-		frame.getContentPane().add(e1);
+		e1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(e1);
 		
-		f1 = new JToggleButton("");
 		f1.setBackground(Color.WHITE);
-		frame.getContentPane().add(f1);
-		
-		g1 = new JToggleButton("");
+		f1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(f1);
+
 		g1.setBackground(Color.BLACK);
-		frame.getContentPane().add(g1);
+		g1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(g1);
 		
-		h1 = new JToggleButton("");
 		h1.setBackground(Color.WHITE);
-		frame.getContentPane().add(h1);
+		h1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		frmChessApp.getContentPane().add(h1);
 	}
 	
 	//getters
