@@ -35,6 +35,20 @@ public class Piece {
 	{
 		BoardWindow.setSquareText(square, pieceType, pieceColour);
 	}
-
+	
+	
+	public Color getPieceColour()
+		{return pieceColour;}
+	public String getPieceType()
+		{return pieceType;}
+	/**
+	 * Returns the location of the piece - the square the piece is currently on, as a JToggleButton 
+	 * (The location as a string can then be obtained by getting the text of the button, if needed).
+	 * @return
+	 */
+	public JToggleButton getPieceLocation()
+		{return square;}
+	
+	
 	
 }
