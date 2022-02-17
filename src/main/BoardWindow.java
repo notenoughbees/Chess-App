@@ -82,11 +82,6 @@ public class BoardWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Collections.addAll(allSquares, a1, b1, c1, d1, e1, f1, g1, h1, a2, b2, c2, d2, e2, f2, g2, h2,
-				a3, b3, c3, d3, e3, f3, g3, h3, a4, b4, c4, d4, e4, f4, g4, h4,
-				a5, b5, c5, d5, e5, f5, g5, h5, a6, b6, c6, d6, e6, f6, g6, h6,
-				a7, b7, c7, d7, e7, f7, g7, h7, a8, b8, c8, d8, e8, f8, g8, h8);
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -102,6 +97,7 @@ public class BoardWindow {
 	/**
 	 * Create the application.
 	 */
+	//constructor
 	public BoardWindow() {
 		initialize();
 		frmChessApp.setVisible(true); //show the window
@@ -372,7 +368,71 @@ public class BoardWindow {
 		h1.setBackground(Color.WHITE);
 		h1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h1);
+		
+		Collections.addAll(allSquares, a1, b1, c1, d1, e1, f1, g1, h1, a2, b2, c2, d2, e2, f2, g2, h2,
+				a3, b3, c3, d3, e3, f3, g3, h3, a4, b4, c4, d4, e4, f4, g4, h4,
+				a5, b5, c5, d5, e5, f5, g5, h5, a6, b6, c6, d6, e6, f6, g6, h6,
+				a7, b7, c7, d7, e7, f7, g7, h7, a8, b8, c8, d8, e8, f8, g8, h8);
 	}
+	
+	
+	/**
+	 * Calculates and returns the square that is on the given side of the given square.
+	 * If there is no square on the given side, return None.
+	 * @param allSquares
+	 * @param currentSquare
+	 * @return
+	 */
+	public static JToggleButton getSideSquare(ArrayList<JToggleButton> allSquares, JToggleButton currentSquare, String side)
+	{
+		int i = allSquares.indexOf(currentSquare);
+		try
+		{
+			if(side == "topLeft")
+			{
+				return allSquares.get(i-8-1);
+			}
+			if(side == "top")
+			{
+				return allSquares.get(i-8);
+			}
+			
+			if(side == "topRight")
+			{
+				return allSquares.get(i-8+1);
+			}
+			if(side == "left")
+			{
+				return allSquares.get(i-1);
+			}
+			if(side == "right")
+			{
+				return allSquares.get(i+1);
+			}
+			if(side == "bottomLeft")
+			{
+				return allSquares.get(i+8-1);
+			}
+			if(side == "bottom")
+			{
+				return allSquares.get(i+8);
+			}
+			if(side == "bottomRight")
+			{
+				return allSquares.get(i+8+1);
+			}
+			
+		}
+		catch (ArrayIndexOutOfBoundsException e)
+		{
+			//TODO: is there a better way to handle this than returning a button with special text?
+			JToggleButton error = new JToggleButton();
+			error.setText("ERROR");
+			return error;
+		}
+		return currentSquare; //this line just prevents the syntax error for "return type must be JToggleButton"
+	}
+	
 	
 	//getters
 	public static JToggleButton getA1()

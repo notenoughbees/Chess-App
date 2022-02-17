@@ -14,7 +14,7 @@ public class GameEnvironment
 	
 	
 	public static void openBoardWindow() {
-		@SuppressWarnings("unused")
+		//@SuppressWarnings("unused")
 		BoardWindow boardWindow = new BoardWindow();
 	}
 
@@ -28,6 +28,7 @@ public class GameEnvironment
 		currentPlayer = humanPlayer;
 		while(gameOver() == false)
 		{
+			System.out.println(currentPlayer);
 			playOneTurn(currentPlayer, humanPlayer); //pass in humanPlayer for if they are the current player
 			currentPlayer = switchPlayers(currentPlayer);
 			
@@ -41,7 +42,7 @@ public class GameEnvironment
 	
 	public static boolean gameOver()
 	{
-		return true;
+		return false;
 	}
 	
 	
@@ -73,32 +74,59 @@ public class GameEnvironment
 	
 	public static void makeComputerMove()
 	{
-		ArrayList<String> validSquares = findValidSquares();
+		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = findValidSquares();
 		
+		
+		System.out.println("COMPUTER: VALID MOVES:");
+		//System.out.println(validSquares);
+		
+		for(int i = 0; i < validSquares.size(); i++)
+		{
+			//print the first item
+			Pair<JToggleButton, ArrayList<JToggleButton>> pair = validSquares.get(i);
+			System.out.println(pair.first.getText());
+			//print the second item - which is a list
+			for(int j = 0; j < pair.second.size(); j++)
+			{
+				JToggleButton square = pair.second.get(j);
+				System.out.println(square.getText());
+			}
+		}
+		
+		
+			
 	}
 	
 	
-	public static ArrayList<String> findValidSquares()
+	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquares()
 	{
-		ArrayList<String> validSquares = new ArrayList<String>();
+		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = new ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>>();
 		for(int i = 0; i < (blackPieces).size(); i++)
 				{
 					Piece pieceToCheck = blackPieces.get(i);
-					String pieceType = pieceToCheck.getPieceType(); //we need to know the type in order to work out where the piece can move
 					JToggleButton pieceLocation = pieceToCheck.getPieceLocation();
 					
-					//find out the type of the piece, then from here on, treat it as that type
-					//TODO
-					//if(pieceToCheck instanceOf Pawn)
-					//{
-					//	handle as a pawn
-					//}
-					//
-					//
-					//ArrayList<JToggleButton> pieceDestinations = pieceToCheck.findPossibleDestinations();
-					//TODO
+					ArrayList<JToggleButton> pieceDestinations = null;
+					//find out the type of the piece, then cast it as that type to find the possible destinatons
+					if(pieceToCheck instanceof Pawn) // https://stackoverflow.com/a/106351/8042538
+						{pieceDestinations = ((Pawn) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof Knight)
+//						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof Bishop)
+//						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof Rook)
+//						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof Queen)
+//						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof King)
+//						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
-					//one entry in validSqaures = (pieceLication, [<pieceDestions>]).
+					//one entry in validSqaures = (pieceLocation, [<pieceDestions>]).
+					
+					Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<JToggleButton, ArrayList<JToggleButton>>(pieceLocation, pieceDestinations);
+					newTuple.first = pieceLocation;
+					newTuple.second = pieceDestinations;
+					validSquares.add(newTuple);
 				}
 			
 			
@@ -126,7 +154,6 @@ public class GameEnvironment
 	
 	
 	
-	@SuppressWarnings("unused")
 	public static void main(String[] args)
 	{
 		openBoardWindow();
@@ -148,7 +175,7 @@ public class GameEnvironment
 		King whiteKing = new King(Color.orange, "K", 1, BoardWindow.getE1());
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
-				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing);
+				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
 		Pawn blackPawn1 = new Pawn(Color.red, "p", 1, BoardWindow.getA7());
 		Pawn blackPawn2 = new Pawn(Color.red, "p", 2, BoardWindow.getB7());
 		Pawn blackPawn3 = new Pawn(Color.red, "p", 3, BoardWindow.getC7());
@@ -165,9 +192,10 @@ public class GameEnvironment
 		Rook blackRook2 = new Rook(Color.red, "R", 2, BoardWindow.getH8());
 		Queen blackQueen = new Queen(Color.red, "Q", 1, BoardWindow.getD8());
 		King blackKing = new King(Color.red, "K", 1, BoardWindow.getE8());
-		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
-				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		//Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
+		//		blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+		//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		Collections.addAll(blackPieces, blackPawn1);
 		
 		//play the game and get the outcome (win, lose, draw, or stalemate)
 		String humanPlayer = "white";

@@ -30,9 +30,9 @@ public class Pawn extends Piece{
 		//first find out where that space is
 		JToggleButton squareAhead;
 		if(getPieceColour() == Color.white)
-			{squareAhead = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
+			{squareAhead = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
 		else
-			{squareAhead = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
+			{squareAhead = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
 		//now find out if that space is empty - if there is no text in the button. If there is no text, 
 		// then that space is a valid destionation.
 		if(squareAhead.getText() == "")
@@ -41,18 +41,18 @@ public class Pawn extends Piece{
 		// ==== check the space ahead and to the left of the pawn ====
 		JToggleButton squareTopLeft;
 		if(getPieceColour() == Color.white)
-			{squareTopLeft = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");}
+			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");}
 		else
-			{squareTopLeft = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");}
+			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");}
 		if(squareTopLeft.getText() == "")
 			{possibleDestinations.add(squareTopLeft);}
 		
 		// ==== check the space ahead and to the right of the pawn ====
 		JToggleButton squareTopRight;
 		if(getPieceColour() == Color.white)
-			{squareTopRight = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");}
+			{squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");}
 		else
-			{squareTopRight = Board.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");}
+			{squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");}
 		if(squareTopRight.getText() == "")
 			{possibleDestinations.add(squareTopRight);}
 		
