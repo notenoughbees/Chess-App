@@ -453,7 +453,7 @@ public class BoardWindow {
 	 */
 	public static Pair<JToggleButton, String> getSideSquare(ArrayList<Pair<JToggleButton, String>> allSquares, Pair<JToggleButton, String> currentSquare, String side)
 	{
-		//TODO: CURRENTSQUARE IS NOT IN ALLSQUARES!!
+		//TODO: CURRENTSQUARE IS NOT IN ALLSQUARES!! (i = -1)
 		System.out.println(currentSquare);
 		System.out.println(allSquares);
 		int i = allSquares.indexOf(currentSquare);

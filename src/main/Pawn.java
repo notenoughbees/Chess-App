@@ -13,13 +13,11 @@ public class Pawn extends Piece{
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}
 	
+	
 //	public void SelectPiece(String pieceType)
 //	{
 //		
 //	}
-	
-	
-	
 	
 	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
@@ -37,9 +35,7 @@ public class Pawn extends Piece{
 		System.out.println(squareAhead.first);
 		System.out.println(squareAhead.first.getText());
 		if(squareAhead.first.getText().isEmpty()) //TODO: a square can also be valid if it has an opponent's piece on it
-			{
-			possibleDestinations.add(squareAhead);
-			}
+			{possibleDestinations.add(squareAhead);}
 		
 		// ==== check the space ahead and to the left of the pawn ====
 		Pair<JToggleButton, String> squareTopLeft;
