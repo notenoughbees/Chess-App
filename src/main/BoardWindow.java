@@ -453,12 +453,7 @@ public class BoardWindow {
 	 */
 	public static Pair<JToggleButton, String> getSideSquare(ArrayList<Pair<JToggleButton, String>> allSquares, Pair<JToggleButton, String> currentSquare, String side)
 	{
-		//TODO: CURRENTSQUARE IS NOT IN ALLSQUARES!! (i = -1)
-		System.out.println(currentSquare);
-		System.out.println(allSquares);
 		int i = allSquares.indexOf(currentSquare);
-		System.out.println("i:");
-		System.out.println(i);
 		try
 		{
 			if(side == "topLeft")
@@ -488,8 +483,6 @@ public class BoardWindow {
 			}
 			if(side == "bottom")
 			{
-				System.out.println("BOTTOM");
-				System.out.println(allSquares.get(i+8).second);
 				return allSquares.get(i+8);
 			}
 			if(side == "bottomRight")
@@ -498,7 +491,7 @@ public class BoardWindow {
 			}
 			
 		}
-		catch (ArrayIndexOutOfBoundsException e)
+		catch (IndexOutOfBoundsException e)
 		{
 			////TODO: is there a better way to handle this?
 			//return currentSquare;

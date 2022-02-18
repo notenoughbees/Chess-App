@@ -50,14 +50,6 @@ public class King extends Piece{
 		if(squareBottomRight.first.getText().isEmpty())
 			{possibleDestinations.add(squareBottomRight);}
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		return possibleDestinations;
 	}
 	

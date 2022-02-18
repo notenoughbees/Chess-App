@@ -76,7 +76,6 @@ public class GameEnvironment
 	{
 		ArrayList<Pair<String, ArrayList<Pair<JToggleButton, String>>>> validSquares = findValidSquares();
 		
-		
 		System.out.println("COMPUTER: VALID MOVES:");
 		for(int i = 0; i < validSquares.size(); i++)
 		{
@@ -87,12 +86,16 @@ public class GameEnvironment
 			
 			//print the list of possible destination squares from this source sqaure
 			System.out.println("Possible destination(s):");
-			System.out.println(tuple.second.size());
-			for(int j = 0; j < tuple.second.size(); j++)
+			if(tuple.second != null)
 			{
-				Pair<JToggleButton, String> possibleDestination = tuple.second.get(j);
-				System.out.println(possibleDestination.second);
+				System.out.println(tuple.second.size());
+				for(int j = 0; j < tuple.second.size(); j++)
+				{
+					Pair<JToggleButton, String> possibleDestination = tuple.second.get(j);
+					System.out.println(possibleDestination.second);
+				}
 			}
+			
 			
 		}
 		
@@ -148,19 +151,19 @@ public class GameEnvironment
 //						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
 //					else if(pieceToCheck instanceof Queen)
 //						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof King)
-//						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof King)
+						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
 					Pair<String, ArrayList<Pair<JToggleButton, String>>> newTuple = new Pair<String, ArrayList<Pair<JToggleButton, String>>>(pieceLocation, pieceDestinations);
 					newTuple.first = pieceLocation;
 					newTuple.second = pieceDestinations;
 					
-					System.out.println(pieceLocation);
-					for(int j = 0; j < pieceDestinations.size(); j++)
-					{
-						Pair<JToggleButton, String> possibleDestination = pieceDestinations.get(j);
-						System.out.println(possibleDestination.second);
-					}
+					//System.out.println(pieceLocation);
+					//for(int j = 0; j < pieceDestinations.size(); j++)
+					//{
+					//	Pair<JToggleButton, String> possibleDestination = pieceDestinations.get(j);
+					//	System.out.println(possibleDestination.second);
+					//}
 					
 					validSquares.add(newTuple);
 				}
@@ -199,18 +202,17 @@ public class GameEnvironment
 		Pawn whitePawn6 = new Pawn(Color.orange, "p", new Pair<JToggleButton, String>(BoardWindow.getF2(), "f2"));
 		Pawn whitePawn7 = new Pawn(Color.orange, "p", new Pair<JToggleButton, String>(BoardWindow.getG2(), "g2"));
 		Pawn whitePawn8 = new Pawn(Color.orange, "p", new Pair<JToggleButton, String>(BoardWindow.getH2(), "h2"));
-//		Knight whiteKnight1 = new Knight(Color.orange, "N", new Pair<JToggleButton, String>(BoardWindow.getB1(), "b1"));
-//		Knight whiteKnight2 = new Knight(Color.orange, "N", new Pair<JToggleButton, String>(BoardWindow.getG1(), "g1"));
-//		Bishop whiteBishop1 = new Bishop(Color.orange, "B", new Pair<JToggleButton, String>(BoardWindow.getC1(), "c1"));
-//		Bishop whiteBishop2 = new Bishop(Color.orange, "B", new Pair<JToggleButton, String>(BoardWindow.getF1(), "f1"));
-//		Rook whiteRook1 = new Rook(Color.orange, "R", new Pair<JToggleButton, String>(BoardWindow.getA1(), "a1"));
-//		Rook whiteRook2 = new Rook(Color.orange, "R", new Pair<JToggleButton, String>(BoardWindow.getH1(), "h1"));
-//		Queen whiteQueen = new Queen(Color.orange, "Q", new Pair<JToggleButton, String>(BoardWindow.getD1(), "d1"));
-//		King whiteKing = new King(Color.orange, "K", new Pair<JToggleButton, String>(BoardWindow.getE1(), "e1"));
-//		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
-//				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
-//				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-		Collections.addAll(whitePieces, whitePawn1);
+		Knight whiteKnight1 = new Knight(Color.orange, "N", new Pair<JToggleButton, String>(BoardWindow.getB1(), "b1"));
+		Knight whiteKnight2 = new Knight(Color.orange, "N", new Pair<JToggleButton, String>(BoardWindow.getG1(), "g1"));
+		Bishop whiteBishop1 = new Bishop(Color.orange, "B", new Pair<JToggleButton, String>(BoardWindow.getC1(), "c1"));
+		Bishop whiteBishop2 = new Bishop(Color.orange, "B", new Pair<JToggleButton, String>(BoardWindow.getF1(), "f1"));
+		Rook whiteRook1 = new Rook(Color.orange, "R", new Pair<JToggleButton, String>(BoardWindow.getA1(), "a1"));
+		Rook whiteRook2 = new Rook(Color.orange, "R", new Pair<JToggleButton, String>(BoardWindow.getH1(), "h1"));
+		Queen whiteQueen = new Queen(Color.orange, "Q", new Pair<JToggleButton, String>(BoardWindow.getD1(), "d1"));
+		King whiteKing = new King(Color.orange, "K", new Pair<JToggleButton, String>(BoardWindow.getE1(), "e1"));
+		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
+				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
+				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
 		Pawn blackPawn1 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getA7(), "a7"));
 		Pawn blackPawn2 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getB7(), "b7"));
 		Pawn blackPawn3 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getC7(), "c7"));
@@ -219,19 +221,17 @@ public class GameEnvironment
 		Pawn blackPawn6 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getF7(), "f7"));
 		Pawn blackPawn7 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getG7(), "g7"));
 		Pawn blackPawn8 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getH7(), "h7"));
-//		Knight blackKnight1 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getB8(), "b8"));
-//		Knight blackKnight2 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getG8(), "g8"));
-//		Bishop blackBishop1 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getC8(), "c8"));
-//		Bishop blackBishop2 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getF8(), "f8"));
-//		Rook blackRook1 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getA8(), "a8"));
-//		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
-//		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
-//		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
-//		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
-//		blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		Knight blackKnight1 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getB8(), "b8"));
+		Knight blackKnight2 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getG8(), "g8"));
+		Bishop blackBishop1 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getC8(), "c8"));
+		Bishop blackBishop2 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getF8(), "f8"));
+		Rook blackRook1 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getA8(), "a8"));
+		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
+		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
+		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
 		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
-				blackPawn5, blackPawn6, blackPawn7, blackPawn8);
+				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		
 		//play the game and get the outcome (win, lose, draw, or stalemate)
 		String humanPlayer = "white";

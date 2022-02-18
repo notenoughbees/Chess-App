@@ -25,17 +25,15 @@ public class Pawn extends Piece{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
 		// ==== check the space ahead of the pawn ====
 		//first find out where that space is
-		Pair<JToggleButton, String> squareAhead = null;
+		Pair<JToggleButton, String> squareTop = null;
 		if(getPieceColour() == Color.white)
-			{squareAhead = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
+			{squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
 		else
-			{squareAhead = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
+			{squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
 		//now find out if that space is empty - if there is no text in the button. If there is no text, 
 		// then that space is a valid destination.
-		System.out.println(squareAhead.first);
-		System.out.println(squareAhead.first.getText());
-		if(squareAhead.first.getText().isEmpty()) //TODO: a square can also be valid if it has an opponent's piece on it
-			{possibleDestinations.add(squareAhead);}
+		if(squareTop.first.getText().isEmpty()) //TODO: a square can also be valid if it has an opponent's piece on it
+			{possibleDestinations.add(squareTop);}
 		
 		// ==== check the space ahead and to the left of the pawn ====
 		Pair<JToggleButton, String> squareTopLeft;
@@ -69,8 +67,6 @@ public class Pawn extends Piece{
 //			
 //		}
 		
-		System.out.println("possibleDestinations:");
-		System.out.println(possibleDestinations);
 		return possibleDestinations;
 		
 	}
