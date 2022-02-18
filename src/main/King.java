@@ -17,14 +17,15 @@ public class King extends Piece{
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
-		Pair<JToggleButton, String> squareTopLeft = null;
-		Pair<JToggleButton, String> squareTop = null;
-		Pair<JToggleButton, String> squareTopRight = null;
-		Pair<JToggleButton, String> squareLeft = null;
-		Pair<JToggleButton, String> squareRight = null;
-		Pair<JToggleButton, String> squareBottomLeft = null;
-		Pair<JToggleButton, String> squareBottom = null;
-		Pair<JToggleButton, String> squareBottomRight = null;
+		Pair<JToggleButton, String> squareTopLeft;
+		Pair<JToggleButton, String> squareTop;
+		Pair<JToggleButton, String> squareTopRight;
+		Pair<JToggleButton, String> squareLeft;
+		Pair<JToggleButton, String> squareRight;
+		Pair<JToggleButton, String> squareBottomLeft;
+		Pair<JToggleButton, String> squareBottom;
+		Pair<JToggleButton, String> squareBottomRight;
+		
 		squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");
 		squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");
 		squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");
@@ -33,6 +34,7 @@ public class King extends Piece{
 		squareBottomLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");
 		squareBottom = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");
 		squareBottomRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");
+		
 		if(squareTopLeft.first.getText().isEmpty())
 			{possibleDestinations.add(squareTopLeft);}
 		if(squareTop.first.getText().isEmpty())

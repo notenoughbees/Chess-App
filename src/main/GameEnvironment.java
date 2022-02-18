@@ -101,20 +101,7 @@ public class GameEnvironment
 		
 		
 		
-		//System.out.println(validSquares);
-		
-//		for(int i = 0; i < validSquares.size(); i++)
-//		{
-//			//print the first item
-//			Pair<String, ArrayList<String>> pair = validSquares.get(i);
-//			System.out.println(pair.first);
-//			//print the second item - which is a list
-//			for(int j = 0; j < pair.second.size(); j++)
-//			{
-//				JToggleButton square = pair.second.get(j);
-//				System.out.println(square.getText());
-//			}
-//		}
+
 		
 		
 		System.exit(0);	

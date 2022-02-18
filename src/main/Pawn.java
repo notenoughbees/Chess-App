@@ -23,52 +23,52 @@ public class Pawn extends Piece{
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
-		// ==== check the space ahead of the pawn ====
-		//first find out where that space is
-		Pair<JToggleButton, String> squareTop = null;
+		Pair<JToggleButton, String> squareTop;
+		Pair<JToggleButton, String> squareTopLeft;
+		Pair<JToggleButton, String> squareTopRight;
+		Pair<JToggleButton, String> squareTwoAhead = null;
+		
+		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
+		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
+		int i = allSquares.indexOf(currentSquare);
+		
 		if(getPieceColour() == Color.white)
-			{squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
+		{
+			squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");
+			squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");
+			squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");
+			//if the pawn has not moved yet, also check the space two squares ahead of the pawn
+			//if the pawn is on a square behind the third rank 
+			//  (aka, the index of currentSquare in allSquares is 48 or higher)...
+			if(i >= 48)
+			{
+				//the square two spaces ahead is just the square one space ahead minus 8
+				squareTwoAhead = allSquares.get(allSquares.indexOf(squareTop)-8);
+			}
+		}
+		//if the pawn is on the black side, then it moves in the opposite direction
 		else
-			{squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
-		//now find out if that space is empty - if there is no text in the button. If there is no text, 
-		// then that space is a valid destination.
+		{
+			squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");
+			squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");
+			squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");
+			if(i < 16)
+			{
+				squareTwoAhead = allSquares.get(allSquares.indexOf(squareTop)+8);
+			}
+		}
+		
+		//now find out if that space is a valid destination
 		if(squareTop.first.getText().isEmpty()) //TODO: a square can also be valid if it has an opponent's piece on it
 			{possibleDestinations.add(squareTop);}
-		
-		// ==== check the space ahead and to the left of the pawn ====
-		Pair<JToggleButton, String> squareTopLeft;
-		if(getPieceColour() == Color.white)
-			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");}
-		else
-			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");}
 		if(squareTopLeft.first.getText().isEmpty())
 			{possibleDestinations.add(squareTopLeft);}
-		
-		// ==== check the space ahead and to the right of the pawn ====
-		Pair<JToggleButton, String> squareTopRight;
-		if(getPieceColour() == Color.white)
-			{squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");}
-		else
-			{squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");}
 		if(squareTopRight.first.getText().isEmpty())
 			{possibleDestinations.add(squareTopRight);}
-		
-		//TODO
-//		// ==== if the pawn has not moved yet, also check the space two squares ahead of the pawn ====
-//		if(getPieceColour() == Color.white)
-//		{
-//			if(pawn is on the 2nd rank, pawn is on the <3 rank etc)
-//			{
-//				
-//			}
-//		}
-//		else
-//		{
-//			
-//		}
+		if(squareTwoAhead.first.getText().isEmpty())
+			{possibleDestinations.add(squareTwoAhead);}
 		
 		return possibleDestinations;
-		
 	}
 	
 	
