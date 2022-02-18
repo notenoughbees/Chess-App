@@ -31,9 +31,11 @@ public class Pawn extends Piece{
 		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
 		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
 		int i = allSquares.indexOf(currentSquare);
+		Color opponentColour;
 		
-		if(getPieceColour() == Color.white)
+		if(getPieceColour() == Color.WHITE)
 		{
+			opponentColour = Color.red;
 			squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");
 			squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topLeft");
 			squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "topRight");
@@ -49,6 +51,7 @@ public class Pawn extends Piece{
 		//if the pawn is on the black side, then it moves in the opposite direction
 		else
 		{
+			opponentColour = Color.orange;
 			squareTop = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");
 			squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomRight");
 			squareTopRight = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottomLeft");
@@ -58,12 +61,12 @@ public class Pawn extends Piece{
 			}
 		}
 		
-		//now find out if that space is a valid destination
-		if(squareTop.first.getText().isEmpty()) //TODO: a square can also be valid if it has an opponent's piece on it
+		//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
+		if(squareTop.first.getText().isEmpty())
 			{possibleDestinations.add(squareTop);}
-		if(squareTopLeft.first.getText().isEmpty())
+		if(squareTopLeft.first.getForeground() == opponentColour) //TODO: check if this line works
 			{possibleDestinations.add(squareTopLeft);}
-		if(squareTopRight.first.getText().isEmpty())
+		if(squareTopRight.first.getForeground() == opponentColour)
 			{possibleDestinations.add(squareTopRight);}
 		if(squareTwoAhead.first.getText().isEmpty())
 			{possibleDestinations.add(squareTwoAhead);}

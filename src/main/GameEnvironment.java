@@ -88,7 +88,7 @@ public class GameEnvironment
 			System.out.println("Possible destination(s):");
 			if(tuple.second != null)
 			{
-				System.out.println(tuple.second.size());
+				//System.out.println(tuple.second.size());
 				for(int j = 0; j < tuple.second.size(); j++)
 				{
 					Pair<JToggleButton, String> possibleDestination = tuple.second.get(j);
@@ -130,14 +130,14 @@ public class GameEnvironment
 					//find out the type of the piece, then cast it as that type to find the possible destinatons
 					if(pieceToCheck instanceof Pawn) // https://stackoverflow.com/a/106351/8042538
 						{pieceDestinations = ((Pawn) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof Knight)
-//						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof Bishop)
-//						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof Rook)
-//						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof Queen)
-//						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Knight)
+						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Bishop)
+						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Rook)
+						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Queen)
+						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof King)
 						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
