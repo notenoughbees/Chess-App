@@ -141,7 +141,8 @@ public class BoardWindow {
 	private static Pair<JToggleButton, String> g8Pair = new Pair<JToggleButton, String>(g8, "g8");
 	private static Pair<JToggleButton, String> h8Pair = new Pair<JToggleButton, String>(h8, "h8");
 	private static ArrayList<Pair<JToggleButton, String>> allSquares = new ArrayList<Pair<JToggleButton, String>>();
-
+	private static final int BOARD_LENGTH = 8;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -631,6 +632,8 @@ public class BoardWindow {
 		{return h8;}
 	public static ArrayList<Pair<JToggleButton, String>> getAllSquares()
 		{return allSquares;}
+	public static int getBoardLength()
+		{return BOARD_LENGTH;}
 	
 	
 	public static void setSquareText(JToggleButton square, String text, Color textColour)
