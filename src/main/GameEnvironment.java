@@ -200,26 +200,24 @@ public class GameEnvironment
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-//		Pawn blackPawn1 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getA7(), "a7"));
-//		Pawn blackPawn2 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getB7(), "b7"));
-//		Pawn blackPawn3 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getC7(), "c7"));
-//		Pawn blackPawn4 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getD7(), "d7"));
-//		Pawn blackPawn5 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getE7(), "e7"));
-//		Pawn blackPawn6 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getF7(), "f7"));
-//		Pawn blackPawn7 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getG7(), "g7"));
-//		Pawn blackPawn8 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getH7(), "h7"));
+		Pawn blackPawn1 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getA7(), "a7"));
+		Pawn blackPawn2 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getB7(), "b7"));
+		Pawn blackPawn3 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getC7(), "c7"));
+		Pawn blackPawn4 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getD7(), "d7"));
+		Pawn blackPawn5 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getE7(), "e7"));
+		Pawn blackPawn6 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getF7(), "f7"));
+		Pawn blackPawn7 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getG7(), "g7"));
+		Pawn blackPawn8 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getH7(), "h7"));
 		Knight blackKnight1 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getB8(), "b8"));
 		Knight blackKnight2 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getG8(), "g8"));
-		Bishop blackBishop1 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getC8(), "c8"));
+		Bishop blackBishop1 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getD3(), "d3")); //c8
 		Bishop blackBishop2 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getF8(), "f8"));
 		Rook blackRook1 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getA8(), "a8"));
 		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
 		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
 		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
-//		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
-//				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-//				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
+		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
+				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		
 		//play the game and get the outcome (win, lose, draw, or stalemate)
