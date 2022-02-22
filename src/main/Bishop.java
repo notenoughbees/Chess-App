@@ -20,6 +20,8 @@ public class Bishop extends Piece{
 //	}
 	
 	
+	
+	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinationsHelper(
 			ArrayList<Pair<JToggleButton, String>> possibleDestinations,
 			ArrayList<Pair<JToggleButton, String>> allSquares,
@@ -27,7 +29,7 @@ public class Bishop extends Piece{
 			Color opponentColour,
 			int nextSquareCalculation)
 	{
-		for(int i = 0; i < BoardWindow.getBoardLength(); i++)
+		for(int i = 0; i < BoardWindow.BOARD_LENGTH; i++)
 		{
 			try
 			{
@@ -57,13 +59,12 @@ public class Bishop extends Piece{
 	}
 	
 	
-	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
+		Color opponentColour;
 		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
 		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
-		Color opponentColour;
 		
 		if(getPieceColour() == Color.WHITE) {
 			opponentColour = Color.red;}
@@ -71,13 +72,13 @@ public class Bishop extends Piece{
 			opponentColour = Color.orange;}
 		
 		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
-				currentSquare, opponentColour, -9));
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION));
 		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
-				currentSquare, opponentColour, -7));
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION));
 		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
-				currentSquare, opponentColour, 7));
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION));
 		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
-				currentSquare, opponentColour, 9));
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION));
 		
 		return possibleDestinations;
 	}
@@ -86,7 +87,11 @@ public class Bishop extends Piece{
 	
 	
 	
-
+	
+	
+	
+	
+	
 	
 	
 	

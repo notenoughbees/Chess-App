@@ -12,6 +12,10 @@ public class Piece {
 	private Pair<JToggleButton, String> location;
 	private JToggleButton locationButton;
 	private String locationName;
+	//these instance variables get used in findPossibleDestinations():
+	//ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
+	//Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
+	//Color opponentColour;
 	
 	//constructor
 	public Piece(Color tempPieceColour, String tempPieceType, Pair<JToggleButton, String> tempLocation) {
@@ -23,10 +27,37 @@ public class Piece {
 		placePiece(pieceColour, pieceType, location);
 	}
 	
-
 	
-	
-	
+	/**
+	 * Given a square a piece might be able to move to, checks if that square is a valid destination.
+	 * If so, the square is added to possibleDestinations. Returns possibleDestinations.
+	 * @param possibleDestinations
+	 * @param allSquares
+	 * @param currentSquare
+	 * @param opponentColour
+	 * @param destinationSquare
+	 * @return possibleDestinations
+	 */
+	public ArrayList<Pair<JToggleButton, String>> testNewDestinationSquare(
+			ArrayList<Pair<JToggleButton, String>> possibleDestinations, 
+			ArrayList<Pair<JToggleButton, String>> allSquares, Pair<JToggleButton, String> currentSquare, 
+			Color opponentColour, int destinationSquareCalculation)
+	{
+		//[1] surround in a try-catch block for the case the piece is on the edge of the board
+		//[2] put each possible destination in a seperate try-catch block because 
+		//  if one position is out of bounds, we don't want to skip every single position
+		try 
+		{   
+			//first calculate the possible destination
+			Pair<JToggleButton, String> destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
+			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
+			if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
+				possibleDestinations.add(destinationSquare);}
+		}
+		catch (IndexOutOfBoundsException e){
+		}
+		return possibleDestinations;
+	}
 	
 	
 	/**

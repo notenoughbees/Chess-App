@@ -81,8 +81,7 @@ public class GameEnvironment
 		{
 			//print the source square
 			Pair<String, ArrayList<Pair<JToggleButton, String>>> tuple = validSquares.get(i);
-			System.out.println("Possible source:");
-			System.out.println(tuple.first);
+			System.out.println("Possible source:" + "\t" + tuple.first);
 			
 			//print the list of possible destination squares from this source sqaure
 			System.out.println("Possible destination(s):");
@@ -101,7 +100,6 @@ public class GameEnvironment
 		
 		
 		
-
 		
 		
 		System.exit(0);	
@@ -134,10 +132,11 @@ public class GameEnvironment
 						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof Bishop)
 						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Rook)
-						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Queen)
-						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+					//TODO: uncomment when ready
+//					else if(pieceToCheck instanceof Rook)
+//						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+//					else if(pieceToCheck instanceof Queen)
+//						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof King)
 						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
@@ -155,19 +154,14 @@ public class GameEnvironment
 					validSquares.add(newTuple);
 				}
 			
-			
-			
-			
-			
-			
+				
+		
 			
 		return validSquares;
 	}
 	
 	
 
-	
-	
 	
 	
 	

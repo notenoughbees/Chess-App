@@ -141,7 +141,27 @@ public class BoardWindow {
 	private static Pair<JToggleButton, String> g8Pair = new Pair<JToggleButton, String>(g8, "g8");
 	private static Pair<JToggleButton, String> h8Pair = new Pair<JToggleButton, String>(h8, "h8");
 	private static ArrayList<Pair<JToggleButton, String>> allSquares = new ArrayList<Pair<JToggleButton, String>>();
-	private static final int BOARD_LENGTH = 8;
+	public static final int BOARD_LENGTH = 8;
+	
+	//constants for the position of squares relative to the current square a piece is on
+	public static final int SQUARE_TOPLEFT_CALCULATION = -9;
+	public static final int SQUARE_TOP_CALCULATION = -8;
+	public static final int SQUARE_TOPRIGHT_CALCULATION = -7;
+	public static final int SQUARE_LEFT_CALCULATION = -1;
+	public static final int SQUARE_RIGHT_CALCULATION = 1;
+	public static final int SQUARE_BOTTOMLEFT_CALCULATION = 7;
+	public static final int SQUARE_BOTTOM_CALCULATION = 8;
+	public static final int SQUARE_BOTTOMRIGHT_CALCULATION = 9;
+	
+	public static final int SQUARE_KNIGHT_TOPLEFT_CALCULATION = -17;
+	public static final int SQUARE_KNIGHT_TOPRIGHT_CALCULATION = -15;
+	public static final int SQUARE_KNIGHT_UPPERLEFT_CALCULATION = -10;
+	public static final int SQUARE_KNIGHT_UPPERRIGHT_CALCULATION = -6;
+	public static final int SQUARE_KNIGHT_LOWERLEFT_CALCULATION = 6;
+	public static final int SQUARE_KNIGHT_LOWERRIGHT_CALCULATION = 10;
+	public static final int SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION = 15;
+	public static final int SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION = 17;
+	
 	
 	/**
 	 * Launch the application.
@@ -445,62 +465,6 @@ public class BoardWindow {
 	}
 	
 	
-	/**
-	 * Calculates and returns the square that is on the given side of the given square.
-	 * If there is no square on the given side, return None.
-	 * @param allSquares
-	 * @param currentSquare
-	 * @return
-	 */
-	public static Pair<JToggleButton, String> getSideSquare(ArrayList<Pair<JToggleButton, String>> allSquares, Pair<JToggleButton, String> currentSquare, String side)
-	{
-		int i = allSquares.indexOf(currentSquare);
-		try
-		{
-			if(side == "topLeft")
-			{
-				return allSquares.get(i-8-1);
-			}
-			if(side == "top")
-			{
-				return allSquares.get(i-8);
-			}
-			
-			if(side == "topRight")
-			{
-				return allSquares.get(i-8+1);
-			}
-			if(side == "left")
-			{
-				return allSquares.get(i-1);
-			}
-			if(side == "right")
-			{
-				return allSquares.get(i+1);
-			}
-			if(side == "bottomLeft")
-			{
-				return allSquares.get(i+8-1);
-			}
-			if(side == "bottom")
-			{
-				return allSquares.get(i+8);
-			}
-			if(side == "bottomRight")
-			{
-				return allSquares.get(i+8+1);
-			}
-			
-		}
-		catch (IndexOutOfBoundsException e)
-		{
-			////TODO: is there a better way to handle this?
-			//return currentSquare;
-		}
-		return currentSquare; //this line just prevents the syntax error for "return type must be JToggleButton"
-	}
-	
-	
 	//getters
 	public static JToggleButton getA1()
 		{return a1;}
@@ -632,8 +596,6 @@ public class BoardWindow {
 		{return h8;}
 	public static ArrayList<Pair<JToggleButton, String>> getAllSquares()
 		{return allSquares;}
-	public static int getBoardLength()
-		{return BOARD_LENGTH;}
 	
 	
 	public static void setSquareText(JToggleButton square, String text, Color textColour)
