@@ -29,8 +29,56 @@ public class Piece {
 	
 	
 	/**
+	 * Gets called by findPossibleDestinations(). Helps find the possible destinations for pieces that
+	 * have a range greater than one and so require a loop (aka bishops, rooks and queens).
+	 * @param possibleDestinations
+	 * @param allSquares
+	 * @param currentSquare
+	 * @param opponentColour
+	 * @param nextSquareCalculation
+	 * @return
+	 */
+	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinationsLoop(
+			ArrayList<Pair<JToggleButton, String>> possibleDestinations,
+			ArrayList<Pair<JToggleButton, String>> allSquares,
+			Pair<JToggleButton, String> currentSquare,
+			Color opponentColour,
+			int nextSquareCalculation)
+	{
+		for(int i = 0; i < BoardWindow.BOARD_LENGTH; i++)
+		{
+			try
+			{
+				Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation*(i+1));
+				if(nextSquare.first.getForeground() == opponentColour)
+				{
+					possibleDestinations.add(nextSquare);
+					//the bishop will not be able to go to any square beyond this one becaue it would have to take the piece on this square and end the turn
+					break;
+				}
+				if(nextSquare.first.getText().isEmpty())
+				{
+					possibleDestinations.add(nextSquare);
+				}
+				//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
+				//  so break the loop just as we do for the opposite-colour case.
+				else
+				{
+					break;
+				}
+			}
+			catch (IndexOutOfBoundsException e){
+				break;
+			}
+		}
+		return possibleDestinations;
+	}
+	
+	
+	/**
 	 * Given a square a piece might be able to move to, checks if that square is a valid destination.
 	 * If so, the square is added to possibleDestinations. Returns possibleDestinations.
+	 * Used for the following pieces: pawn, knight, king
 	 * @param possibleDestinations
 	 * @param allSquares
 	 * @param currentSquare
@@ -46,13 +94,21 @@ public class Piece {
 		//[1] surround in a try-catch block for the case the piece is on the edge of the board
 		//[2] put each possible destination in a seperate try-catch block because 
 		//  if one position is out of bounds, we don't want to skip every single position
+		System.out.println("TEST NEW DEST SQUARE RUN");
 		try 
 		{   
 			//first calculate the possible destination
+			System.out.println(destinationSquareCalculation);
+			System.out.println(allSquares.indexOf(currentSquare));
+			System.out.println(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
+			//System.out.println("XXX" + "\t" + allSquares.get(-16));
 			Pair<JToggleButton, String> destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
+			System.out.println(destinationSquare.second);
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
-				possibleDestinations.add(destinationSquare);}
+				possibleDestinations.add(destinationSquare);
+				System.out.println("ADDED DESTINATION");
+			}
 		}
 		catch (IndexOutOfBoundsException e){
 		}

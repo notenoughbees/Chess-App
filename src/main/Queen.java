@@ -14,44 +14,48 @@ public class Queen extends Piece{
 	}
 	
 	
+//	public void SelectPiece(String pieceType)
+//	{
+//		
+//	}
+	
+	
+	
+	
+
+	
+	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
-		// ==== check the space ahead of the pawn ====
-		Pair<JToggleButton, String> squareTopLeft;
-		if(getPieceColour() == Color.white)
-			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "top");}
-		else
-			{squareTopLeft = BoardWindow.getSideSquare(BoardWindow.getAllSquares(), super.getPieceLocation(), "bottom");}
-		if(squareTopLeft.first.getText().isEmpty())
-			{possibleDestinations.add(squareTopLeft);}
+		Color opponentColour;
+		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
+		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
 		
+		if(getPieceColour() == Color.WHITE) {
+			opponentColour = Color.red;}
+		else {
+			opponentColour = Color.orange;}
 		
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_LEFT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_RIGHT_CALCULATION));
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION));
 		
 		return possibleDestinations;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

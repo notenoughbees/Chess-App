@@ -22,43 +22,6 @@ public class Bishop extends Piece{
 	
 	
 	
-	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinationsHelper(
-			ArrayList<Pair<JToggleButton, String>> possibleDestinations,
-			ArrayList<Pair<JToggleButton, String>> allSquares,
-			Pair<JToggleButton, String> currentSquare,
-			Color opponentColour,
-			int nextSquareCalculation)
-	{
-		for(int i = 0; i < BoardWindow.BOARD_LENGTH; i++)
-		{
-			try
-			{
-				Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation*(i+1));
-				if(nextSquare.first.getForeground() == opponentColour)
-				{
-					possibleDestinations.add(nextSquare);
-					//the bishop will not be able to go to any square beyond this one becaue it would have to take the piece on this square and end the turn
-					break;
-				}
-				if(nextSquare.first.getText().isEmpty())
-				{
-					possibleDestinations.add(nextSquare);
-				}
-				//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
-				//  so break the loop just as we do for the opposite-colour case.
-				else
-				{
-					break;
-				}
-			}
-			catch (IndexOutOfBoundsException e){
-				break;
-			}
-		}
-		return possibleDestinations;
-	}
-	
-	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
@@ -71,13 +34,13 @@ public class Bishop extends Piece{
 		else {
 			opponentColour = Color.orange;}
 		
-		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsHelper(possibleDestinations, allSquares,
+		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION));
 		
 		return possibleDestinations;

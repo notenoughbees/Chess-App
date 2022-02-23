@@ -32,22 +32,33 @@ public class Knight extends Piece{
 		else {
 			opponentColour = Color.orange;}
 		
+		System.out.println(possibleDestinations);
+		
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPLEFT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPRIGHT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERLEFT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERRIGHT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERLEFT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERRIGHT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
+		System.out.println(possibleDestinations);
 		possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 				currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION);
+		System.out.println(possibleDestinations);
+		System.out.println("================================");
 
 		return possibleDestinations;
 	}
