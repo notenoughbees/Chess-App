@@ -174,6 +174,11 @@ public class GameEnvironment
 	
 	public static void main(String[] args)
 	{
+//		for(int i = 0; i < 64; i++)
+//		{
+//			System.out.println((int) i/8+1);
+//		}
+		
 		openBoardWindow();
 		Pawn whitePawn1 = new Pawn(Color.orange, "p", new Pair<JToggleButton, String>(BoardWindow.getA2(), "a2"));
 		Pawn whitePawn2 = new Pawn(Color.orange, "p", new Pair<JToggleButton, String>(BoardWindow.getB2(), "b2"));
@@ -213,8 +218,9 @@ public class GameEnvironment
 //		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
 //				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 //				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
-				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+//		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
+//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		Collections.addAll(blackPieces, blackKnight1);
 		
 		//play the game and get the outcome (win, lose, draw, or stalemate)
 		String humanPlayer = "white";
