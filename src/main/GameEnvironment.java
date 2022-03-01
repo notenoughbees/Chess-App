@@ -133,10 +133,10 @@ public class GameEnvironment
 					else if(pieceToCheck instanceof Bishop)
 						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
 					//TODO: uncomment when ready
-//					else if(pieceToCheck instanceof Rook)
-//						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
-//					else if(pieceToCheck instanceof Queen)
-//						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Rook)
+						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+					else if(pieceToCheck instanceof Queen)
+						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof King)
 						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
@@ -215,14 +215,10 @@ public class GameEnvironment
 		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
 		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
 		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
-//		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
-//				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-//				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-//		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
-//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-		Collections.addAll(blackPieces, blackKnight1);
-		
-		//play the game and get the outcome (win, lose, draw, or stalemate)
+		//TODO
+		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
+				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		//play the game and get the outcome (win, lose, draw, stalemate)
 		String humanPlayer = "white";
 		String outcome = playGame(humanPlayer);
 		System.out.println(outcome);

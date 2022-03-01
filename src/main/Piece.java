@@ -94,32 +94,17 @@ public class Piece {
 		//[1] surround in a try-catch block for the case the piece is on the edge of the board
 		//[2] put each possible destination in a seperate try-catch block because 
 		//  if one position is out of bounds, we don't want to skip every single position
-		//System.out.println("TEST NEW DEST SQUARE RUN");
 		try 
 		{   
 			//first calculate the possible destination
-			//System.out.println(destinationSquareCalculation);
-			//System.out.println(allSquares.indexOf(currentSquare));
-			//System.out.println(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
-			//System.out.println("XXX" + "\t" + allSquares.get(-16));
 			Pair<JToggleButton, String> destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
-			
-			
-
-				
-			
-			
-			//System.out.println(destinationSquare.second);
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
 				possibleDestinations.add(destinationSquare);
-				System.out.println(destinationSquare.second);
-				System.out.println("ADDED DESTINATION");
 			}
 		}
 		catch (IndexOutOfBoundsException e){
 		}
-		System.out.println(possibleDestinations);
 		return possibleDestinations;
 	}
 	
