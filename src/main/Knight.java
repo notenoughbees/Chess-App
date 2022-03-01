@@ -55,7 +55,7 @@ public class Knight extends Piece{
 		}
 		else if(column >= 7)
 		{
-			System.out.println("==== second if");
+			//System.out.println("==== second if");
 			possibleDestinations = testNewDestinationSquare(possibleDestinations, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPLEFT_CALCULATION);
 			possibleDestinations = testNewDestinationSquare(possibleDestinations, allSquares, 
@@ -66,7 +66,7 @@ public class Knight extends Piece{
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
 			if(column == 7)
 			{
-				System.out.println("==== second nested if");
+				//System.out.println("==== second nested if");
 				possibleDestinations = testNewDestinationSquare(possibleDestinations, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPRIGHT_CALCULATION);
 				possibleDestinations = testNewDestinationSquare(possibleDestinations, allSquares, 

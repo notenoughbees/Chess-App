@@ -49,22 +49,35 @@ public class Piece {
 		{
 			try
 			{
-				Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation*(i+1));
-				if(nextSquare.first.getForeground() == opponentColour)
+				int column = (allSquares.indexOf(currentSquare) % 8) + 1;
+				//these varaibles check if the pieces is headed for a square that requires *wrap-around* on the board
+				boolean is_headed_left = nextSquareCalculation == -9 || nextSquareCalculation <= -1 || (nextSquareCalculation == 8);
+				boolean is_headed_right = nextSquareCalculation == -8 || nextSquareCalculation <= 1 || (nextSquareCalculation == 9); 
+				//if the piece is not headed out-of-bounds, continue looking for destinations
+				//if we are NOT on the 1st col headed left, or the 8th col headed right, then 
+				//  we are not headed out-of-bounds, so continue looking for destinations
+				if(!((column == 1 && (is_headed_left)) || (column == 8 && is_headed_right)))
 				{
-					possibleDestinations.add(nextSquare);
-					//the bishop will not be able to go to any square beyond this one becaue it would have to take the piece on this square and end the turn
-					break;
-				}
-				if(nextSquare.first.getText().isEmpty())
-				{
-					possibleDestinations.add(nextSquare);
-				}
-				//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
-				//  so break the loop just as we do for the opposite-colour case.
-				else
-				{
-					break;
+					Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation*(i+1));
+					System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
+					if(nextSquare.first.getForeground() == opponentColour)
+					{
+						possibleDestinations.add(nextSquare);
+						//the piece won't be able to go to any square beyond this one because 
+						//  would have to take the piece on this square, which ends the turn
+						break;
+					}
+					if(nextSquare.first.getText().isEmpty())
+					{
+						possibleDestinations.add(nextSquare);
+						currentSquare = nextSquare; 
+					}
+					//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
+					//  so break the loop just as we do for the opposite-colour case.
+					else
+					{
+						break;
+					}
 				}
 			}
 			catch (IndexOutOfBoundsException e){
