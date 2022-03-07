@@ -3,6 +3,7 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import javax.swing.JToggleButton;
 
@@ -74,13 +75,14 @@ public class GameEnvironment
 	
 	public static void makeComputerMove()
 	{
-		ArrayList<Pair<String, ArrayList<Pair<JToggleButton, String>>>> validSquares = findValidSquares();
+		ArrayList<Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>>> validSquares = findValidSquares();
 		
+		//
 		System.out.println("COMPUTER: VALID MOVES:");
 		for(int i = 0; i < validSquares.size(); i++)
 		{
 			//print the source square
-			Pair<String, ArrayList<Pair<JToggleButton, String>>> tuple = validSquares.get(i);
+			Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>> tuple = validSquares.get(i);
 			System.out.println("Possible source:" + "\t" + tuple.first);
 			
 			//print the list of possible destination squares from this source sqaure
@@ -94,14 +96,27 @@ public class GameEnvironment
 					System.out.println(possibleDestination.second);
 				}
 			}
-			
-			
 		}
+		//
+		
+		//choose one of the valid moves at random
+		Random rand = new Random();
+		int randSrcSquareAndDestList = rand.nextInt(validSquares.size());
+		Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>> chosenSrcSquareAndDestList = validSquares.get(randSrcSquareAndDestList);
+		Pair<JToggleButton, String> srcSquare = chosenSrcSquareAndDestList.first;
+		System.out.println(chosenSrcSquareAndDestList.second.size());
+		int randDstSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
+		Pair<JToggleButton, String> dstSquare = chosenSrcSquareAndDestList.second.get(randDstSquare);
+		
+		//move the piece
+		String pieceType = srcSquare.first.getText();
+		srcSquare.first.setText("");
+		dstSquare.first.setText(pieceType);
 		
 		
 		
 		
-		
+		int endProgram = 0 / 0;
 		System.exit(0);	
 	}
 	
@@ -109,9 +124,9 @@ public class GameEnvironment
 	 * Calculates and returns all of the squares that the player could move a piece to.
 	 * @return
 	 */
-	public static ArrayList<Pair<String, ArrayList<Pair<JToggleButton, String>>>> findValidSquares()
+	public static ArrayList<Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>>> findValidSquares()
 	{
-		ArrayList<Pair<String, ArrayList<Pair<JToggleButton, String>>>> validSquares = new ArrayList<>();
+		ArrayList<Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>>> validSquares = new ArrayList<>();
 		/*
 		 * Explanation of validSquares' datatype:
 		 * ArrayList<Pair<...>>: the list of valid squares contains a pair of the starting square and a list of the possible ending squares
@@ -122,7 +137,7 @@ public class GameEnvironment
 		for(int i = 0; i < (blackPieces).size(); i++)
 				{
 					Piece pieceToCheck = blackPieces.get(i);
-					String pieceLocation = pieceToCheck.getPieceLocationName();
+					Pair<JToggleButton, String> pieceLocation = pieceToCheck.getPieceLocation();
 					
 					ArrayList<Pair<JToggleButton, String>> pieceDestinations = null;
 					//find out the type of the piece, then cast it as that type to find the possible destinatons
@@ -140,7 +155,7 @@ public class GameEnvironment
 					else if(pieceToCheck instanceof King)
 						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
-					Pair<String, ArrayList<Pair<JToggleButton, String>>> newTuple = new Pair<String, ArrayList<Pair<JToggleButton, String>>>(pieceLocation, pieceDestinations);
+					Pair<Pair<JToggleButton, String>, ArrayList<Pair<JToggleButton, String>>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
 					newTuple.first = pieceLocation;
 					newTuple.second = pieceDestinations;
 					
@@ -199,26 +214,26 @@ public class GameEnvironment
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-//		Pawn blackPawn1 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getA7(), "a7"));
-//		Pawn blackPawn2 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getB7(), "b7"));
-//		Pawn blackPawn3 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getC7(), "c7"));
-//		Pawn blackPawn4 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getD7(), "d7"));
-//		Pawn blackPawn5 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getE7(), "e7"));
-//		Pawn blackPawn6 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getF7(), "f7"));
-//		Pawn blackPawn7 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getG7(), "g7"));
-//		Pawn blackPawn8 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getH7(), "h7"));
-//		Knight blackKnight1 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getB8(), "b8"));
-//		Knight blackKnight2 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getG8(), "g8"));
+		Pawn blackPawn1 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getA7(), "a7"));
+		Pawn blackPawn2 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getB7(), "b7"));
+		Pawn blackPawn3 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getC7(), "c7"));
+		Pawn blackPawn4 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getD7(), "d7"));
+		Pawn blackPawn5 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getE7(), "e7"));
+		Pawn blackPawn6 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getF7(), "f7"));
+		Pawn blackPawn7 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getG7(), "g7"));
+		Pawn blackPawn8 = new Pawn(Color.red, "p", new Pair<JToggleButton, String>(BoardWindow.getH7(), "h7"));
+		Knight blackKnight1 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getB8(), "b8"));
+		Knight blackKnight2 = new Knight(Color.red, "N", new Pair<JToggleButton, String>(BoardWindow.getG8(), "g8"));
 		Bishop blackBishop1 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getC8(), "c8"));
 		Bishop blackBishop2 = new Bishop(Color.red, "B", new Pair<JToggleButton, String>(BoardWindow.getF8(), "f8"));
-//		Rook blackRook1 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getA8(), "a8"));
-//		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
-//		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
-//		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
+		Rook blackRook1 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getA8(), "a8"));
+		Rook blackRook2 = new Rook(Color.red, "R", new Pair<JToggleButton, String>(BoardWindow.getH8(), "h8"));
+		Queen blackQueen = new Queen(Color.red, "Q", new Pair<JToggleButton, String>(BoardWindow.getD8(), "d8"));
+		King blackKing = new King(Color.red, "K", new Pair<JToggleButton, String>(BoardWindow.getE8(), "e8"));
 		//TODO
-//		Collections.addAll(blackPieces, blackKnight1, blackKnight2, 
-//				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-		Collections.addAll(blackPieces, blackBishop1, blackBishop2);
+		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
+				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		
 		//play the game and get the outcome (win, lose, draw, stalemate)
 		String humanPlayer = "white";

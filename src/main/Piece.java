@@ -49,20 +49,23 @@ public class Piece {
 		{
 			try
 			{
-				int column = (allSquares.indexOf(currentSquare) % 8) + 1;
-				//these varaibles check if the pieces is headed for a square that requires *wrap-around* on the board
-				boolean is_headed_left = nextSquareCalculation == -9 || nextSquareCalculation <= -1 || (nextSquareCalculation == 8);
-				boolean is_headed_right = nextSquareCalculation == -8 || nextSquareCalculation <= 1 || (nextSquareCalculation == 9); 
+				//int column = (int) Math.ceil(allSquares.indexOf(currentSquare) % 8);
+				int column = (int) Math.ceil((allSquares.indexOf(currentSquare)) % 8);
+				//these variables check if the pieces is headed for a square that requires *wrap-around* on the board
+				boolean is_headed_left = nextSquareCalculation == -9 || nextSquareCalculation == -1 || (nextSquareCalculation == 7);
+				boolean is_headed_right = nextSquareCalculation == -7 || nextSquareCalculation == 1 || (nextSquareCalculation == 9); 
 				//if the piece is not headed out-of-bounds, continue looking for destinations
 				//if we are NOT on the 1st col headed left, or the 8th col headed right, then 
 				//  we are not headed out-of-bounds, so continue looking for destinations
-				if(!((column == 1 && (is_headed_left)) || (column == 8 && is_headed_right)))
+				//System.out.println(allSquares.indexOf(currentSquare) + "\t" + column + "\t" + is_headed_left + "\t" + is_headed_right);
+				if(!((column == 0 && (is_headed_left)) || (column == 7 && is_headed_right)))
 				{
-					Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation*(i+1));
-					System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
+					Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation);
+					//System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
 					if(nextSquare.first.getForeground() == opponentColour)
 					{
 						possibleDestinations.add(nextSquare);
+						//System.out.println("ADDED1:" + nextSquare.second);
 						//the piece won't be able to go to any square beyond this one because 
 						//  would have to take the piece on this square, which ends the turn
 						break;
@@ -70,6 +73,7 @@ public class Piece {
 					if(nextSquare.first.getText().isEmpty())
 					{
 						possibleDestinations.add(nextSquare);
+						//System.out.println("ADDED2:" + nextSquare.second);
 						currentSquare = nextSquare; 
 					}
 					//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
@@ -112,9 +116,25 @@ public class Piece {
 			//first calculate the possible destination
 			Pair<JToggleButton, String> destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
-			if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
-				possibleDestinations.add(destinationSquare);
+			if(!(this instanceof Pawn))
+			{
+				if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
+					possibleDestinations.add(destinationSquare);
+				}
 			}
+			else //if the piece is a pawn, then it can only move into an opponent's square if it is moving diagonally
+			{
+				boolean is_moving_forward = (destinationSquareCalculation == BoardWindow.SQUARE_TOP_CALCULATION 
+						|| destinationSquareCalculation == BoardWindow.SQUARE_BOTTOM_CALCULATION);
+				boolean is_moving_diagonally = (destinationSquareCalculation != BoardWindow.SQUARE_TOP_CALCULATION 
+						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOM_CALCULATION);
+				if(destinationSquare.first.getText().isEmpty() && is_moving_forward
+						|| destinationSquare.first.getForeground() == opponentColour && is_moving_diagonally){
+					possibleDestinations.add(destinationSquare);
+				}
+			}
+			
+			
 		}
 		catch (IndexOutOfBoundsException e){
 		}
@@ -140,15 +160,6 @@ public class Piece {
 		{return pieceType;}
 	public Pair<JToggleButton, String> getPieceLocation()
 	{return location;}
-	/**
-	 * Returns the location of the piece - the square the piece is currently on, as a JToggleButton.
-	 * @return
-	 */
-	public JToggleButton getPieceLocationButton()
-		{return locationButton;}
-	
-	public String getPieceLocationName()
-		{return locationName;}
 	
 	
 	

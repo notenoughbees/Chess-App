@@ -24,7 +24,7 @@ public class Bishop extends Piece{
 	
 	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
 	{
-		System.out.println("findPossibleDestinations: BISHOP");
+		//System.out.println("findPossibleDestinations: BISHOP");
 		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
 		Color opponentColour;
 		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
