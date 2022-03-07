@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 public class Pawn extends Piece{
 
 	//constructor call
-	public Pawn(Color tempPieceColour, String tempPieceType, Pair<JToggleButton, String> tempLocation) {
+	public Pawn(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
 		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}
@@ -20,14 +20,14 @@ public class Pawn extends Piece{
 //	}
 	
 	
-	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
+	public ArrayList<JToggleButton> findPossibleDestinations()
 	{
-		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
+		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
 		Color opponentColour;
-		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
-		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
+		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
+		JToggleButton currentSquare = super.getPieceLocation();
 		int i = allSquares.indexOf(super.getPieceLocation());
-		Pair<JToggleButton, String> squareTwoAhead = null;
+		JToggleButton squareTwoAhead = null;
 		
 		if(getPieceColour() == Color.WHITE)
 		{
@@ -42,7 +42,8 @@ public class Pawn extends Piece{
 			if(i >= 48) //check if it is behind the 3rd rank, aka the index of currentSquare in allSquares is >= 48
 			{
 				//the square two spaces ahead is just the square one space ahead minus 8
-				squareTwoAhead = allSquares.get(allSquares.indexOf(currentSquare)+BoardWindow.SQUARE_TOP_CALCULATION-8);
+				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+						currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION-8);
 			}
 		}
 		//if the pawn is on the black side, then it moves in the opposite direction
@@ -57,7 +58,8 @@ public class Pawn extends Piece{
 					currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION);
 			if(i < 16)
 			{
-				squareTwoAhead = allSquares.get(allSquares.indexOf(currentSquare)+BoardWindow.SQUARE_BOTTOM_CALCULATION+8);
+				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+						currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION+8);
 			}
 		}
 		return possibleDestinations;

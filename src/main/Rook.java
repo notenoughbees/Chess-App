@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 public class Rook extends Piece{
 
 	//constructor call
-	public Rook(Color tempPieceColour, String tempPieceType, Pair<JToggleButton, String> tempLocation) {
+	public Rook(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
 		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}
@@ -25,12 +25,12 @@ public class Rook extends Piece{
 
 	
 	
-	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinations()
+	public ArrayList<JToggleButton> findPossibleDestinations()
 	{
-		ArrayList<Pair<JToggleButton, String>> possibleDestinations = new ArrayList<>();
+		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
 		Color opponentColour;
-		ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
-		Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
+		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
+		JToggleButton currentSquare = super.getPieceLocation();
 		
 		if(getPieceColour() == Color.WHITE) {
 			opponentColour = Color.red;}

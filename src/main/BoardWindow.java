@@ -76,71 +76,7 @@ public class BoardWindow {
 	private static JToggleButton f8 = new JToggleButton("");
 	private static JToggleButton g8 = new JToggleButton("");
 	private static JToggleButton h8 = new JToggleButton("");
-	private static Pair<JToggleButton, String> a1Pair = new Pair<JToggleButton, String>(a1, "a1");
-	private static Pair<JToggleButton, String> b1Pair = new Pair<JToggleButton, String>(b1, "b1");
-	private static Pair<JToggleButton, String> c1Pair = new Pair<JToggleButton, String>(c1, "c1");
-	private static Pair<JToggleButton, String> d1Pair = new Pair<JToggleButton, String>(d1, "d1");
-	private static Pair<JToggleButton, String> e1Pair = new Pair<JToggleButton, String>(e1, "e1");
-	private static Pair<JToggleButton, String> f1Pair = new Pair<JToggleButton, String>(f1, "f1");
-	private static Pair<JToggleButton, String> g1Pair = new Pair<JToggleButton, String>(g1, "g1");
-	private static Pair<JToggleButton, String> h1Pair = new Pair<JToggleButton, String>(h1, "h1");
-	private static Pair<JToggleButton, String> a2Pair = new Pair<JToggleButton, String>(a2, "a2");
-	private static Pair<JToggleButton, String> b2Pair = new Pair<JToggleButton, String>(b2, "b2");
-	private static Pair<JToggleButton, String> c2Pair = new Pair<JToggleButton, String>(c2, "c2");
-	private static Pair<JToggleButton, String> d2Pair = new Pair<JToggleButton, String>(d2, "d2");
-	private static Pair<JToggleButton, String> e2Pair = new Pair<JToggleButton, String>(e2, "e2");
-	private static Pair<JToggleButton, String> f2Pair = new Pair<JToggleButton, String>(f2, "f2");
-	private static Pair<JToggleButton, String> g2Pair = new Pair<JToggleButton, String>(g2, "g2");
-	private static Pair<JToggleButton, String> h2Pair = new Pair<JToggleButton, String>(h2, "h2");
-	private static Pair<JToggleButton, String> a3Pair = new Pair<JToggleButton, String>(a3, "a3");
-	private static Pair<JToggleButton, String> b3Pair = new Pair<JToggleButton, String>(b3, "b3");
-	private static Pair<JToggleButton, String> c3Pair = new Pair<JToggleButton, String>(c3, "c3");
-	private static Pair<JToggleButton, String> d3Pair = new Pair<JToggleButton, String>(d3, "d3");
-	private static Pair<JToggleButton, String> e3Pair = new Pair<JToggleButton, String>(e3, "e3");
-	private static Pair<JToggleButton, String> f3Pair = new Pair<JToggleButton, String>(f3, "f3");
-	private static Pair<JToggleButton, String> g3Pair = new Pair<JToggleButton, String>(g3, "g3");
-	private static Pair<JToggleButton, String> h3Pair = new Pair<JToggleButton, String>(h3, "h3");
-	private static Pair<JToggleButton, String> a4Pair = new Pair<JToggleButton, String>(a4, "a4");
-	private static Pair<JToggleButton, String> b4Pair = new Pair<JToggleButton, String>(b4, "b4");
-	private static Pair<JToggleButton, String> c4Pair = new Pair<JToggleButton, String>(c4, "c4");
-	private static Pair<JToggleButton, String> d4Pair = new Pair<JToggleButton, String>(d4, "d4");
-	private static Pair<JToggleButton, String> e4Pair = new Pair<JToggleButton, String>(e4, "e4");
-	private static Pair<JToggleButton, String> f4Pair = new Pair<JToggleButton, String>(f4, "f4");
-	private static Pair<JToggleButton, String> g4Pair = new Pair<JToggleButton, String>(g4, "g4");
-	private static Pair<JToggleButton, String> h4Pair = new Pair<JToggleButton, String>(h4, "h4");
-	private static Pair<JToggleButton, String> a5Pair = new Pair<JToggleButton, String>(a5, "a5");
-	private static Pair<JToggleButton, String> b5Pair = new Pair<JToggleButton, String>(b5, "b5");
-	private static Pair<JToggleButton, String> c5Pair = new Pair<JToggleButton, String>(c5, "c5");
-	private static Pair<JToggleButton, String> d5Pair = new Pair<JToggleButton, String>(d5, "d5");
-	private static Pair<JToggleButton, String> e5Pair = new Pair<JToggleButton, String>(e5, "e5");
-	private static Pair<JToggleButton, String> f5Pair = new Pair<JToggleButton, String>(f5, "f5");
-	private static Pair<JToggleButton, String> g5Pair = new Pair<JToggleButton, String>(g5, "g5");
-	private static Pair<JToggleButton, String> h5Pair = new Pair<JToggleButton, String>(h5, "h5");
-	private static Pair<JToggleButton, String> a6Pair = new Pair<JToggleButton, String>(a6, "a6");
-	private static Pair<JToggleButton, String> b6Pair = new Pair<JToggleButton, String>(b6, "b6");
-	private static Pair<JToggleButton, String> c6Pair = new Pair<JToggleButton, String>(c6, "c6");
-	private static Pair<JToggleButton, String> d6Pair = new Pair<JToggleButton, String>(d6, "d6");
-	private static Pair<JToggleButton, String> e6Pair = new Pair<JToggleButton, String>(e6, "e6");
-	private static Pair<JToggleButton, String> f6Pair = new Pair<JToggleButton, String>(f6, "f6");
-	private static Pair<JToggleButton, String> g6Pair = new Pair<JToggleButton, String>(g6, "g6");
-	private static Pair<JToggleButton, String> h6Pair = new Pair<JToggleButton, String>(h6, "h6");
-	private static Pair<JToggleButton, String> a7Pair = new Pair<JToggleButton, String>(a7, "a7");
-	private static Pair<JToggleButton, String> b7Pair = new Pair<JToggleButton, String>(b7, "b7");
-	private static Pair<JToggleButton, String> c7Pair = new Pair<JToggleButton, String>(c7, "c7");
-	private static Pair<JToggleButton, String> d7Pair = new Pair<JToggleButton, String>(d7, "d7");
-	private static Pair<JToggleButton, String> e7Pair = new Pair<JToggleButton, String>(e7, "e7");
-	private static Pair<JToggleButton, String> f7Pair = new Pair<JToggleButton, String>(f7, "f7");
-	private static Pair<JToggleButton, String> g7Pair = new Pair<JToggleButton, String>(g7, "g7");
-	private static Pair<JToggleButton, String> h7Pair = new Pair<JToggleButton, String>(h7, "h7");
-	private static Pair<JToggleButton, String> a8Pair = new Pair<JToggleButton, String>(a8, "a8");
-	private static Pair<JToggleButton, String> b8Pair = new Pair<JToggleButton, String>(b8, "b8");
-	private static Pair<JToggleButton, String> c8Pair = new Pair<JToggleButton, String>(c8, "c8");
-	private static Pair<JToggleButton, String> d8Pair = new Pair<JToggleButton, String>(d8, "d8");
-	private static Pair<JToggleButton, String> e8Pair = new Pair<JToggleButton, String>(e8, "e8");
-	private static Pair<JToggleButton, String> f8Pair = new Pair<JToggleButton, String>(f8, "f8");
-	private static Pair<JToggleButton, String> g8Pair = new Pair<JToggleButton, String>(g8, "g8");
-	private static Pair<JToggleButton, String> h8Pair = new Pair<JToggleButton, String>(h8, "h8");
-	private static ArrayList<Pair<JToggleButton, String>> allSquares = new ArrayList<Pair<JToggleButton, String>>();
+	private static ArrayList<JToggleButton> allSquares = new ArrayList<JToggleButton>();
 	public static final int BOARD_LENGTH = 8;
 	
 	//constants for the position of squares relative to the current square a piece is on
@@ -454,14 +390,14 @@ public class BoardWindow {
 		h1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h1);
 		
-		Collections.addAll(allSquares, a8Pair, b8Pair, c8Pair, d8Pair, e8Pair, f8Pair, g8Pair, h8Pair,
-				a7Pair, b7Pair, c7Pair, d7Pair, e7Pair, f7Pair, g7Pair, h7Pair, 
-				a6Pair, b6Pair, c6Pair, d6Pair, e6Pair, f6Pair, g6Pair, h6Pair,
-				a5Pair, b5Pair, c5Pair, d5Pair, e5Pair, f5Pair, g5Pair, h5Pair, 
-				a4Pair, b4Pair, c4Pair, d4Pair, e4Pair, f4Pair, g4Pair, h4Pair,
-				a3Pair, b3Pair, c3Pair, d3Pair, e3Pair, f3Pair, g3Pair, h3Pair, 
-				a2Pair, b2Pair, c2Pair, d2Pair, e2Pair, f2Pair, g2Pair, h2Pair,
-				a1Pair, b1Pair, c1Pair, d1Pair, e1Pair, f1Pair, g1Pair, h1Pair);
+		Collections.addAll(allSquares, a8, b8, c8, d8, e8, f8, g8, h8,
+				a7, b7, c7, d7, e7, f7, g7, h7, 
+				a6, b6, c6, d6, e6, f6, g6, h6,
+				a5, b5, c5, d5, e5, f5, g5, h5, 
+				a4, b4, c4, d4, e4, f4, g4, h4,
+				a3, b3, c3, d3, e3, f3, g3, h3, 
+				a2, b2, c2, d2, e2, f2, g2, h2,
+				a1, b1, c1, d1, e1, f1, g1, h1);
 	}
 	
 	
@@ -594,7 +530,7 @@ public class BoardWindow {
 		{return g8;}
 	public static JToggleButton getH8()
 		{return h8;}
-	public static ArrayList<Pair<JToggleButton, String>> getAllSquares()
+	public static ArrayList<JToggleButton> getAllSquares()
 		{return allSquares;}
 	
 	

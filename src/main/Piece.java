@@ -9,21 +9,17 @@ public class Piece {
 	//initialise
 	private Color pieceColour;
 	private String pieceType;
-	private Pair<JToggleButton, String> location;
-	private JToggleButton locationButton;
-	private String locationName;
+	private JToggleButton location;
 	//these instance variables get used in findPossibleDestinations():
-	//ArrayList<Pair<JToggleButton, String>> allSquares = BoardWindow.getAllSquares();
-	//Pair<JToggleButton, String> currentSquare = super.getPieceLocation();
+	//ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
+	//JToggleButton currentSquare = super.getPieceLocation();
 	//Color opponentColour;
 	
 	//constructor
-	public Piece(Color tempPieceColour, String tempPieceType, Pair<JToggleButton, String> tempLocation) {
+	public Piece(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
 		pieceColour = tempPieceColour;
 		pieceType = tempPieceType;
 		location = tempLocation;
-		locationButton = location.first;
-		locationName = location.second;
 		placePiece(pieceColour, pieceType, location);
 	}
 	
@@ -38,10 +34,10 @@ public class Piece {
 	 * @param nextSquareCalculation
 	 * @return
 	 */
-	public ArrayList<Pair<JToggleButton, String>> findPossibleDestinationsLoop(
-			ArrayList<Pair<JToggleButton, String>> possibleDestinations,
-			ArrayList<Pair<JToggleButton, String>> allSquares,
-			Pair<JToggleButton, String> currentSquare,
+	public ArrayList<JToggleButton> findPossibleDestinationsLoop(
+			ArrayList<JToggleButton> possibleDestinations,
+			ArrayList<JToggleButton> allSquares,
+			JToggleButton currentSquare,
 			Color opponentColour,
 			int nextSquareCalculation)
 	{
@@ -60,9 +56,9 @@ public class Piece {
 				//System.out.println(allSquares.indexOf(currentSquare) + "\t" + column + "\t" + is_headed_left + "\t" + is_headed_right);
 				if(!((column == 0 && (is_headed_left)) || (column == 7 && is_headed_right)))
 				{
-					Pair<JToggleButton, String> nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation);
+					JToggleButton nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation);
 					//System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
-					if(nextSquare.first.getForeground() == opponentColour)
+					if(nextSquare.getForeground() == opponentColour)
 					{
 						possibleDestinations.add(nextSquare);
 						//System.out.println("ADDED1:" + nextSquare.second);
@@ -70,7 +66,7 @@ public class Piece {
 						//  would have to take the piece on this square, which ends the turn
 						break;
 					}
-					if(nextSquare.first.getText().isEmpty())
+					if(nextSquare.getText().isEmpty())
 					{
 						possibleDestinations.add(nextSquare);
 						//System.out.println("ADDED2:" + nextSquare.second);
@@ -103,9 +99,9 @@ public class Piece {
 	 * @param destinationSquare
 	 * @return possibleDestinations
 	 */
-	public ArrayList<Pair<JToggleButton, String>> testNewDestinationSquare(
-			ArrayList<Pair<JToggleButton, String>> possibleDestinations, 
-			ArrayList<Pair<JToggleButton, String>> allSquares, Pair<JToggleButton, String> currentSquare, 
+	public ArrayList<JToggleButton> testNewDestinationSquare(
+			ArrayList<JToggleButton> possibleDestinations, 
+			ArrayList<JToggleButton> allSquares, JToggleButton currentSquare, 
 			Color opponentColour, int destinationSquareCalculation)
 	{
 		//[1] surround in a try-catch block for the case the piece is on the edge of the board
@@ -114,22 +110,25 @@ public class Piece {
 		try 
 		{   
 			//first calculate the possible destination
-			Pair<JToggleButton, String> destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
+			JToggleButton destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(!(this instanceof Pawn))
 			{
-				if(destinationSquare.first.getText().isEmpty() || destinationSquare.first.getForeground() == opponentColour){
+				if(destinationSquare.getText().isEmpty() || destinationSquare.getForeground() == opponentColour){
 					possibleDestinations.add(destinationSquare);
 				}
 			}
 			else //if the piece is a pawn, then it can only move into an opponent's square if it is moving diagonally
 			{
-				boolean is_moving_forward = (destinationSquareCalculation == BoardWindow.SQUARE_TOP_CALCULATION 
-						|| destinationSquareCalculation == BoardWindow.SQUARE_BOTTOM_CALCULATION);
-				boolean is_moving_diagonally = (destinationSquareCalculation != BoardWindow.SQUARE_TOP_CALCULATION 
-						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOM_CALCULATION);
-				if(destinationSquare.first.getText().isEmpty() && is_moving_forward
-						|| destinationSquare.first.getForeground() == opponentColour && is_moving_diagonally){
+				System.out.println(destinationSquareCalculation);
+				boolean is_moving_forward = (destinationSquareCalculation != BoardWindow.SQUARE_TOPLEFT_CALCULATION 
+						&& destinationSquareCalculation != BoardWindow.SQUARE_TOPRIGHT_CALCULATION
+						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
+						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
+				boolean is_moving_diagonally = !(is_moving_forward);
+				
+				if(destinationSquare.getText().isEmpty() && is_moving_forward
+						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally){
 					possibleDestinations.add(destinationSquare);
 				}
 			}
@@ -148,9 +147,9 @@ public class Piece {
 	 * @param pieceType: pawn, knight etc
 	 * @param square: a2, f5 etc
 	 */
-	public void placePiece(Color pieceColour, String pieceType, Pair<JToggleButton, String> location)
+	public void placePiece(Color pieceColour, String pieceType, JToggleButton location)
 	{
-		BoardWindow.setSquareText(locationButton, pieceType, pieceColour);
+		BoardWindow.setSquareText(location, pieceType, pieceColour);
 	}
 	
 	
@@ -158,7 +157,7 @@ public class Piece {
 		{return pieceColour;}
 	public String getPieceType()
 		{return pieceType;}
-	public Pair<JToggleButton, String> getPieceLocation()
+	public JToggleButton getPieceLocation()
 	{return location;}
 	
 	
