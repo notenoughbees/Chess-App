@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -12,6 +13,7 @@ public class GameEnvironment
 	private static ArrayList<Piece> whitePieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> blackPieces = new ArrayList<Piece>();
 	private static String currentPlayer;
+	private static boolean gameOver;
 	
 	
 	public static void openBoardWindow() {
@@ -43,7 +45,7 @@ public class GameEnvironment
 	
 	public static boolean gameOver()
 	{
-		return false;
+		return gameOver;
 	}
 	
 	
@@ -77,27 +79,27 @@ public class GameEnvironment
 	{
 		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = findValidSquares();
 		
-		//
-		System.out.println("COMPUTER: VALID MOVES:");
-		for(int i = 0; i < validSquares.size(); i++)
-		{
-			//print the source square
-			Pair<JToggleButton, ArrayList<JToggleButton>> tuple = validSquares.get(i);
-			System.out.println("Possible source:" + "\t" + BoardWindow.getAllSquares().indexOf(tuple.first));
-			
-			//print the list of possible destination squares from this source sqaure
-			System.out.println("Possible destination(s):");
-			if(tuple.second != null)
-			{
-				//System.out.println(tuple.second.size());
-				for(int j = 0; j < tuple.second.size(); j++)
-				{
-					int possibleDestination = BoardWindow.getAllSquares().indexOf(tuple.second.get(j));
-					System.out.println(possibleDestination);
-				}
-			}
-		}
-		//
+//		//
+//		System.out.println("COMPUTER: VALID MOVES:");
+//		for(int i = 0; i < validSquares.size(); i++)
+//		{
+//			//print the source square
+//			Pair<JToggleButton, ArrayList<JToggleButton>> tuple = validSquares.get(i);
+//			System.out.println("Possible source:" + "\t" + BoardWindow.getAllSquares().indexOf(tuple.first));
+//			
+//			//print the list of possible destination squares from this source sqaure
+//			System.out.println("Possible destination(s):");
+//			if(tuple.second != null)
+//			{
+//				//System.out.println(tuple.second.size());
+//				for(int j = 0; j < tuple.second.size(); j++)
+//				{
+//					int possibleDestination = BoardWindow.getAllSquares().indexOf(tuple.second.get(j));
+//					System.out.println(possibleDestination);
+//				}
+//			}
+//		}
+//		//
 		
 		//choose one of the valid moves at random
 		Random rand = new Random();
@@ -113,31 +115,45 @@ public class GameEnvironment
 		System.out.println(BoardWindow.getAllSquares().indexOf(dstSquare)); //print sdstrc square's index
 		
 		//move the piece
-		String pieceType = srcSquare.getText();
+		//	create an array list of all pieces
+		//TODO: for the computer, we actually ONLY need blackPieces
+		//	maybe leave this here tho in case we need to reuse this code?
+		ArrayList<Piece> allPieces = new ArrayList<Piece>();
+		Piece piece = null;
+		for(int i=0; i < whitePieces.size(); i++)
+		{
+			piece = whitePieces.get(i);
+			allPieces.add(piece);
+			piece = blackPieces.get(i);
+			allPieces.add(piece);
+		}
+		
+		//	remove it from the source square
+		piece = piece.findPiece(allPieces, srcSquare);
+		System.out.println(piece.getPieceColour() + "\t" + srcSquare.getText());
 		srcSquare.setText("");
-		dstSquare.setText(pieceType);
+
+		//	put it on the destination square
+		System.out.println(piece.getPieceColour());
+		System.out.println(piece.getPieceType());
+		System.out.println(piece.getPieceLocation());
+		piece.placePiece(piece.getPieceColour(), piece.getPieceType(), dstSquare);
 		
 		
 		
 		
-		int endProgram = 0 / 0;
-		System.exit(0);	
+		gameOver = true;
 	}
+	
 	
 	/**
 	 * Calculates and returns all of the squares that the player could move a piece to.
-	 * @return
+	 * @return pieceDestinations: an ArrayList containing pairs of the location (a JToggleButton) 
+	 * and the destinations (a further ArrayList of JToggleButtons)
 	 */
 	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquares()
 	{
 		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = new ArrayList<>();
-		/*
-		 * Explanation of validSquares' datatype:
-		 * ArrayList<Pair<...>>: the list of valid squares contains a pair of the starting square and a list of the possible ending squares
-		 * ...Pair<String, ArrayList<>>... - this is that pair
-		 * ArrayList<JToggleButton> - this is the mentioned list of the possible squares. 
-		 *   This list contains both the button for that square, and the name of that square, for easy reference,
-		 */
 		for(int i = 0; i < (blackPieces).size(); i++)
 				{
 					Piece pieceToCheck = blackPieces.get(i);
@@ -151,7 +167,6 @@ public class GameEnvironment
 						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof Bishop)
 						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
-					//TODO: uncomment when ready
 					else if(pieceToCheck instanceof Rook)
 						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
 					else if(pieceToCheck instanceof Queen)
@@ -159,23 +174,12 @@ public class GameEnvironment
 					else if(pieceToCheck instanceof King)
 						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
 					
-					Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
-					newTuple.first = pieceLocation;
-					newTuple.second = pieceDestinations;
-					
-					//System.out.println(pieceLocation);
-					//for(int j = 0; j < pieceDestinations.size(); j++)
-					//{
-					//	JToggleButton possibleDestination = pieceDestinations.get(j);
-					//	System.out.println(possibleDestination.second);
-					//}
-					
-					validSquares.add(newTuple);
+					if(pieceDestinations.size() > 0) //pieceDestinations will be null if no destionations were found
+					{
+						Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
+						validSquares.add(newTuple);
+					}
 				}
-			
-				
-		
-			
 		return validSquares;
 	}
 	
@@ -188,53 +192,44 @@ public class GameEnvironment
 	
 	
 	
-	
-	
-	
 	public static void main(String[] args)
-	{
-//		for(int i = 0; i < 64; i++)
-//		{
-//			System.out.println((int) i/8+1);
-//		}
-		
+	{	
 		openBoardWindow();
-		Pawn whitePawn1 = new Pawn(Color.orange, "p", BoardWindow.getA2());
-		Pawn whitePawn2 = new Pawn(Color.orange, "p", BoardWindow.getB2());
-		Pawn whitePawn3 = new Pawn(Color.orange, "p", BoardWindow.getC2());
-		Pawn whitePawn4 = new Pawn(Color.orange, "p", BoardWindow.getD2());
-		Pawn whitePawn5 = new Pawn(Color.orange, "p", BoardWindow.getE2());
-		Pawn whitePawn6 = new Pawn(Color.orange, "p", BoardWindow.getF2());
-		Pawn whitePawn7 = new Pawn(Color.orange, "p", BoardWindow.getG2());
-		Pawn whitePawn8 = new Pawn(Color.orange, "p", BoardWindow.getH2());
-		Knight whiteKnight1 = new Knight(Color.orange, "N", BoardWindow.getB1());
-		Knight whiteKnight2 = new Knight(Color.orange, "N", BoardWindow.getG1());
-		Bishop whiteBishop1 = new Bishop(Color.orange, "B", BoardWindow.getC1());
-		Bishop whiteBishop2 = new Bishop(Color.orange, "B", BoardWindow.getF1());
-		Rook whiteRook1 = new Rook(Color.orange, "R", BoardWindow.getA1());
-		Rook whiteRook2 = new Rook(Color.orange, "R", BoardWindow.getH1());
-		Queen whiteQueen = new Queen(Color.orange, "Q", BoardWindow.getD1());
-		King whiteKing = new King(Color.orange, "K", BoardWindow.getE1());
+		Pawn whitePawn1 = new Pawn(Color.orange, "p1.", BoardWindow.getA2());
+		Pawn whitePawn2 = new Pawn(Color.orange, "p2.", BoardWindow.getB2());
+		Pawn whitePawn3 = new Pawn(Color.orange, "p3.", BoardWindow.getC2());
+		Pawn whitePawn4 = new Pawn(Color.orange, "p4.", BoardWindow.getD2());
+		Pawn whitePawn5 = new Pawn(Color.orange, "p5.", BoardWindow.getE2());
+		Pawn whitePawn6 = new Pawn(Color.orange, "p6.", BoardWindow.getF2());
+		Pawn whitePawn7 = new Pawn(Color.orange, "p7.", BoardWindow.getG2());
+		Pawn whitePawn8 = new Pawn(Color.orange, "p8.", BoardWindow.getH2());
+		Knight whiteKnight1 = new Knight(Color.orange, "N1.", BoardWindow.getB1());
+		Knight whiteKnight2 = new Knight(Color.orange, "N2.", BoardWindow.getG1());
+		Bishop whiteBishop1 = new Bishop(Color.orange, "B1.", BoardWindow.getC1());
+		Bishop whiteBishop2 = new Bishop(Color.orange, "B2.", BoardWindow.getF1());
+		Rook whiteRook1 = new Rook(Color.orange, "R1.", BoardWindow.getA1());
+		Rook whiteRook2 = new Rook(Color.orange, "R2.", BoardWindow.getH1());
+		Queen whiteQueen = new Queen(Color.orange, "Q.", BoardWindow.getD1());
+		King whiteKing = new King(Color.orange, "K.", BoardWindow.getE1());
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-		Pawn blackPawn1 = new Pawn(Color.red, "p", BoardWindow.getA7());
-		Pawn blackPawn2 = new Pawn(Color.red, "p", BoardWindow.getB7());
-		Pawn blackPawn3 = new Pawn(Color.red, "p", BoardWindow.getC7());
-		Pawn blackPawn4 = new Pawn(Color.red, "p", BoardWindow.getD7());
-		Pawn blackPawn5 = new Pawn(Color.red, "p", BoardWindow.getE7());
-		Pawn blackPawn6 = new Pawn(Color.red, "p", BoardWindow.getF7());
-		Pawn blackPawn7 = new Pawn(Color.red, "p", BoardWindow.getG7());
-		Pawn blackPawn8 = new Pawn(Color.red, "p", BoardWindow.getH7());
-		Knight blackKnight1 = new Knight(Color.red, "N", BoardWindow.getB8());
-		Knight blackKnight2 = new Knight(Color.red, "N", BoardWindow.getG8());
-		Bishop blackBishop1 = new Bishop(Color.red, "B", BoardWindow.getC8());
-		Bishop blackBishop2 = new Bishop(Color.red, "B", BoardWindow.getF8());
-		Rook blackRook1 = new Rook(Color.red, "R", BoardWindow.getA8());
-		Rook blackRook2 = new Rook(Color.red, "R", BoardWindow.getH8());
+		Pawn blackPawn1 = new Pawn(Color.red, "p1", BoardWindow.getA7());
+		Pawn blackPawn2 = new Pawn(Color.red, "p2", BoardWindow.getB7());
+		Pawn blackPawn3 = new Pawn(Color.red, "p3", BoardWindow.getC7());
+		Pawn blackPawn4 = new Pawn(Color.red, "p4", BoardWindow.getD7());
+		Pawn blackPawn5 = new Pawn(Color.red, "p5", BoardWindow.getE7());
+		Pawn blackPawn6 = new Pawn(Color.red, "p6", BoardWindow.getF7());
+		Pawn blackPawn7 = new Pawn(Color.red, "p7", BoardWindow.getG7());
+		Pawn blackPawn8 = new Pawn(Color.red, "p8", BoardWindow.getH7());
+		Knight blackKnight1 = new Knight(Color.red, "N1", BoardWindow.getB8());
+		Knight blackKnight2 = new Knight(Color.red, "N2", BoardWindow.getG8());
+		Bishop blackBishop1 = new Bishop(Color.red, "B1", BoardWindow.getC8());
+		Bishop blackBishop2 = new Bishop(Color.red, "B2", BoardWindow.getF8());
+		Rook blackRook1 = new Rook(Color.red, "R1", BoardWindow.getA8());
+		Rook blackRook2 = new Rook(Color.red, "R2", BoardWindow.getH8());
 		Queen blackQueen = new Queen(Color.red, "Q", BoardWindow.getD8());
 		King blackKing = new King(Color.red, "K", BoardWindow.getE8());
-		//TODO
 		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
 				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);

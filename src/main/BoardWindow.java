@@ -130,7 +130,7 @@ public class BoardWindow {
 	private void initialize() {
 		frmChessApp = new JFrame();
 		frmChessApp.setTitle("Chess App");
-		frmChessApp.setBounds(100, 100, 450, 450);
+		frmChessApp.setBounds(100, 100, 560, 560);
 		frmChessApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmChessApp.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
 		
