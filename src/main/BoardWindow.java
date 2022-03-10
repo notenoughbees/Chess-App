@@ -8,6 +8,8 @@ import javax.swing.JToggleButton;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BoardWindow {
 	//initialise instance variables
@@ -137,258 +139,582 @@ public class BoardWindow {
 		a8.setBackground(Color.WHITE);
 		a8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a8);
+		a8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * if the user selects this button, it must contain a white piece.
+				 * 
+				 */
+				findValidDestinationsFromButton(a8);
+			}
+		});
 		
 		b8.setBackground(Color.BLACK);
 		b8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b8);
+		b8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b8);
+			}
+		});
 		
 		c8.setBackground(Color.WHITE);
 		c8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c8);
+		c8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c8);
+			}
+		});
 		
 		d8.setBackground(Color.BLACK);
 		d8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d8);
+		d8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d8);
+			}
+		});
 		
 		e8.setBackground(Color.WHITE);
 		e8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e8);
+		e8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e8);
+			}
+		});
 		
 		f8.setBackground(Color.BLACK);
 		f8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f8);
+		f8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f8);
+			}
+		});
 		
 		g8.setBackground(Color.WHITE);
 		g8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g8);
+		g8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g8);
+			}
+		});
 		
 		h8.setBackground(Color.BLACK);
 		h8.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h8);
+		h8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h8);
+			}
+		});
 		
 		a7.setBackground(Color.BLACK);
 		a7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a7);
+		a7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a7);
+			}
+		});
 		
 		b7.setBackground(Color.WHITE);
 		b7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b7);
+		b7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b7);
+			}
+		});
 		
 		c7.setBackground(Color.BLACK);
 		c7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c7);
+		c7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c7);
+			}
+		});
 		
 		d7.setBackground(Color.WHITE);
 		d7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d7);
+		d7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d7);
+			}
+		});
 		
 		e7.setBackground(Color.BLACK);
 		e7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e7);
+		e7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e7);
+			}
+		});
 		
 		f7.setBackground(Color.WHITE);
 		f7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f7);
+		f7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f7);
+			}
+		});
 		
 		g7.setBackground(Color.BLACK);
 		g7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g7);
+		g7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g7);
+			}
+		});
 		
 		h7.setBackground(Color.WHITE);
 		h7.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h7);
+		h7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h7);
+			}
+		});
 		
 		a6.setBackground(Color.WHITE);
 		a6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a6);
+		a6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a6);
+			}
+		});
 		
 		b6.setBackground(Color.BLACK);
 		b6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b6);
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b6);
+			}
+		});
 		
 		c6.setBackground(Color.WHITE);
 		c6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c6);
+		c6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c6);
+			}
+		});
 		
 		d6.setBackground(Color.BLACK);
 		d6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d6);
+		d6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d6);
+			}
+		});
 		
 		e6.setBackground(Color.WHITE);
 		e6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e6);
+		e6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e6);
+			}
+		});
 		
 		f6.setBackground(Color.BLACK);
 		f6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f6);
+		f6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f6);
+			}
+		});
 		
 		g6.setBackground(Color.WHITE);
 		g6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g6);
+		g6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g6);
+			}
+		});
 		
 		h6.setBackground(Color.BLACK);
 		h6.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h6);
+		h6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h6);
+			}
+		});
 		
 		a5.setBackground(Color.BLACK);
 		a5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a5);
+		a5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a5);
+			}
+		});
 		
 		b5.setBackground(Color.WHITE);
 		b5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b5);
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b5);
+			}
+		});
 		
 		c5.setBackground(Color.BLACK);
 		c5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c5);
+		c5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c5);
+			}
+		});
 		
 		d5.setBackground(Color.WHITE);
 		d5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d5);
+		d5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d5);
+			}
+		});
 		
 		e5.setBackground(Color.BLACK);
 		e5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e5);
+		e5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e5);
+			}
+		});
 		
 		f5.setBackground(Color.WHITE);
 		f5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f5);
+		f5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f5);
+			}
+		});
 		
 		g5.setBackground(Color.BLACK);
 		g5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g5);
+		g5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g5);
+			}
+		});
 		
 		h5.setBackground(Color.WHITE);
 		h5.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h5);
+		h5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h5);
+			}
+		});
 		
 		a4.setBackground(Color.WHITE);
 		a4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a4);
+		a4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a4);
+			}
+		});
 		
 		b4.setBackground(Color.BLACK);
 		b4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b4);
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b4);
+			}
+		});
 		
 		c4.setBackground(Color.WHITE);
 		c4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c4);
+		c4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c4);
+			}
+		});
 		
 		d4.setBackground(Color.BLACK);
 		d4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d4);
+		d4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d4);
+			}
+		});
 		
 		e4.setBackground(Color.WHITE);
 		e4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e4);
+		e4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e4);
+			}
+		});
 		
 		f4.setBackground(Color.BLACK);
 		f4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f4);
+		f4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f4);
+			}
+		});
 		
 		g4.setBackground(Color.WHITE);
 		g4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g4);
+		g4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g4);
+			}
+		});
 		
 		h4.setBackground(Color.BLACK);
 		h4.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h4);
+		h4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h4);
+			}
+		});
 		
 		a3.setBackground(Color.BLACK);
 		a3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a3);
+		a3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a3);
+			}
+		});
 		
 		b3.setBackground(Color.WHITE);
 		b3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b3);
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b3);
+			}
+		});
 		
 		c3.setBackground(Color.BLACK);
 		c3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c3);
+		c3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c3);
+			}
+		});
 		
 		d3.setBackground(Color.WHITE);
 		d3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d3);
+		d3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d3);
+			}
+		});
 		
 		e3.setBackground(Color.BLACK);
 		e3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e3);
+		e3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e3);
+			}
+		});
 		
 		f3.setBackground(Color.WHITE);
 		f3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f3);
+		f3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f3);
+			}
+		});
 		
 		g3.setBackground(Color.BLACK);
 		g3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g3);
+		g3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g3);
+			}
+		});
 		
 		h3.setBackground(Color.WHITE);
 		h3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h3);
+		h3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h3);
+			}
+		});
 		
 		a2.setBackground(Color.WHITE);
 		a2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a2);
+		a2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a2);
+			}
+		});
 		
 		b2.setBackground(Color.BLACK);
 		b2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b2);
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b2);
+			}
+		});
 		
 		c2.setBackground(Color.WHITE);
 		c2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c2);
+		c2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c2);
+			}
+		});
 		
 		d2.setBackground(Color.BLACK);
 		d2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d2);
+		d2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d2);
+			}
+		});
 		
 		e2.setBackground(Color.WHITE);
 		e2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e2);
+		e2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e2);
+			}
+		});
 		
 		f2.setBackground(Color.BLACK);
 		f2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f2);
+		f2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f2);
+			}
+		});
 		
 		g2.setBackground(Color.WHITE);
 		g2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g2);
+		g2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g2);
+			}
+		});
 		
 		h2.setBackground(Color.BLACK);
 		h2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h2);
+		h2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h2);
+			}
+		});
 		
 		a1.setBackground(Color.BLACK);
 		a1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(a1);
+		a1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(a1);
+			}
+		});
 		
 		b1.setBackground(Color.WHITE);
 		b1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b1);
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(b1);
+			}
+		});
 		
 		c1.setBackground(Color.BLACK);
 		c1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(c1);
+		c1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(c1);
+			}
+		});
 		
 		d1.setBackground(Color.WHITE);
 		d1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(d1);
+		d1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(d1);
+			}
+		});
 		
 		e1.setBackground(Color.BLACK);
 		e1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(e1);
+		e1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(e1);
+			}
+		});
 		
 		f1.setBackground(Color.WHITE);
 		f1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(f1);
-
+		f1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(f1);
+			}
+		});
+		
 		g1.setBackground(Color.BLACK);
 		g1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(g1);
+		g1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(g1);
+			}
+		});
 		
 		h1.setBackground(Color.WHITE);
 		h1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(h1);
+		h1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				findValidDestinationsFromButton(h1);
+			}
+		});
 		
 		Collections.addAll(allSquares, a8, b8, c8, d8, e8, f8, g8, h8,
 				a7, b7, c7, d7, e7, f7, g7, h7, 
@@ -398,6 +724,55 @@ public class BoardWindow {
 				a3, b3, c3, d3, e3, f3, g3, h3, 
 				a2, b2, c2, d2, e2, f2, g2, h2,
 				a1, b1, c1, d1, e1, f1, g1, h1);
+	}
+	
+	
+	/**
+	 * Runs during white's (the human player's) turn, once they have selected a button.
+	 * Gievn this button, finds out the valid destinations from this button for the piece that is on it.
+	 * @param srcBtn: The selected button.
+	 */
+	public static void findValidDestinationsFromButton(JToggleButton srcBtn)
+	{
+		Piece selectedPiece = Piece.findPiece(GameEnvironment.getWhitePieces(), srcBtn);
+		ArrayList<JToggleButton> validDestinations = new ArrayList<>();
+		
+		//first find the valid destinations
+		//TODO: reuse this code from GameEnvironment
+		if(selectedPiece instanceof Pawn)
+			{
+			validDestinations = ((Pawn) selectedPiece).findPossibleDestinations();
+			}
+		else if(selectedPiece instanceof Knight)
+		{
+			validDestinations = ((Knight) selectedPiece).findPossibleDestinations();
+		}
+		else if(selectedPiece instanceof Bishop)
+		{
+			validDestinations = ((Bishop) selectedPiece).findPossibleDestinations();
+		}
+		else if(selectedPiece instanceof Rook)
+		{
+			validDestinations = ((Rook) selectedPiece).findPossibleDestinations();
+		}
+		else if(selectedPiece instanceof Queen)
+		{
+			validDestinations = ((Queen) selectedPiece).findPossibleDestinations();
+		}
+		else if(selectedPiece instanceof King)
+		{
+			validDestinations = ((King) selectedPiece).findPossibleDestinations();
+		}
+		
+		//now colour these destinations and enable those buttons
+		for(int i = 0; i < validDestinations.size(); i++)
+		{
+			JToggleButton btn = validDestinations.get(i);
+			btn.setEnabled(true);
+			btn.setBackground(Color.green);
+		}
+		
+		
 	}
 	
 	

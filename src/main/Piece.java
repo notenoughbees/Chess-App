@@ -153,7 +153,7 @@ public class Piece {
 	
 	//	find the piece that is on the source square by 
 	//	  iterating allPieces and looking for the one that has the name that is on the square
-	public Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
+	public static Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
 	{
 		for(Piece p : allPieces)
 		{
