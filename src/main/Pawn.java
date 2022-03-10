@@ -59,7 +59,7 @@ public class Pawn extends Piece{
 			if(i < 16)
 			{
 				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
-						currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION+8);
+						currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION+8);
 			}
 		}
 		return possibleDestinations;

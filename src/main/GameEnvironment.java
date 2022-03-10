@@ -102,17 +102,14 @@ public class GameEnvironment
 //		//
 		
 		//choose one of the valid moves at random
+		//(https://www.codegrepper.com/code-examples/java/how+to+select+a+random+element+from+an+array+in+java)
 		Random rand = new Random();
 		int randSrcSquareAndDestList = rand.nextInt(validSquares.size());
 		System.out.println("=================================");
-		//System.out.println(randSrcSquareAndDestList);
 		Pair<JToggleButton, ArrayList<JToggleButton>> chosenSrcSquareAndDestList = validSquares.get(randSrcSquareAndDestList);
 		JToggleButton srcSquare = chosenSrcSquareAndDestList.first;
-		System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare)); //print src square's index
-		System.out.println(chosenSrcSquareAndDestList.second.size());
 		int randDstSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
 		JToggleButton dstSquare = chosenSrcSquareAndDestList.second.get(randDstSquare);
-		System.out.println(BoardWindow.getAllSquares().indexOf(dstSquare)); //print sdstrc square's index
 		
 		//move the piece
 		//	create an array list of all pieces
@@ -130,13 +127,9 @@ public class GameEnvironment
 		
 		//	remove it from the source square
 		piece = piece.findPiece(allPieces, srcSquare);
-		System.out.println(piece.getPieceColour() + "\t" + srcSquare.getText());
 		srcSquare.setText("");
 
 		//	put it on the destination square
-		System.out.println(piece.getPieceColour());
-		System.out.println(piece.getPieceType());
-		System.out.println(piece.getPieceLocation());
 		piece.placePiece(piece.getPieceColour(), piece.getPieceType(), dstSquare);
 		
 		

@@ -120,13 +120,11 @@ public class Piece {
 			}
 			else //if the piece is a pawn, then it can only move into an opponent's square if it is moving diagonally
 			{
-				//System.out.println(destinationSquareCalculation);
 				boolean is_moving_forward = (destinationSquareCalculation != BoardWindow.SQUARE_TOPLEFT_CALCULATION 
 						&& destinationSquareCalculation != BoardWindow.SQUARE_TOPRIGHT_CALCULATION
 						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
 						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 				boolean is_moving_diagonally = !(is_moving_forward);
-				
 				if(destinationSquare.getText().isEmpty() && is_moving_forward
 						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally){
 					possibleDestinations.add(destinationSquare);
@@ -155,7 +153,7 @@ public class Piece {
 	
 	//	find the piece that is on the source square by 
 	//	  iterating allPieces and looking for the one that has the name that is on the square
-	public Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare)
+	public Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
 	{
 		for(Piece p : allPieces)
 		{
