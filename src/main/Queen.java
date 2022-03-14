@@ -14,17 +14,6 @@ public class Queen extends Piece{
 	}
 	
 	
-//	public void SelectPiece(String pieceType)
-//	{
-//		
-//	}
-	
-	
-	
-	
-
-	
-	
 	public ArrayList<JToggleButton> findPossibleDestinations()
 	{
 		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
@@ -37,28 +26,25 @@ public class Queen extends Piece{
 		else {
 			opponentColour = Color.orange;}
 		
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_LEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_RIGHT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION));
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_LEFT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_RIGHT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION);
 		
 		return possibleDestinations;
 	}
-	
-	
-	
 	
 	
 	

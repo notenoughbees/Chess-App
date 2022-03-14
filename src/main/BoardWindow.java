@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JToggleButton;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
+
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -100,6 +102,9 @@ public class BoardWindow {
 	public static final int SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION = 15;
 	public static final int SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION = 17;
 	
+	//for knowing what stage the player is at in making their move
+	private static JToggleButton sourceSquare;
+	
 	
 	/**
 	 * Launch the application.
@@ -141,11 +146,12 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a8);
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * if the user selects this button, it must contain a white piece.
-				 * 
-				 */
-				findValidDestinationsFromButton(a8);
+				setButtonSelectedColour(a8, Color.WHITE);
+				//if the user selects this button, it must contain a white piece
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a8);}
+				else {
+					Piece.movePiece(sourceSquare, a8);}
 			}
 		});
 		
@@ -154,7 +160,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b8);
+				setButtonSelectedColour(b8, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b8);}
+				else {
+					Piece.movePiece(sourceSquare, b8);}
 			}
 		});
 		
@@ -163,7 +173,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c8);
+				setButtonSelectedColour(c8, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c8);}
+				else {
+					Piece.movePiece(sourceSquare, c8);}
 			}
 		});
 		
@@ -172,7 +186,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d8);
+				setButtonSelectedColour(d8, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d8);}
+				else {
+					Piece.movePiece(sourceSquare, d8);}
 			}
 		});
 		
@@ -181,7 +199,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e8);
+				setButtonSelectedColour(e8, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e8);}
+				else {
+					Piece.movePiece(sourceSquare, e8);}
 			}
 		});
 		
@@ -190,7 +212,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f8);
+				setButtonSelectedColour(f8, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f8);}
+				else {
+					Piece.movePiece(sourceSquare, f8);}
 			}
 		});
 		
@@ -199,7 +225,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g8);
+				setButtonSelectedColour(g8, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g8);}
+				else {
+					Piece.movePiece(sourceSquare, g8);}
 			}
 		});
 		
@@ -208,7 +238,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h8);
+				setButtonSelectedColour(h8, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h8);}
+				else {
+					Piece.movePiece(sourceSquare, h8);}
 			}
 		});
 		
@@ -217,7 +251,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a7);
+				setButtonSelectedColour(a7, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a7);}
+				else {
+					Piece.movePiece(sourceSquare, a7);}
 			}
 		});
 		
@@ -226,7 +264,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b7);
+				setButtonSelectedColour(b7, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b7);}
+				else {
+					Piece.movePiece(sourceSquare, b7);}
 			}
 		});
 		
@@ -235,7 +277,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c7);
+				setButtonSelectedColour(c7, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c7);}
+				else {
+					Piece.movePiece(sourceSquare, c7);}
 			}
 		});
 		
@@ -244,7 +290,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d7);
+				setButtonSelectedColour(d7, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d7);}
+				else {
+					Piece.movePiece(sourceSquare, d7);}
 			}
 		});
 		
@@ -253,7 +303,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e7);
+				setButtonSelectedColour(e7, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e7);}
+				else {
+					Piece.movePiece(sourceSquare, e7);}
 			}
 		});
 		
@@ -262,7 +316,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f7);
+				setButtonSelectedColour(f7, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f7);}
+				else {
+					Piece.movePiece(sourceSquare, f7);}
 			}
 		});
 		
@@ -271,7 +329,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g7);
+				setButtonSelectedColour(g7, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g7);}
+				else {
+					Piece.movePiece(sourceSquare, g7);}
 			}
 		});
 		
@@ -280,7 +342,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h7);
+				setButtonSelectedColour(h7, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h7);}
+				else {
+					Piece.movePiece(sourceSquare, h7);}
 			}
 		});
 		
@@ -289,7 +355,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a6);
+				setButtonSelectedColour(a6, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a6);}
+				else {
+					Piece.movePiece(sourceSquare, a6);}
 			}
 		});
 		
@@ -298,7 +368,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b6);
+				setButtonSelectedColour(b6, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b6);}
+				else {
+					Piece.movePiece(sourceSquare, b6);}
 			}
 		});
 		
@@ -307,7 +381,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c6);
+				setButtonSelectedColour(c6, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c6);}
+				else {
+					Piece.movePiece(sourceSquare, c6);}
 			}
 		});
 		
@@ -316,7 +394,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d6);
+				setButtonSelectedColour(d6, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d6);}
+				else {
+					Piece.movePiece(sourceSquare, d6);}
 			}
 		});
 		
@@ -325,7 +407,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e6);
+				setButtonSelectedColour(e6, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e6);}
+				else {
+					Piece.movePiece(sourceSquare, e6);}
 			}
 		});
 		
@@ -334,7 +420,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f6);
+				setButtonSelectedColour(f6, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f6);}
+				else {
+					Piece.movePiece(sourceSquare, f6);}
 			}
 		});
 		
@@ -343,7 +433,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g6);
+				setButtonSelectedColour(g6, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g6);}
+				else {
+					Piece.movePiece(sourceSquare, g6);}
 			}
 		});
 		
@@ -352,7 +446,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h6);
+				setButtonSelectedColour(h6, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h6);}
+				else {
+					Piece.movePiece(sourceSquare, h6);}
 			}
 		});
 		
@@ -361,7 +459,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a5);
+				setButtonSelectedColour(a5, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a5);}
+				else {
+					Piece.movePiece(sourceSquare, a5);}
 			}
 		});
 		
@@ -370,7 +472,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b5);
+				setButtonSelectedColour(b5, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b5);}
+				else {
+					Piece.movePiece(sourceSquare, b5);}
 			}
 		});
 		
@@ -379,7 +485,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c5);
+				setButtonSelectedColour(c5, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c5);}
+				else {
+					Piece.movePiece(sourceSquare, c5);}
 			}
 		});
 		
@@ -388,7 +498,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d5);
+				setButtonSelectedColour(d5, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d5);}
+				else {
+					Piece.movePiece(sourceSquare, d5);}
 			}
 		});
 		
@@ -397,7 +511,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e5);
+				setButtonSelectedColour(e5, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e5);}
+				else {
+					Piece.movePiece(sourceSquare, e5);}
 			}
 		});
 		
@@ -406,7 +524,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f5);
+				setButtonSelectedColour(f5, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f5);}
+				else {
+					Piece.movePiece(sourceSquare, f5);}
 			}
 		});
 		
@@ -415,7 +537,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g5);
+				setButtonSelectedColour(g5, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g5);}
+				else {
+					Piece.movePiece(sourceSquare, g5);}
 			}
 		});
 		
@@ -424,7 +550,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h5);
+				setButtonSelectedColour(h5, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h5);}
+				else {
+					Piece.movePiece(sourceSquare, h5);}
 			}
 		});
 		
@@ -433,7 +563,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a4);
+				setButtonSelectedColour(a4, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a4);}
+				else {
+					Piece.movePiece(sourceSquare, a4);}
 			}
 		});
 		
@@ -442,7 +576,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b4);
+				setButtonSelectedColour(b4, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b4);}
+				else {
+					Piece.movePiece(sourceSquare, b4);}
 			}
 		});
 		
@@ -451,7 +589,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c4);
+				setButtonSelectedColour(c4, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c4);}
+				else {
+					Piece.movePiece(sourceSquare, c4);}
 			}
 		});
 		
@@ -460,7 +602,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d4);
+				setButtonSelectedColour(d4, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d4);}
+				else {
+					Piece.movePiece(sourceSquare, d4);}
 			}
 		});
 		
@@ -469,7 +615,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e4);
+				setButtonSelectedColour(e4, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e4);}
+				else {
+					Piece.movePiece(sourceSquare, e4);}
 			}
 		});
 		
@@ -478,7 +628,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f4);
+				setButtonSelectedColour(f4, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f4);}
+				else {
+					Piece.movePiece(sourceSquare, f4);}
 			}
 		});
 		
@@ -487,7 +641,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g4);
+				setButtonSelectedColour(g4, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g4);}
+				else {
+					Piece.movePiece(sourceSquare, g4);}
 			}
 		});
 		
@@ -496,7 +654,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h4);
+				setButtonSelectedColour(h4, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h4);}
+				else {
+					Piece.movePiece(sourceSquare, h4);}
 			}
 		});
 		
@@ -505,7 +667,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a3);
+				setButtonSelectedColour(a4, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a3);}
+				else {
+					Piece.movePiece(sourceSquare, a3);}
 			}
 		});
 		
@@ -514,7 +680,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b3);
+				setButtonSelectedColour(b3, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b3);}
+				else {
+					Piece.movePiece(sourceSquare, b3);}
 			}
 		});
 		
@@ -523,7 +693,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c3);
+				setButtonSelectedColour(c3, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c3);}
+				else {
+					Piece.movePiece(sourceSquare, c3);}
 			}
 		});
 		
@@ -532,7 +706,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d3);
+				setButtonSelectedColour(d3, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d3);}
+				else {
+					Piece.movePiece(sourceSquare, d3);}
 			}
 		});
 		
@@ -541,7 +719,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e3);
+				setButtonSelectedColour(e3, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e3);}
+				else {
+					Piece.movePiece(sourceSquare, e3);}
 			}
 		});
 		
@@ -550,7 +732,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f3);
+				setButtonSelectedColour(f3, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f3);}
+				else {
+					Piece.movePiece(sourceSquare, f3);}
 			}
 		});
 		
@@ -559,7 +745,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g3);
+				setButtonSelectedColour(g3, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g3);}
+				else {
+					Piece.movePiece(sourceSquare, g3);}
 			}
 		});
 		
@@ -568,7 +758,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h3);
+				setButtonSelectedColour(h3, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h3);}
+				else {
+					Piece.movePiece(sourceSquare, h3);}
 			}
 		});
 		
@@ -577,7 +771,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a2);
+				setButtonSelectedColour(a2, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a2);}
+				else {
+					Piece.movePiece(sourceSquare, a2);}
 			}
 		});
 		
@@ -586,7 +784,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b2);
+				setButtonSelectedColour(b2, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b2);}
+				else {
+					Piece.movePiece(sourceSquare, b2);}
 			}
 		});
 		
@@ -595,7 +797,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c2);
+				setButtonSelectedColour(c2, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c2);}
+				else {
+					Piece.movePiece(sourceSquare, c2);}
 			}
 		});
 		
@@ -604,7 +810,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d2);
+				setButtonSelectedColour(d2, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d2);}
+				else {
+					Piece.movePiece(sourceSquare, d2);}
 			}
 		});
 		
@@ -613,7 +823,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e2);
+				setButtonSelectedColour(e2, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e2);}
+				else {
+					Piece.movePiece(sourceSquare, e2);}
 			}
 		});
 		
@@ -622,7 +836,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f2);
+				setButtonSelectedColour(f2, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f2);}
+				else {
+					Piece.movePiece(sourceSquare, f2);}
 			}
 		});
 		
@@ -631,7 +849,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g2);
+				setButtonSelectedColour(g2, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g2);}
+				else {
+					Piece.movePiece(sourceSquare, g2);}
 			}
 		});
 		
@@ -640,7 +862,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h2);
+				setButtonSelectedColour(h2, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h2);}
+				else {
+					Piece.movePiece(sourceSquare, h2);}
 			}
 		});
 		
@@ -649,7 +875,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(a1);
+				setButtonSelectedColour(a1, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(a1);}
+				else {
+					Piece.movePiece(sourceSquare, a1);}
 			}
 		});
 		
@@ -658,7 +888,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(b1);
+				setButtonSelectedColour(b1, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(b1);}
+				else {
+					Piece.movePiece(sourceSquare, b1);}
 			}
 		});
 		
@@ -667,7 +901,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(c1);
+				setButtonSelectedColour(c1, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(c1);}
+				else {
+					Piece.movePiece(sourceSquare, c1);}
 			}
 		});
 		
@@ -676,7 +914,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(d1);
+				setButtonSelectedColour(d1, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(d1);}
+				else {
+					Piece.movePiece(sourceSquare, d1);}
 			}
 		});
 		
@@ -685,7 +927,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(e1);
+				setButtonSelectedColour(e1, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(e1);}
+				else {
+					Piece.movePiece(sourceSquare, e1);}
 			}
 		});
 		
@@ -694,7 +940,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(f1);
+				setButtonSelectedColour(f1, Color.WHITE);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(f1);}
+				else {
+					Piece.movePiece(sourceSquare, f1);}
 			}
 		});
 		
@@ -703,7 +953,11 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(g1);
+				setButtonSelectedColour(g1, Color.BLACK);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(g1);}
+				else {
+					Piece.movePiece(sourceSquare, g1);}
 			}
 		});
 		
@@ -712,7 +966,14 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				findValidDestinationsFromButton(h1);
+				setButtonSelectedColour(h1, Color.WHITE);
+				if(sourceSquare == null) {
+					if(sourceSquare == null) {
+					findValidDestinationsFromButton(h1);}
+				else {
+					Piece.movePiece(sourceSquare, h1);}}
+				else {
+					Piece.movePiece(sourceSquare, h1);}
 			}
 		});
 		
@@ -727,188 +988,207 @@ public class BoardWindow {
 	}
 	
 	
+	/*
+	 * set the background colour of the given button when it is selected
+	 */
+	public static void setButtonSelectedColour(JToggleButton btn, Color selectedColour)
+	{
+		System.out.println("setButtonSelectedColour");
+		//(https://stackoverflow.com/a/22739788/8042538)
+		btn.setUI(new MetalToggleButtonUI() 
+		{
+		    @Override
+		    protected Color getSelectColor() {
+		        return Color.BLUE;}
+		});
+	}
+	
+	
 	/**
 	 * Runs during white's (the human player's) turn, once they have selected a button.
-	 * Gievn this button, finds out the valid destinations from this button for the piece that is on it.
+	 * Given this button, finds the valid destinations from this button for the piece that is on it.
 	 * @param srcBtn: The selected button.
 	 */
 	public static void findValidDestinationsFromButton(JToggleButton srcBtn)
 	{
+		System.out.println("findValidDestinationsFromButton");
 		Piece selectedPiece = Piece.findPiece(GameEnvironment.getWhitePieces(), srcBtn);
 		ArrayList<JToggleButton> validDestinations = new ArrayList<>();
 		
 		//first find the valid destinations
 		//TODO: reuse this code from GameEnvironment
-		if(selectedPiece instanceof Pawn)
-			{
-			validDestinations = ((Pawn) selectedPiece).findPossibleDestinations();
-			}
-		else if(selectedPiece instanceof Knight)
-		{
-			validDestinations = ((Knight) selectedPiece).findPossibleDestinations();
-		}
-		else if(selectedPiece instanceof Bishop)
-		{
-			validDestinations = ((Bishop) selectedPiece).findPossibleDestinations();
-		}
-		else if(selectedPiece instanceof Rook)
-		{
-			validDestinations = ((Rook) selectedPiece).findPossibleDestinations();
-		}
-		else if(selectedPiece instanceof Queen)
-		{
-			validDestinations = ((Queen) selectedPiece).findPossibleDestinations();
-		}
-		else if(selectedPiece instanceof King)
-		{
-			validDestinations = ((King) selectedPiece).findPossibleDestinations();
-		}
+		if(selectedPiece instanceof Pawn) {
+			validDestinations = ((Pawn) selectedPiece).findPossibleDestinations();}
+		else if(selectedPiece instanceof Knight) {
+			validDestinations = ((Knight) selectedPiece).findPossibleDestinations();}
+		else if(selectedPiece instanceof Bishop) {
+			validDestinations = ((Bishop) selectedPiece).findPossibleDestinations();}
+		else if(selectedPiece instanceof Rook) {
+			validDestinations = ((Rook) selectedPiece).findPossibleDestinations();}
+		else if(selectedPiece instanceof Queen) {
+			validDestinations = ((Queen) selectedPiece).findPossibleDestinations();}
+		else if(selectedPiece instanceof King) {
+			validDestinations = ((King) selectedPiece).findPossibleDestinations();}
 		
-		//now colour these destinations and enable those buttons
+		//colour the destinations and enable the associated buttons so that they can be clicked as the destination
 		for(int i = 0; i < validDestinations.size(); i++)
 		{
 			JToggleButton btn = validDestinations.get(i);
-			btn.setEnabled(true);
 			btn.setBackground(Color.green);
+			btn.setEnabled(true);
+			sourceSquare = srcBtn;
 		}
 		
+		//disable all of the buttons with white pieces on them because they are not possible destinations
+		GameEnvironment.toggleSelectWhitePieceButtons(false, true);
+		
+		
+//		/*
+//		 * After the player has clicked one button for the starting point of their move, 
+//		 * this method runs once they have selected a second button as the destination.
+//		 */
+//		public static void finishHumanMove()
+//		{
+//			Piece.move()
+//		}
 		
 	}
 	
 	
 	//getters
-	public static JToggleButton getA1()
-		{return a1;}
-	public static JToggleButton getB1()
-		{return b1;}
-	public static JToggleButton getC1()
-		{return c1;}
-	public static JToggleButton getD1()
-		{return d1;}
-	public static JToggleButton getE1()
-		{return e1;}
-	public static JToggleButton getF1()
-		{return f1;}
-	public static JToggleButton getG1()
-		{return g1;}
-	public static JToggleButton getH1()
-		{return h1;}
-	public static JToggleButton getA2()
-		{return a2;}
-	public static JToggleButton getB2()
-		{return b2;}
-	public static JToggleButton getC2()
-		{return c2;}
-	public static JToggleButton getD2()
-		{return d2;}
-	public static JToggleButton getE2()
-		{return e2;}
-	public static JToggleButton getF2()
-		{return f2;}
-	public static JToggleButton getG2()
-		{return g2;}
-	public static JToggleButton getH2()
-		{return h2;}
-	public static JToggleButton getA3()
-		{return a3;}
-	public static JToggleButton getB3()
-		{return b3;}
-	public static JToggleButton getC3()
-		{return c3;}
-	public static JToggleButton getD3()
-		{return d3;}
-	public static JToggleButton getE3()
-		{return e3;}
-	public static JToggleButton getF3()
-		{return f3;}
-	public static JToggleButton getG3()
-		{return g3;}
-	public static JToggleButton getH3()
-		{return h3;}
-	public static JToggleButton getA4()
-		{return a4;}
-	public static JToggleButton getB4()
-		{return b4;}
-	public static JToggleButton getC4()
-		{return c4;}
-	public static JToggleButton getD4()
-		{return d4;}
-	public static JToggleButton getE4()
-		{return e4;}
-	public static JToggleButton getF4()
-		{return f4;}
-	public static JToggleButton getG4()
-		{return g4;}
-	public static JToggleButton getH4()
-		{return h4;}
-	public static JToggleButton getA5()
-		{return a5;}
-	public static JToggleButton getB5()
-		{return b5;}
-	public static JToggleButton getC5()
-		{return c5;}
-	public static JToggleButton getD5()
-		{return d5;}
-	public static JToggleButton getE5()
-		{return e5;}
-	public static JToggleButton getF5()
-		{return f5;}
-	public static JToggleButton getG5()
-		{return g5;}
-	public static JToggleButton getH5()
-		{return h5;}
-	public static JToggleButton getA6()
-		{return a6;}
-	public static JToggleButton getB6()
-		{return b6;}
-	public static JToggleButton getC6()
-		{return c6;}
-	public static JToggleButton getD6()
-		{return d6;}
-	public static JToggleButton getE6()
-		{return e6;}
-	public static JToggleButton getF6()
-		{return f6;}
-	public static JToggleButton getG6()
-		{return g6;}
-	public static JToggleButton getH6()
-		{return h6;}
-	public static JToggleButton getA7()
-		{return a7;}
-	public static JToggleButton getB7()
-		{return b7;}
-	public static JToggleButton getC7()
-		{return c7;}
-	public static JToggleButton getD7()
-		{return d7;}
-	public static JToggleButton getE7()
-		{return e7;}
-	public static JToggleButton getF7()
-		{return f7;}
-	public static JToggleButton getG7()
-		{return g7;}
-	public static JToggleButton getH7()
-		{return h7;}
-	public static JToggleButton getA8()
-		{return a8;}
-	public static JToggleButton getB8()
-		{return b8;}
-	public static JToggleButton getC8()
-		{return c8;}
-	public static JToggleButton getD8()
-		{return d8;}
-	public static JToggleButton getE8()
-		{return e8;}
-	public static JToggleButton getF8()
-		{return f8;}
-	public static JToggleButton getG8()
-		{return g8;}
-	public static JToggleButton getH8()
-		{return h8;}
-	public static ArrayList<JToggleButton> getAllSquares()
-		{return allSquares;}
+	public static JToggleButton getA1() {
+		return a1;}
+	public static JToggleButton getB1() {
+		return b1;}
+	public static JToggleButton getC1() {
+		return c1;}
+	public static JToggleButton getD1() {
+		return d1;}
+	public static JToggleButton getE1() {
+		return e1;}
+	public static JToggleButton getF1() {
+		return f1;}
+	public static JToggleButton getG1() {
+		return g1;}
+	public static JToggleButton getH1() {
+		return h1;}
+	public static JToggleButton getA2() {
+		return a2;}
+	public static JToggleButton getB2() {
+		return b2;}
+	public static JToggleButton getC2() {
+		return c2;}
+	public static JToggleButton getD2() {
+		return d2;}
+	public static JToggleButton getE2() {
+		return e2;}
+	public static JToggleButton getF2() {
+		return f2;}
+	public static JToggleButton getG2() {
+		return g2;}
+	public static JToggleButton getH2() {
+		return h2;}
+	public static JToggleButton getA3() {
+		return a3;}
+	public static JToggleButton getB3() {
+		return b3;}
+	public static JToggleButton getC3() {
+		return c3;}
+	public static JToggleButton getD3() {
+		return d3;}
+	public static JToggleButton getE3() {
+		return e3;}
+	public static JToggleButton getF3() {
+		return f3;}
+	public static JToggleButton getG3() {
+		return g3;}
+	public static JToggleButton getH3() {
+		return h3;}
+	public static JToggleButton getA4() {
+		return a4;}
+	public static JToggleButton getB4() {
+		return b4;}
+	public static JToggleButton getC4() {
+		return c4;}
+	public static JToggleButton getD4() {
+		return d4;}
+	public static JToggleButton getE4() {
+		return e4;}
+	public static JToggleButton getF4() {
+		return f4;}
+	public static JToggleButton getG4() {
+		return g4;}
+	public static JToggleButton getH4() {
+		return h4;}
+	public static JToggleButton getA5() {
+		return a5;}
+	public static JToggleButton getB5() {
+		return b5;}
+	public static JToggleButton getC5() {
+		return c5;}
+	public static JToggleButton getD5() {
+		return d5;}
+	public static JToggleButton getE5() {
+		return e5;}
+	public static JToggleButton getF5() {
+		return f5;}
+	public static JToggleButton getG5() {
+		return g5;}
+	public static JToggleButton getH5() {
+		return h5;}
+	public static JToggleButton getA6() {
+		return a6;}
+	public static JToggleButton getB6() {
+		return b6;}
+	public static JToggleButton getC6() {
+		return c6;}
+	public static JToggleButton getD6() {
+		return d6;}
+	public static JToggleButton getE6() {
+		return e6;}
+	public static JToggleButton getF6() {
+		return f6;}
+	public static JToggleButton getG6() {
+		return g6;}
+	public static JToggleButton getH6() {
+		return h6;}
+	public static JToggleButton getA7() {
+		return a7;}
+	public static JToggleButton getB7() {
+		return b7;}
+	public static JToggleButton getC7() {
+		return c7;}
+	public static JToggleButton getD7() {
+		return d7;}
+	public static JToggleButton getE7() {
+		return e7;}
+	public static JToggleButton getF7() {
+		return f7;}
+	public static JToggleButton getG7() {
+		return g7;}
+	public static JToggleButton getH7() {
+		return h7;}
+	public static JToggleButton getA8() {
+		return a8;}
+	public static JToggleButton getB8() {
+		return b8;}
+	public static JToggleButton getC8() {
+		return c8;}
+	public static JToggleButton getD8() {
+		return d8;}
+	public static JToggleButton getE8() {
+		return e8;}
+	public static JToggleButton getF8() {
+		return f8;}
+	public static JToggleButton getG8() {
+		return g8;}
+	public static JToggleButton getH8() {
+		return h8;}
+	public static ArrayList<JToggleButton> getAllSquares() {
+		return allSquares;}
 	
 	
+	//setters
 	public static void setSquareText(JToggleButton square, String text, Color textColour)
 	{
 		square.setText(text);

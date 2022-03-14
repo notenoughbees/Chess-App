@@ -20,7 +20,8 @@ public class Piece {
 		pieceColour = tempPieceColour;
 		pieceType = tempPieceType;
 		location = tempLocation;
-		placePiece(pieceColour, pieceType, location);
+		//place the piece in its initial position by setting the text of the square to the piece's name
+		BoardWindow.setSquareText(location, pieceType, pieceColour);
 	}
 	
 	
@@ -80,7 +81,7 @@ public class Piece {
 					}
 				}
 			}
-			catch (IndexOutOfBoundsException e){
+			catch (IndexOutOfBoundsException e) {
 				break;
 			}
 		}
@@ -114,7 +115,7 @@ public class Piece {
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(!(this instanceof Pawn))
 			{
-				if(destinationSquare.getText().isEmpty() || destinationSquare.getForeground() == opponentColour){
+				if(destinationSquare.getText().isEmpty() || destinationSquare.getForeground() == opponentColour) {
 					possibleDestinations.add(destinationSquare);
 				}
 			}
@@ -126,33 +127,24 @@ public class Piece {
 						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 				boolean is_moving_diagonally = !(is_moving_forward);
 				if(destinationSquare.getText().isEmpty() && is_moving_forward
-						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally){
+						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally) {
 					possibleDestinations.add(destinationSquare);
 				}
 			}
 			
 			
 		}
-		catch (IndexOutOfBoundsException e){
+		catch (IndexOutOfBoundsException e) {
 		}
 		return possibleDestinations;
 	}
 	
 	
-	/**
-	 * Places the piece
-	 * @param colour: white or black
-	 * @param pieceType: pawn, knight etc
-	 * @param square: a2, f5 etc
+	/*
+	 * Given (1) the list of all of the pieces and (2) a square that will have a piece on it, 
+	 * find which piece is on te given square by iterating the list of pieces and  
+	 * searching for the piece that has the same name as the text on the square.
 	 */
-	public void placePiece(Color pieceColour, String pieceType, JToggleButton location)
-	{
-		BoardWindow.setSquareText(location, pieceType, pieceColour);
-	}
-	
-	
-	//	find the piece that is on the source square by 
-	//	  iterating allPieces and looking for the one that has the name that is on the square
 	public static Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
 	{
 		for(Piece p : allPieces)
@@ -164,14 +156,31 @@ public class Piece {
 		}
 		return null;
 	}
-		
 	
-	public Color getPieceColour()
-		{return pieceColour;}
-	public String getPieceType()
-		{return pieceType;}
-	public JToggleButton getPieceLocation()
-	{return location;}
+	
+	/*
+	 * Given a source square and a destination square, moves the piece on the source square
+	 * to the destination square.
+	 */
+	public static void movePiece(JToggleButton srcSquare, JToggleButton dstSquare)
+	{
+		System.out.println("movePiece");
+		//remove the piece from the source square
+		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
+		srcSquare.setText("");
+		srcSquare.setForeground(null);
+
+		//put it on the destination square
+		BoardWindow.setSquareText(dstSquare, piece.pieceType, piece.pieceColour);
+	}
+	
+	
+	public Color getPieceColour() {
+		return pieceColour;}
+	public String getPieceType() {
+		return pieceType;}
+	public JToggleButton getPieceLocation() {
+		return location;}
 	
 	
 	

@@ -14,17 +14,8 @@ public class Bishop extends Piece{
 	}
 	
 	
-//	public void SelectPiece(String pieceType)
-//	{
-//		
-//	}
-	
-	
-	
-	
 	public ArrayList<JToggleButton> findPossibleDestinations()
 	{
-		//System.out.println("findPossibleDestinations: BISHOP");
 		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
 		Color opponentColour;
 		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
@@ -35,22 +26,17 @@ public class Bishop extends Piece{
 		else {
 			opponentColour = Color.orange;}
 		
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION));
-		possibleDestinations = (findPossibleDestinationsLoop(possibleDestinations, allSquares,
-				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION));
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION);
+		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 		
 		return possibleDestinations;
 	}
-	
-	
-	
-	
-	
 	
 	
 	

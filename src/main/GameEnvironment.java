@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -15,6 +14,7 @@ public class GameEnvironment
 	public final static Color BLACK_COLOUR = Color.red;
 	private static ArrayList<Piece> whitePieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> blackPieces = new ArrayList<Piece>();
+	private static ArrayList<Piece> allPieces = new ArrayList<Piece>();
 	private static String currentPlayer;
 	private static boolean gameOver;
 	
@@ -26,7 +26,6 @@ public class GameEnvironment
 		@SuppressWarnings("unused")
 		BoardWindow boardWindow = new BoardWindow();
 	}
-	
 	
 	
 	/**
@@ -91,13 +90,14 @@ public class GameEnvironment
 		return "white";
 	}
 	
+	
 	/**
 	 * Runs when it is the human player's turn.
 	 */
 	public static void makeHumanMove()
 	{
 		//ArrayList<JToggleButton> whitePieceButtons = selectWhitePieceButtons();
-		selectWhitePieceButtons();
+		toggleSelectWhitePieceButtons(true, false); //enable the buttons with white pieces on them
 	}
 	
 	
@@ -106,7 +106,7 @@ public class GameEnvironment
 	 */
 	public static void makeComputerMove()
 	{
-		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = findValidSquares();
+		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = findValidSquaresComputer();
 		
 //		//
 //		System.out.println("COMPUTER: VALID MOVES:");
@@ -140,27 +140,8 @@ public class GameEnvironment
 		int randDstSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
 		JToggleButton dstSquare = chosenSrcSquareAndDestList.second.get(randDstSquare);
 		
-		//move the piece
-		//	create an array list of all pieces
-		//TODO: for the computer, we actually ONLY need blackPieces
-		//	maybe leave this here tho in case we need to reuse this code?
-		ArrayList<Piece> allPieces = new ArrayList<Piece>();
-		Piece piece = null;
-		for(int i=0; i < whitePieces.size(); i++)
-		{
-			piece = whitePieces.get(i);
-			allPieces.add(piece);
-			piece = blackPieces.get(i);
-			allPieces.add(piece);
-		}
+		Piece.movePiece(srcSquare, dstSquare);
 		
-		//	remove it from the source square
-		piece = Piece.findPiece(allPieces, srcSquare);
-		srcSquare.setText("");
-		srcSquare.setForeground(null);
-
-		//	put it on the destination square
-		piece.placePiece(piece.getPieceColour(), piece.getPieceType(), dstSquare);
 		
 		
 		
@@ -174,37 +155,51 @@ public class GameEnvironment
 	 * Runs for the computer player, where the computer player will later select one of these
 	 * valid moves at random.
 	 * @return pieceDestinations: an ArrayList containing pairs of the location (a JToggleButton) 
-	 * and the destinations (a further ArrayList of JToggleButtons)
+	 * and the destinations (an ArrayList of JToggleButtons)
 	 */
-	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquares()
+	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquaresComputer()
 	{
 		ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares = new ArrayList<>();
 		for(int i = 0; i < (blackPieces).size(); i++)
 				{
 					Piece pieceToCheck = blackPieces.get(i);
-					JToggleButton pieceLocation = pieceToCheck.getPieceLocation();
-					
-					ArrayList<JToggleButton> pieceDestinations = null;
-					//find out the type of the piece, then cast it as that type to find the possible destinatons
-					if(pieceToCheck instanceof Pawn) // https://stackoverflow.com/a/106351/8042538
-						{pieceDestinations = ((Pawn) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Knight)
-						{pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Bishop)
-						{pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Rook)
-						{pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof Queen)
-						{pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
-					else if(pieceToCheck instanceof King)
-						{pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
-					
-					if(pieceDestinations.size() > 0) //pieceDestinations will be null if no destionations were found
-					{
-						Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
-						validSquares.add(newTuple);
-					}
+					//check the current piece
+					validSquares = findValidSquaresHelper(validSquares, pieceToCheck);
 				}
+		return validSquares;
+	}
+	
+	/**
+	 * Calculates and returns all of the squares that the player could move a piece to.
+	 * Runs for the computer player, where the computer player will later select one of these
+	 * valid moves at random.
+	 * @return pieceDestinations: an ArrayList containing pairs of the location (a JToggleButton) 
+	 * and the destinations (an ArrayList of JToggleButtons)
+	 */
+	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquaresHelper(
+			ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares, Piece pieceToCheck)
+	{
+		JToggleButton pieceLocation = pieceToCheck.getPieceLocation();
+		ArrayList<JToggleButton> pieceDestinations = null;
+		//find out the type of the piece, then cast it as that type to find the possible destinatons
+		if(pieceToCheck instanceof Pawn) {
+			pieceDestinations = ((Pawn) pieceToCheck).findPossibleDestinations();} // https://stackoverflow.com/a/106351/8042538
+		else if(pieceToCheck instanceof Knight) {
+			pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
+		else if(pieceToCheck instanceof Bishop) {
+			pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
+		else if(pieceToCheck instanceof Rook) {
+			pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+		else if(pieceToCheck instanceof Queen) {
+			pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+		else if(pieceToCheck instanceof King) {
+			pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
+		
+		if(pieceDestinations.size() > 0) //pieceDestinations will be null if no destinations were found
+		{
+			Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
+			validSquares.add(newTuple);
+		}
 		return validSquares;
 	}
 	
@@ -213,10 +208,10 @@ public class GameEnvironment
 	 * Selects all of the squares on the board that have a white piece on them.
 	 * Runs for the human player, who plays white.
 	 */
-	public static void selectWhitePieceButtons()
+	public static void toggleSelectWhitePieceButtons(boolean bool1, boolean bool2)
 	{
 		/*
-		 * make a button group tohold the white piece buttons. When one of these buttons is selected,
+		 * make a button group to hold the white piece buttons. When one of these buttons is selected,
 		 * this will automatically amke the others in the group deselect.
 		 */
 		ButtonGroup whitePieceButtons = new ButtonGroup();
@@ -227,28 +222,24 @@ public class GameEnvironment
 			JToggleButton btn = BoardWindow.getAllSquares().get(i);
 			if(btn.getForeground() == WHITE_COLOUR)
 			{
-				btn.setEnabled(true);
+				btn.setEnabled(bool1);
 				whitePieceButtons.add(btn);
 			}
 			else
 			{
-				btn.setEnabled(false);
+				btn.setEnabled(bool2);
 			}
 		}
 	}
 	
 	
 	//getters
-	public static ArrayList<Piece> getWhitePieces()
-	{
-		return whitePieces;
-	}
-	public static ArrayList<Piece> getBlackPieces()
-	{
-		return blackPieces;
-	}
-	
-	
+	public static ArrayList<Piece> getWhitePieces() {
+		return whitePieces;}
+	public static ArrayList<Piece> getBlackPieces() {
+		return blackPieces;}
+	public static ArrayList<Piece> getAllPieces() {
+		return allPieces;}
 	
 	
 	/**
@@ -294,6 +285,12 @@ public class GameEnvironment
 		Queen blackQueen = new Queen(BLACK_COLOUR, "Q", BoardWindow.getD8());
 		King blackKing = new King(BLACK_COLOUR, "K", BoardWindow.getE8());
 		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
+				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		Collections.addAll(allPieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
+				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
+				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing,
+				blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
 				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		

@@ -13,13 +13,7 @@ public class Pawn extends Piece{
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}
 	
-	
-//	public void SelectPiece(String pieceType)
-//	{
-//		
-//	}
-	
-	
+
 	public ArrayList<JToggleButton> findPossibleDestinations()
 	{
 		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
@@ -63,10 +57,6 @@ public class Pawn extends Piece{
 		}
 		return possibleDestinations;
 	}
-	
-	
-	
-	
 	
 	
 	
