@@ -10,12 +10,17 @@ import javax.swing.JToggleButton;
 
 public class GameEnvironment
 {
-	public final static Color WHITE_COLOUR = Color.orange;
-	public final static Color BLACK_COLOUR = Color.red;
+	public final static Color WHITE_SQUARE_COLOUR = Color.white;
+	public final static Color BLACK_SQUARE_COLOUR = Color.black;
+	public final static Color WHITE_PIECE_COLOUR = Color.orange;
+	public final static Color BLACK_PIECE_COLOUR = Color.red;
+	public final static Color SELECTED_COLOUR = Color.blue;
+	public final static Color VALID_DESTINATION_COLOUR = Color.green;
 	private static ArrayList<Piece> whitePieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> blackPieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> allPieces = new ArrayList<Piece>();
 	private static String currentPlayer;
+	private static boolean hasWhiteMoved = false;
 	private static boolean gameOver;
 	
 	
@@ -39,6 +44,15 @@ public class GameEnvironment
 		{
 			System.out.println(currentPlayer);
 			playOneTurn(currentPlayer, humanPlayer); //pass in humanPlayer for if they are the current player
+			//wait for the human player to make a move
+			while(hasWhiteMoved == false)
+			{
+				try {
+					Thread.sleep(200);
+				}
+				catch(InterruptedException e) {
+				}
+			}
 			currentPlayer = switchPlayers(currentPlayer);
 			
 		}
@@ -67,6 +81,8 @@ public class GameEnvironment
 	 */
 	public static void playOneTurn(String currentPlayer, String humanPlayer)
 	{
+		//makeHumanMove();
+		//TODO
 		if (currentPlayer == humanPlayer)
 		{
 			makeHumanMove();
@@ -85,8 +101,8 @@ public class GameEnvironment
 	 */
 	public static String switchPlayers(String currentPlayer)
 	{
-		if (currentPlayer == "white")
-			{return "black";}
+		if (currentPlayer == "white") {
+			return "black";}
 		return "white";
 	}
 	
@@ -96,8 +112,9 @@ public class GameEnvironment
 	 */
 	public static void makeHumanMove()
 	{
-		//ArrayList<JToggleButton> whitePieceButtons = selectWhitePieceButtons();
-		toggleSelectWhitePieceButtons(true, false); //enable the buttons with white pieces on them
+		hasWhiteMoved = false;
+		toggleSelectWhitePieceButtons(true, true, false); //enable the buttons with white pieces on them and disable all others
+		
 	}
 	
 	
@@ -143,10 +160,12 @@ public class GameEnvironment
 		Piece.movePiece(srcSquare, dstSquare);
 		
 		
+		//TODO: !
+		//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
+		GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);
 		
 		
-		
-		gameOver = true;
+		//gameOver = true;
 	}
 	
 	
@@ -207,12 +226,17 @@ public class GameEnvironment
 	/**
 	 * Selects all of the squares on the board that have a white piece on them.
 	 * Runs for the human player, who plays white.
+	 * @param enableWhiteButtons: whether to enable buttons with white pieces on them.
+	 * @param checkNonwhiteButtons: whether to do something about buttons tat don't have white pieces on them. 
+	 * This will be false if checkNonwhiteButtons is also false.
+	 * @param enableNonwhiteButtons: whether to enable buttons that don't have wite pieces on them. 
+	 * This will only be true if checkNonwhiteButtons is also true.
 	 */
-	public static void toggleSelectWhitePieceButtons(boolean bool1, boolean bool2)
+	public static void toggleSelectWhitePieceButtons(boolean enableWhiteButtons, boolean checkNonwhiteButtons, boolean enableNonwhiteButtons)
 	{
 		/*
 		 * make a button group to hold the white piece buttons. When one of these buttons is selected,
-		 * this will automatically amke the others in the group deselect.
+		 * this will automatically make the others in the group deselect.
 		 */
 		ButtonGroup whitePieceButtons = new ButtonGroup();
 		
@@ -220,14 +244,14 @@ public class GameEnvironment
 		for(int i = 0; i < BoardWindow.getAllSquares().size(); i++)
 		{
 			JToggleButton btn = BoardWindow.getAllSquares().get(i);
-			if(btn.getForeground() == WHITE_COLOUR)
+			if(btn.getForeground() == WHITE_PIECE_COLOUR)
 			{
-				btn.setEnabled(bool1);
+				btn.setEnabled(enableWhiteButtons);
 				whitePieceButtons.add(btn);
 			}
-			else
+			else if(checkNonwhiteButtons == true)
 			{
-				btn.setEnabled(bool2);
+				btn.setEnabled(enableNonwhiteButtons);
 			}
 		}
 	}
@@ -241,6 +265,9 @@ public class GameEnvironment
 	public static ArrayList<Piece> getAllPieces() {
 		return allPieces;}
 	
+	public static void setHasWhiteMoved(boolean b) {
+		hasWhiteMoved = b;}
+	
 	
 	/**
 	 * Instantiate all pieces and start the game, where white goes first, and the human plays white.
@@ -249,42 +276,42 @@ public class GameEnvironment
 	public static void main(String[] args)
 	{	
 		openBoardWindow();
-		Pawn whitePawn1 = new Pawn(WHITE_COLOUR, "p1.", BoardWindow.getA2());
-		Pawn whitePawn2 = new Pawn(WHITE_COLOUR, "p2.", BoardWindow.getB2());
-		Pawn whitePawn3 = new Pawn(WHITE_COLOUR, "p3.", BoardWindow.getC2());
-		Pawn whitePawn4 = new Pawn(WHITE_COLOUR, "p4.", BoardWindow.getD2());
-		Pawn whitePawn5 = new Pawn(WHITE_COLOUR, "p5.", BoardWindow.getE2());
-		Pawn whitePawn6 = new Pawn(WHITE_COLOUR, "p6.", BoardWindow.getF2());
-		Pawn whitePawn7 = new Pawn(WHITE_COLOUR, "p7.", BoardWindow.getG2());
-		Pawn whitePawn8 = new Pawn(WHITE_COLOUR, "p8.", BoardWindow.getH2());
-		Knight whiteKnight1 = new Knight(WHITE_COLOUR, "N1.", BoardWindow.getB1());
-		Knight whiteKnight2 = new Knight(WHITE_COLOUR, "N2.", BoardWindow.getG1());
-		Bishop whiteBishop1 = new Bishop(WHITE_COLOUR, "B1.", BoardWindow.getC1());
-		Bishop whiteBishop2 = new Bishop(WHITE_COLOUR, "B2.", BoardWindow.getF1());
-		Rook whiteRook1 = new Rook(WHITE_COLOUR, "R1.", BoardWindow.getA1());
-		Rook whiteRook2 = new Rook(WHITE_COLOUR, "R2.", BoardWindow.getH1());
-		Queen whiteQueen = new Queen(WHITE_COLOUR, "Q.", BoardWindow.getD1());
-		King whiteKing = new King(WHITE_COLOUR, "K.", BoardWindow.getE1());
+		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, "p1.", BoardWindow.getA2());
+		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, "p2.", BoardWindow.getB2());
+		Pawn whitePawn3 = new Pawn(WHITE_PIECE_COLOUR, "p3.", BoardWindow.getC2());
+		Pawn whitePawn4 = new Pawn(WHITE_PIECE_COLOUR, "p4.", BoardWindow.getD2());
+		Pawn whitePawn5 = new Pawn(WHITE_PIECE_COLOUR, "p5.", BoardWindow.getE2());
+		Pawn whitePawn6 = new Pawn(WHITE_PIECE_COLOUR, "p6.", BoardWindow.getF2());
+		Pawn whitePawn7 = new Pawn(WHITE_PIECE_COLOUR, "p7.", BoardWindow.getG2());
+		Pawn whitePawn8 = new Pawn(WHITE_PIECE_COLOUR, "p8.", BoardWindow.getH2());
+		Knight whiteKnight1 = new Knight(WHITE_PIECE_COLOUR, "N1.", BoardWindow.getB1());
+		Knight whiteKnight2 = new Knight(WHITE_PIECE_COLOUR, "N2.", BoardWindow.getG1());
+		Bishop whiteBishop1 = new Bishop(WHITE_PIECE_COLOUR, "B1.", BoardWindow.getC1());
+		Bishop whiteBishop2 = new Bishop(WHITE_PIECE_COLOUR, "B2.", BoardWindow.getF1());
+		Rook whiteRook1 = new Rook(WHITE_PIECE_COLOUR, "R1.", BoardWindow.getA1());
+		Rook whiteRook2 = new Rook(WHITE_PIECE_COLOUR, "R2.", BoardWindow.getH1());
+		Queen whiteQueen = new Queen(WHITE_PIECE_COLOUR, "Q.", BoardWindow.getD1());
+		King whiteKing = new King(WHITE_PIECE_COLOUR, "K.", BoardWindow.getE1());
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-		Pawn blackPawn1 = new Pawn(BLACK_COLOUR, "p1", BoardWindow.getA7());
-		Pawn blackPawn2 = new Pawn(BLACK_COLOUR, "p2", BoardWindow.getB7());
-		Pawn blackPawn3 = new Pawn(BLACK_COLOUR, "p3", BoardWindow.getC7());
-		Pawn blackPawn4 = new Pawn(BLACK_COLOUR, "p4", BoardWindow.getD7());
-		Pawn blackPawn5 = new Pawn(BLACK_COLOUR, "p5", BoardWindow.getE7());
-		Pawn blackPawn6 = new Pawn(BLACK_COLOUR, "p6", BoardWindow.getF7());
-		Pawn blackPawn7 = new Pawn(BLACK_COLOUR, "p7", BoardWindow.getG7());
-		Pawn blackPawn8 = new Pawn(BLACK_COLOUR, "p8", BoardWindow.getH7());
-		Knight blackKnight1 = new Knight(BLACK_COLOUR, "N1", BoardWindow.getB8());
-		Knight blackKnight2 = new Knight(BLACK_COLOUR, "N2", BoardWindow.getG8());
-		Bishop blackBishop1 = new Bishop(BLACK_COLOUR, "B1", BoardWindow.getC8());
-		Bishop blackBishop2 = new Bishop(BLACK_COLOUR, "B2", BoardWindow.getF8());
-		Rook blackRook1 = new Rook(BLACK_COLOUR, "R1", BoardWindow.getA8());
-		Rook blackRook2 = new Rook(BLACK_COLOUR, "R2", BoardWindow.getH8());
-		Queen blackQueen = new Queen(BLACK_COLOUR, "Q", BoardWindow.getD8());
-		King blackKing = new King(BLACK_COLOUR, "K", BoardWindow.getE8());
-		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4, 
+		Pawn blackPawn1 = new Pawn(BLACK_PIECE_COLOUR, "p1", BoardWindow.getA7());
+		Pawn blackPawn2 = new Pawn(BLACK_PIECE_COLOUR, "p2", BoardWindow.getB7());
+		Pawn blackPawn3 = new Pawn(BLACK_PIECE_COLOUR, "p3", BoardWindow.getC7());
+		Pawn blackPawn4 = new Pawn(BLACK_PIECE_COLOUR, "p4", BoardWindow.getD7());
+		Pawn blackPawn5 = new Pawn(BLACK_PIECE_COLOUR, "p5", BoardWindow.getE7());
+		Pawn blackPawn6 = new Pawn(BLACK_PIECE_COLOUR, "p6", BoardWindow.getF7());
+		Pawn blackPawn7 = new Pawn(BLACK_PIECE_COLOUR, "p7", BoardWindow.getG7());
+		Pawn blackPawn8 = new Pawn(BLACK_PIECE_COLOUR, "p8", BoardWindow.getH7());
+		Knight blackKnight1 = new Knight(BLACK_PIECE_COLOUR, "N1", BoardWindow.getB8());
+		Knight blackKnight2 = new Knight(BLACK_PIECE_COLOUR, "N2", BoardWindow.getG8());
+		Bishop blackBishop1 = new Bishop(BLACK_PIECE_COLOUR, "B1", BoardWindow.getC8());
+		Bishop blackBishop2 = new Bishop(BLACK_PIECE_COLOUR, "B2", BoardWindow.getF8());
+		Rook blackRook1 = new Rook(BLACK_PIECE_COLOUR, "R1", BoardWindow.getA8());
+		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, "R2", BoardWindow.getH8());
+		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, "Q", BoardWindow.getD8());
+		King blackKing = new King(BLACK_PIECE_COLOUR, "K", BoardWindow.getE8());
+		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
 				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		Collections.addAll(allPieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
@@ -297,8 +324,11 @@ public class GameEnvironment
 		//play the game and get the outcome (win, lose, draw, stalemate)
 		String humanPlayer = "white";
 		String outcome = playGame(humanPlayer);
-		System.out.println(outcome);
+		System.out.println("OUTCOME:" + "\t" + outcome);
 		
 		
 	}
+
+
+	
 }

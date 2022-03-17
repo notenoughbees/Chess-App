@@ -22,9 +22,9 @@ public class Pawn extends Piece{
 		JToggleButton currentSquare = super.getPieceLocation();
 		int i = allSquares.indexOf(super.getPieceLocation());
 		
-		if(getPieceColour() == GameEnvironment.WHITE_COLOUR)
+		if(getPieceColour() == GameEnvironment.WHITE_PIECE_COLOUR)
 		{
-			opponentColour = GameEnvironment.BLACK_COLOUR;
+			opponentColour = GameEnvironment.BLACK_PIECE_COLOUR;
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION);
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
@@ -42,7 +42,7 @@ public class Pawn extends Piece{
 		//if the pawn is on the black side, then it moves in the opposite direction
 		else
 		{
-			opponentColour = GameEnvironment.WHITE_COLOUR;
+			opponentColour = GameEnvironment.WHITE_PIECE_COLOUR;
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION);
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 

@@ -10,10 +10,6 @@ public class Piece {
 	private Color pieceColour;
 	private String pieceType;
 	private JToggleButton location;
-	//these instance variables get used in findPossibleDestinations():
-	//ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
-	//JToggleButton currentSquare = super.getPieceLocation();
-	//Color opponentColour;
 	
 	//constructor
 	public Piece(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
@@ -165,13 +161,35 @@ public class Piece {
 	public static void movePiece(JToggleButton srcSquare, JToggleButton dstSquare)
 	{
 		System.out.println("movePiece");
+		System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare));
+		System.out.println(BoardWindow.getAllSquares().indexOf(dstSquare));
+		
 		//remove the piece from the source square
 		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
 		srcSquare.setText("");
 		srcSquare.setForeground(null);
-
+		
 		//put it on the destination square
 		BoardWindow.setSquareText(dstSquare, piece.pieceType, piece.pieceColour);
+		
+		//change the background colour of the destination square to be the right colour (not green)
+		BoardWindow.setSquareToOriginalColour(dstSquare);
+		
+		
+		
+		//==== the following lines only make a difference during the human's turn ====
+		//iterate the green squares and set their background colours back to their original colour
+		ArrayList<JToggleButton> greenSquares = BoardWindow.getValidDestinations();
+		for(int i = 0; i < greenSquares.size(); i++)
+		{
+			JToggleButton square = greenSquares.get(i);
+			BoardWindow.setSquareToOriginalColour(square);
+		}
+		
+		//unselect the source button and destination button
+		srcSquare.setSelected(false);
+		dstSquare.setSelected(false);
+		
 	}
 	
 	

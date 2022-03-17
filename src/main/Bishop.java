@@ -21,10 +21,10 @@ public class Bishop extends Piece{
 		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
 		JToggleButton currentSquare = super.getPieceLocation();
 		
-		if(getPieceColour() == Color.WHITE) {
-			opponentColour = Color.red;}
+		if(getPieceColour() == GameEnvironment.WHITE_PIECE_COLOUR) {
+			opponentColour = GameEnvironment.BLACK_PIECE_COLOUR;}
 		else {
-			opponentColour = Color.orange;}
+			opponentColour = GameEnvironment.WHITE_PIECE_COLOUR;}
 		
 		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION);
