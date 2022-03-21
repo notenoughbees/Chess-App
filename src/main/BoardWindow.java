@@ -873,7 +873,7 @@ public class BoardWindow {
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("SRCSQUARE:" + "\t" + sourceSquare);
-				setButtonSelectedColour(a2, Color.CYAN);
+				setButtonSelectedColour(a2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a2);}
 				else {
@@ -1144,6 +1144,7 @@ public class BoardWindow {
 	{
 		System.out.println("findValidDestinationsFromButton");
 		Piece selectedPiece = Piece.findPiece(GameEnvironment.getWhitePieces(), srcBtn);
+		System.out.println(allSquares.indexOf(srcBtn));
 		
 		//first find the valid destinations
 		//TODO: reuse this code from GameEnvironment
@@ -1159,6 +1160,12 @@ public class BoardWindow {
 			validDestinations = ((Queen) selectedPiece).findPossibleDestinations();}
 		else if(selectedPiece instanceof King) {
 			validDestinations = ((King) selectedPiece).findPossibleDestinations();}
+		
+		for(int i = 0; i < validDestinations.size(); i++)
+		{
+			int dstIndex = allSquares.indexOf(validDestinations.get(i));
+			System.out.println("a destination:" + "\t" + dstIndex);
+		}
 		
 		//colour the destinations and enable the associated buttons so that they can be clicked as the destination
 		for(int i = 0; i < validDestinations.size(); i++)
@@ -1356,6 +1363,10 @@ public class BoardWindow {
 	{
 		square.setText(text);
 		square.setForeground(textColour);
+	}
+
+	public static void resetSourceSquare() {
+		sourceSquare = null;
 	}
 	
 

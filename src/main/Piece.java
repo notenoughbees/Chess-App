@@ -171,10 +171,10 @@ public class Piece {
 		
 		//put it on the destination square
 		BoardWindow.setSquareText(dstSquare, piece.pieceType, piece.pieceColour);
+		piece.setLocation(dstSquare);
 		
 		//change the background colour of the destination square to be the right colour (not green)
 		BoardWindow.setSquareToOriginalColour(dstSquare);
-		
 		
 		
 		//==== the following lines only make a difference during the human's turn ====
@@ -190,15 +190,26 @@ public class Piece {
 		srcSquare.setSelected(false);
 		dstSquare.setSelected(false);
 		
+		
+		//say that there is no source square anymore in preparation for the next move
+		BoardWindow.resetSourceSquare();
 	}
 	
 	
+	
+
+
 	public Color getPieceColour() {
 		return pieceColour;}
 	public String getPieceType() {
 		return pieceType;}
 	public JToggleButton getPieceLocation() {
 		return location;}
+	
+	private void setLocation(JToggleButton dstSquare) {
+		location = dstSquare;
+		
+	}
 	
 	
 	
