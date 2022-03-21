@@ -46,7 +46,7 @@ public class Knight extends Piece{
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
 			}
 		}
-		else if(column >= 7)
+		else
 		{
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPLEFT_CALCULATION);
@@ -56,12 +56,21 @@ public class Knight extends Piece{
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERLEFT_CALCULATION);
 			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
-			if(column == 7)
+			//as long as we're not on the far right, we need to check at least 6 destinations here
+			if(column <= 7)
 			{
 				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPRIGHT_CALCULATION);
 				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION);
+				//this code runs if the col is one of the middle 4 cols, so all 8 destinations should be checked
+				if(column <= 6)
+				{
+					possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+							currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERRIGHT_CALCULATION);
+					possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+							currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERRIGHT_CALCULATION);
+				}
 			}
 		}
 		return possibleDestinations;

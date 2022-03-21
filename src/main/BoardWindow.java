@@ -632,7 +632,6 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("SRCSQUARE:" + "\t" + sourceSquare);
 				setButtonSelectedColour(a4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a4);}
@@ -759,7 +758,9 @@ public class BoardWindow {
 				else {
 					Piece.movePiece(sourceSquare, a3);
 					GameEnvironment.setHasWhiteMoved(true);
-					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}}});
+					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
+			}
+		});
 		
 		
 		b3.setBackground(Color.WHITE);
@@ -872,7 +873,6 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("SRCSQUARE:" + "\t" + sourceSquare);
 				setButtonSelectedColour(a2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a2);}
@@ -1098,14 +1098,23 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h1, GameEnvironment.SELECTED_COLOUR);
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h1);}
-				else {
-					Piece.movePiece(sourceSquare, h1);
-					GameEnvironment.setHasWhiteMoved(true);
-					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
-					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
+//				setButtonSelectedColour(h1, GameEnvironment.SELECTED_COLOUR);
+//				if(sourceSquare == null) {
+//					findValidDestinationsFromButton(h1);}
+//				else {
+//					Piece.movePiece(sourceSquare, h1);
+//					GameEnvironment.setHasWhiteMoved(true);
+//					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
+//					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
+			
+				for(int i=0; i < allSquares.size(); i++)
+				{
+					JToggleButton s = allSquares.get(i);
+					s.setEnabled(true);
+					
+				}
+			
+			
 			}
 		});
 		
@@ -1197,11 +1206,11 @@ public class BoardWindow {
 					|| squareIndex % 16 == 4
 					|| squareIndex % 16 == 6)
 			{
-				squareOriginalColour = Color.PINK;
+				squareOriginalColour = GameEnvironment.WHITE_SQUARE_COLOUR;
 			}
 			else //for when srcSquareIndex % 16 == 8 or 10 or 12 or 14 (or other)
 			{
-				squareOriginalColour = Color.MAGENTA;
+				squareOriginalColour = GameEnvironment.BLACK_SQUARE_COLOUR;
 			}		
 		}
 		
@@ -1212,11 +1221,11 @@ public class BoardWindow {
 					|| squareIndex % 16 == 5
 					|| squareIndex % 16 == 7)
 			{
-				squareOriginalColour = Color.MAGENTA;
+				squareOriginalColour = GameEnvironment.BLACK_SQUARE_COLOUR;
 			}
 			else //for when srcSquareIndex % 16 == something else
 			{
-				squareOriginalColour = Color.PINK;
+				squareOriginalColour = GameEnvironment.WHITE_SQUARE_COLOUR;
 			}		
 		}
 		square.setBackground(squareOriginalColour);
