@@ -22,7 +22,7 @@ public class Piece {
 	
 	
 	/**
-	 * Gets called by findPossibleDestinations(). Helps find the possible destinations for pieces that
+	 * Gets called by findValidDestinations(). Helps find the possible destinations for pieces that
 	 * have a range greater than one and so require a loop (aka bishops, rooks and queens).
 	 * @param possibleDestinations
 	 * @param allSquares
@@ -31,7 +31,7 @@ public class Piece {
 	 * @param nextSquareCalculation
 	 * @return
 	 */
-	public ArrayList<JToggleButton> findPossibleDestinationsLoop(
+	public ArrayList<JToggleButton> findValidDestinationsLoop(
 			ArrayList<JToggleButton> possibleDestinations,
 			ArrayList<JToggleButton> allSquares,
 			JToggleButton currentSquare,
@@ -127,8 +127,6 @@ public class Piece {
 					possibleDestinations.add(destinationSquare);
 				}
 			}
-			
-			
 		}
 		catch (IndexOutOfBoundsException e) {
 		}

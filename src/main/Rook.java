@@ -14,7 +14,7 @@ public class Rook extends Piece{
 	}
 	
 
-	public ArrayList<JToggleButton> findPossibleDestinations()
+	public ArrayList<JToggleButton> findValidDestinations()
 	{
 		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
 		Color opponentColour;
@@ -26,13 +26,13 @@ public class Rook extends Piece{
 		else {
 			opponentColour = GameEnvironment.WHITE_PIECE_COLOUR;}
 		
-		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOP_CALCULATION);
-		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_LEFT_CALCULATION);
-		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_RIGHT_CALCULATION);
-		possibleDestinations = super.findPossibleDestinationsLoop(possibleDestinations, allSquares,
+		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOM_CALCULATION);
 		
 		return possibleDestinations;

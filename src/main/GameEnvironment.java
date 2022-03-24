@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
+import javax.swing.plaf.metal.MetalButtonUI;
 
 public class GameEnvironment
 {
@@ -202,17 +203,17 @@ public class GameEnvironment
 		ArrayList<JToggleButton> pieceDestinations = null;
 		//find out the type of the piece, then cast it as that type to find the possible destinatons
 		if(pieceToCheck instanceof Pawn) {
-			pieceDestinations = ((Pawn) pieceToCheck).findPossibleDestinations();} // https://stackoverflow.com/a/106351/8042538
+			pieceDestinations = ((Pawn) pieceToCheck).findValidDestinations();} // https://stackoverflow.com/a/106351/8042538
 		else if(pieceToCheck instanceof Knight) {
-			pieceDestinations = ((Knight) pieceToCheck).findPossibleDestinations();}
+			pieceDestinations = ((Knight) pieceToCheck).findValidDestinations();}
 		else if(pieceToCheck instanceof Bishop) {
-			pieceDestinations = ((Bishop) pieceToCheck).findPossibleDestinations();}
+			pieceDestinations = ((Bishop) pieceToCheck).findValidDestinations();}
 		else if(pieceToCheck instanceof Rook) {
-			pieceDestinations = ((Rook) pieceToCheck).findPossibleDestinations();}
+			pieceDestinations = ((Rook) pieceToCheck).findValidDestinations();}
 		else if(pieceToCheck instanceof Queen) {
-			pieceDestinations = ((Queen) pieceToCheck).findPossibleDestinations();}
+			pieceDestinations = ((Queen) pieceToCheck).findValidDestinations();}
 		else if(pieceToCheck instanceof King) {
-			pieceDestinations = ((King) pieceToCheck).findPossibleDestinations();}
+			pieceDestinations = ((King) pieceToCheck).findValidDestinations();}
 		
 		if(pieceDestinations.size() > 0) //pieceDestinations will be null if no destinations were found
 		{
@@ -247,11 +248,36 @@ public class GameEnvironment
 			if(btn.getForeground() == WHITE_PIECE_COLOUR)
 			{
 				btn.setEnabled(enableWhiteButtons);
+//				//NEW STUFF >>>>>>
+//				if(enableWhiteButtons = false) //if we're disabling the buttons
+//				{
+//					btn.setUI(new MetalButtonUI()
+//					{
+//						protected Color getDisabledTextColor()
+//						{
+//							return Color.GREEN;
+//						}
+//					});
+//				}
+//				//<<<<<<NEW STUFF
+				
 				whitePieceButtons.add(btn);
 			}
 			else if(checkNonwhiteButtons == true)
 			{
 				btn.setEnabled(enableNonwhiteButtons);
+//				//NEW STUFF >>>>>>
+//				if(enableNonwhiteButtons = false) //if we're disabling the buttons
+//				{
+//					btn.setUI(new MetalButtonUI()
+//					{
+//						protected Color getDisabledTextColor()
+//						{
+//							return Color.GREEN;
+//						}
+//					});
+//				}
+//				//<<<<<<NEW STUFF
 			}
 		}
 	}

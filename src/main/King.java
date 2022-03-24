@@ -14,7 +14,7 @@ public class King extends Piece{
 	}
 	
 	
-	public ArrayList<JToggleButton> findPossibleDestinations()
+	public ArrayList<JToggleButton> findValidDestinations()
 	{
 		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
 		Color opponentColour;

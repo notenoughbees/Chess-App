@@ -762,7 +762,6 @@ public class BoardWindow {
 			}
 		});
 		
-		
 		b3.setBackground(Color.WHITE);
 		b3.setFont(new Font("Tahoma", Font.BOLD, 18));
 		frmChessApp.getContentPane().add(b3);
@@ -1158,17 +1157,17 @@ public class BoardWindow {
 		//first find the valid destinations
 		//TODO: reuse this code from GameEnvironment
 		if(selectedPiece instanceof Pawn) {
-			validDestinations = ((Pawn) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((Pawn) selectedPiece).findValidDestinations();}
 		else if(selectedPiece instanceof Knight) {
-			validDestinations = ((Knight) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((Knight) selectedPiece).findValidDestinations();}
 		else if(selectedPiece instanceof Bishop) {
-			validDestinations = ((Bishop) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((Bishop) selectedPiece).findValidDestinations();}
 		else if(selectedPiece instanceof Rook) {
-			validDestinations = ((Rook) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((Rook) selectedPiece).findValidDestinations();}
 		else if(selectedPiece instanceof Queen) {
-			validDestinations = ((Queen) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((Queen) selectedPiece).findValidDestinations();}
 		else if(selectedPiece instanceof King) {
-			validDestinations = ((King) selectedPiece).findPossibleDestinations();}
+			validDestinations = ((King) selectedPiece).findValidDestinations();}
 		
 		for(int i = 0; i < validDestinations.size(); i++)
 		{
