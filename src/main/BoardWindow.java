@@ -147,7 +147,7 @@ public class BoardWindow {
 		frmChessApp.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
 		
 		a8.setBackground(Color.WHITE);
-		a8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a8);
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -163,7 +163,7 @@ public class BoardWindow {
 		});
 		
 		b8.setBackground(Color.BLACK);
-		b8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -178,7 +178,7 @@ public class BoardWindow {
 		});
 		
 		c8.setBackground(Color.WHITE);
-		c8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -193,7 +193,7 @@ public class BoardWindow {
 		});
 		
 		d8.setBackground(Color.BLACK);
-		d8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,7 +208,7 @@ public class BoardWindow {
 		});
 		
 		e8.setBackground(Color.WHITE);
-		e8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -223,7 +223,7 @@ public class BoardWindow {
 		});
 		
 		f8.setBackground(Color.BLACK);
-		f8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -238,7 +238,7 @@ public class BoardWindow {
 		});
 		
 		g8.setBackground(Color.WHITE);
-		g8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -253,7 +253,7 @@ public class BoardWindow {
 		});
 		
 		h8.setBackground(Color.BLACK);
-		h8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -268,7 +268,7 @@ public class BoardWindow {
 		});
 		
 		a7.setBackground(Color.BLACK);
-		a7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -283,7 +283,7 @@ public class BoardWindow {
 		});
 		
 		b7.setBackground(Color.WHITE);
-		b7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -298,7 +298,7 @@ public class BoardWindow {
 		});
 		
 		c7.setBackground(Color.BLACK);
-		c7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -313,7 +313,7 @@ public class BoardWindow {
 		});
 		
 		d7.setBackground(Color.WHITE);
-		d7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -328,7 +328,7 @@ public class BoardWindow {
 		});
 		
 		e7.setBackground(Color.BLACK);
-		e7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -343,7 +343,7 @@ public class BoardWindow {
 		});
 		
 		f7.setBackground(Color.WHITE);
-		f7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -358,7 +358,7 @@ public class BoardWindow {
 		});
 		
 		g7.setBackground(Color.BLACK);
-		g7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -373,7 +373,7 @@ public class BoardWindow {
 		});
 		
 		h7.setBackground(Color.WHITE);
-		h7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -388,7 +388,7 @@ public class BoardWindow {
 		});
 		
 		a6.setBackground(Color.WHITE);
-		a6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -403,7 +403,7 @@ public class BoardWindow {
 		});
 		
 		b6.setBackground(Color.BLACK);
-		b6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -418,7 +418,7 @@ public class BoardWindow {
 		});
 		
 		c6.setBackground(Color.WHITE);
-		c6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -433,7 +433,7 @@ public class BoardWindow {
 		});
 		
 		d6.setBackground(Color.BLACK);
-		d6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -448,7 +448,7 @@ public class BoardWindow {
 		});
 		
 		e6.setBackground(Color.WHITE);
-		e6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -463,7 +463,7 @@ public class BoardWindow {
 		});
 		
 		f6.setBackground(Color.BLACK);
-		f6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -478,7 +478,7 @@ public class BoardWindow {
 		});
 		
 		g6.setBackground(Color.WHITE);
-		g6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -493,7 +493,7 @@ public class BoardWindow {
 		});
 		
 		h6.setBackground(Color.BLACK);
-		h6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -508,7 +508,7 @@ public class BoardWindow {
 		});
 		
 		a5.setBackground(Color.BLACK);
-		a5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -523,7 +523,7 @@ public class BoardWindow {
 		});
 		
 		b5.setBackground(Color.WHITE);
-		b5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -538,7 +538,7 @@ public class BoardWindow {
 		});
 		
 		c5.setBackground(Color.BLACK);
-		c5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -553,7 +553,7 @@ public class BoardWindow {
 		});
 		
 		d5.setBackground(Color.WHITE);
-		d5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -568,7 +568,7 @@ public class BoardWindow {
 		});
 		
 		e5.setBackground(Color.BLACK);
-		e5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -583,7 +583,7 @@ public class BoardWindow {
 		});
 		
 		f5.setBackground(Color.WHITE);
-		f5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -598,7 +598,7 @@ public class BoardWindow {
 		});
 		
 		g5.setBackground(Color.BLACK);
-		g5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -613,7 +613,7 @@ public class BoardWindow {
 		});
 		
 		h5.setBackground(Color.WHITE);
-		h5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -628,7 +628,7 @@ public class BoardWindow {
 		});
 		
 		a4.setBackground(Color.WHITE);
-		a4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -643,7 +643,7 @@ public class BoardWindow {
 		});
 		
 		b4.setBackground(Color.BLACK);
-		b4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -658,7 +658,7 @@ public class BoardWindow {
 		});
 		
 		c4.setBackground(Color.WHITE);
-		c4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -673,7 +673,7 @@ public class BoardWindow {
 		});
 		
 		d4.setBackground(Color.BLACK);
-		d4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -688,7 +688,7 @@ public class BoardWindow {
 		});
 		
 		e4.setBackground(Color.WHITE);
-		e4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -703,7 +703,7 @@ public class BoardWindow {
 		});
 		
 		f4.setBackground(Color.BLACK);
-		f4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -718,7 +718,7 @@ public class BoardWindow {
 		});
 		
 		g4.setBackground(Color.WHITE);
-		g4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -733,7 +733,7 @@ public class BoardWindow {
 		});
 		
 		h4.setBackground(Color.BLACK);
-		h4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -748,7 +748,7 @@ public class BoardWindow {
 		});
 		
 		a3.setBackground(Color.BLACK);
-		a3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -763,7 +763,7 @@ public class BoardWindow {
 		});
 		
 		b3.setBackground(Color.WHITE);
-		b3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -778,7 +778,7 @@ public class BoardWindow {
 		});
 		
 		c3.setBackground(Color.BLACK);
-		c3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -793,7 +793,7 @@ public class BoardWindow {
 		});
 		
 		d3.setBackground(Color.WHITE);
-		d3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -808,7 +808,7 @@ public class BoardWindow {
 		});
 		
 		e3.setBackground(Color.BLACK);
-		e3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -823,7 +823,7 @@ public class BoardWindow {
 		});
 		
 		f3.setBackground(Color.WHITE);
-		f3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -838,7 +838,7 @@ public class BoardWindow {
 		});
 		
 		g3.setBackground(Color.BLACK);
-		g3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -853,7 +853,7 @@ public class BoardWindow {
 		});
 		
 		h3.setBackground(Color.WHITE);
-		h3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -868,7 +868,7 @@ public class BoardWindow {
 		});
 		
 		a2.setBackground(Color.WHITE);
-		a2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -883,7 +883,7 @@ public class BoardWindow {
 		});
 		
 		b2.setBackground(Color.BLACK);
-		b2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -898,7 +898,7 @@ public class BoardWindow {
 		});
 		
 		c2.setBackground(Color.WHITE);
-		c2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -913,7 +913,7 @@ public class BoardWindow {
 		});
 		
 		d2.setBackground(Color.BLACK);
-		d2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -928,7 +928,7 @@ public class BoardWindow {
 		});
 		
 		e2.setBackground(Color.WHITE);
-		e2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -943,7 +943,7 @@ public class BoardWindow {
 		});
 		
 		f2.setBackground(Color.BLACK);
-		f2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -958,7 +958,7 @@ public class BoardWindow {
 		});
 		
 		g2.setBackground(Color.WHITE);
-		g2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -973,7 +973,7 @@ public class BoardWindow {
 		});
 		
 		h2.setBackground(Color.BLACK);
-		h2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -988,7 +988,7 @@ public class BoardWindow {
 		});
 		
 		a1.setBackground(Color.BLACK);
-		a1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		a1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1003,7 +1003,7 @@ public class BoardWindow {
 		});
 		
 		b1.setBackground(Color.WHITE);
-		b1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		b1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1018,7 +1018,7 @@ public class BoardWindow {
 		});
 		
 		c1.setBackground(Color.BLACK);
-		c1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		c1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1033,7 +1033,7 @@ public class BoardWindow {
 		});
 		
 		d1.setBackground(Color.WHITE);
-		d1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		d1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1048,7 +1048,7 @@ public class BoardWindow {
 		});
 		
 		e1.setBackground(Color.BLACK);
-		e1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		e1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1063,7 +1063,7 @@ public class BoardWindow {
 		});
 		
 		f1.setBackground(Color.WHITE);
-		f1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		f1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1078,7 +1078,7 @@ public class BoardWindow {
 		});
 		
 		g1.setBackground(Color.BLACK);
-		g1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		g1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1093,7 +1093,7 @@ public class BoardWindow {
 		});
 		
 		h1.setBackground(Color.WHITE);
-		h1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		h1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1367,9 +1367,10 @@ public class BoardWindow {
 	
 	
 	//setters
-	public static void setSquareText(JToggleButton square, String text, Color textColour)
+	public static void setSquareText(JToggleButton square, char text, Color textColour)
 	{
-		square.setText(text);
+		String text2 = Character.toString(text);
+		square.setText(text2);
 		square.setForeground(textColour);
 	}
 

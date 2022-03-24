@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 public class Pawn extends Piece{
 
 	//constructor call
-	public Pawn(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
+	public Pawn(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
 		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}

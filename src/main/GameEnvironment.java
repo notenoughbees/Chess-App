@@ -23,6 +23,19 @@ public class GameEnvironment
 	private static String currentPlayer;
 	private static boolean hasWhiteMoved = false;
 	private static boolean gameOver;
+	private static final char WHITE_PAWN = '\u2659';
+	private static final char WHITE_KNIGHT = '\u2658';
+	private static final char WHITE_BISHOP = '\u2657';
+	private static final char WHITE_ROOK = '\u2656';
+	private static final char WHITE_QUEEN = '\u2655';
+	private static final char WHITE_KING = '\u2654';
+	
+	private static final char BLACK_PAWN = '\u265F';
+	private static final char BLACK_KNIGHT = '\u265E';
+	private static final char BLACK_BISHOP = '\u265D';
+	private static final char BLACK_ROOK = '\u265C';
+	private static final char BLACK_QUEEN = '\u265B';
+	private static final char BLACK_KING = '\u265A';
 	
 	
 	/**
@@ -302,41 +315,41 @@ public class GameEnvironment
 	public static void main(String[] args)
 	{	
 		openBoardWindow();
-		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, "p1.", BoardWindow.getA2());
-		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, "p2.", BoardWindow.getB2());
-		Pawn whitePawn3 = new Pawn(WHITE_PIECE_COLOUR, "p3.", BoardWindow.getC2());
-		Pawn whitePawn4 = new Pawn(WHITE_PIECE_COLOUR, "p4.", BoardWindow.getD2());
-		Pawn whitePawn5 = new Pawn(WHITE_PIECE_COLOUR, "p5.", BoardWindow.getE2());
-		Pawn whitePawn6 = new Pawn(WHITE_PIECE_COLOUR, "p6.", BoardWindow.getF2());
-		Pawn whitePawn7 = new Pawn(WHITE_PIECE_COLOUR, "p7.", BoardWindow.getG2());
-		Pawn whitePawn8 = new Pawn(WHITE_PIECE_COLOUR, "p8.", BoardWindow.getH2());
-		Knight whiteKnight1 = new Knight(WHITE_PIECE_COLOUR, "N1.", BoardWindow.getB1());
-		Knight whiteKnight2 = new Knight(WHITE_PIECE_COLOUR, "N2.", BoardWindow.getG1());
-		Bishop whiteBishop1 = new Bishop(WHITE_PIECE_COLOUR, "B1.", BoardWindow.getC1());
-		Bishop whiteBishop2 = new Bishop(WHITE_PIECE_COLOUR, "B2.", BoardWindow.getF1());
-		Rook whiteRook1 = new Rook(WHITE_PIECE_COLOUR, "R1.", BoardWindow.getA1());
-		Rook whiteRook2 = new Rook(WHITE_PIECE_COLOUR, "R2.", BoardWindow.getH1());
-		Queen whiteQueen = new Queen(WHITE_PIECE_COLOUR, "Q.", BoardWindow.getD1());
-		King whiteKing = new King(WHITE_PIECE_COLOUR, "K.", BoardWindow.getE1());
+		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getA2());
+		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getB2());
+		Pawn whitePawn3 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getC2());
+		Pawn whitePawn4 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getD2());
+		Pawn whitePawn5 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getE2());
+		Pawn whitePawn6 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getF2());
+		Pawn whitePawn7 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getG2());
+		Pawn whitePawn8 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getH2());
+		Knight whiteKnight1 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT, BoardWindow.getB1());
+		Knight whiteKnight2 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT, BoardWindow.getG1());
+		Bishop whiteBishop1 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP, BoardWindow.getC1());
+		Bishop whiteBishop2 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP, BoardWindow.getF1());
+		Rook whiteRook1 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK, BoardWindow.getA1());
+		Rook whiteRook2 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK, BoardWindow.getH1());
+		Queen whiteQueen = new Queen(WHITE_PIECE_COLOUR, WHITE_QUEEN, BoardWindow.getD1());
+		King whiteKing = new King(WHITE_PIECE_COLOUR, WHITE_KING, BoardWindow.getE1());
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-		Pawn blackPawn1 = new Pawn(BLACK_PIECE_COLOUR, "p1", BoardWindow.getA7());
-		Pawn blackPawn2 = new Pawn(BLACK_PIECE_COLOUR, "p2", BoardWindow.getB7());
-		Pawn blackPawn3 = new Pawn(BLACK_PIECE_COLOUR, "p3", BoardWindow.getC7());
-		Pawn blackPawn4 = new Pawn(BLACK_PIECE_COLOUR, "p4", BoardWindow.getD7());
-		Pawn blackPawn5 = new Pawn(BLACK_PIECE_COLOUR, "p5", BoardWindow.getE7());
-		Pawn blackPawn6 = new Pawn(BLACK_PIECE_COLOUR, "p6", BoardWindow.getF7());
-		Pawn blackPawn7 = new Pawn(BLACK_PIECE_COLOUR, "p7", BoardWindow.getG7());
-		Pawn blackPawn8 = new Pawn(BLACK_PIECE_COLOUR, "p8", BoardWindow.getH7());
-		Knight blackKnight1 = new Knight(BLACK_PIECE_COLOUR, "N1", BoardWindow.getB8());
-		Knight blackKnight2 = new Knight(BLACK_PIECE_COLOUR, "N2", BoardWindow.getG8());
-		Bishop blackBishop1 = new Bishop(BLACK_PIECE_COLOUR, "B1", BoardWindow.getC8());
-		Bishop blackBishop2 = new Bishop(BLACK_PIECE_COLOUR, "B2", BoardWindow.getF8());
-		Rook blackRook1 = new Rook(BLACK_PIECE_COLOUR, "R1", BoardWindow.getA8());
-		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, "R2", BoardWindow.getH8());
-		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, "Q", BoardWindow.getD8());
-		King blackKing = new King(BLACK_PIECE_COLOUR, "K", BoardWindow.getE8());
+		Pawn blackPawn1 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getA7());
+		Pawn blackPawn2 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getB7());
+		Pawn blackPawn3 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getC7());
+		Pawn blackPawn4 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getD7());
+		Pawn blackPawn5 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getE7());
+		Pawn blackPawn6 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getF7());
+		Pawn blackPawn7 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getG7());
+		Pawn blackPawn8 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getH7());
+		Knight blackKnight1 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT, BoardWindow.getB8());
+		Knight blackKnight2 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT, BoardWindow.getG8());
+		Bishop blackBishop1 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP, BoardWindow.getC8());
+		Bishop blackBishop2 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP, BoardWindow.getF8());
+		Rook blackRook1 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK, BoardWindow.getA8());
+		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK, BoardWindow.getH8());
+		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, BLACK_QUEEN, BoardWindow.getD8());
+		King blackKing = new King(BLACK_PIECE_COLOUR, BLACK_KING, BoardWindow.getE8());
 		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
 				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
@@ -351,6 +364,8 @@ public class GameEnvironment
 		String humanPlayer = "white";
 		String outcome = playGame(humanPlayer);
 		System.out.println("OUTCOME:" + "\t" + outcome);
+		
+		
 		
 		
 	}

@@ -8,11 +8,11 @@ import javax.swing.JToggleButton;
 public class Piece {
 	//initialise
 	private Color pieceColour;
-	private String pieceType;
+	private char pieceType;
 	private JToggleButton location;
 	
 	//constructor
-	public Piece(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
+	public Piece(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
 		pieceColour = tempPieceColour;
 		pieceType = tempPieceType;
 		location = tempLocation;
@@ -136,14 +136,14 @@ public class Piece {
 	
 	/*
 	 * Given (1) the list of all of the pieces and (2) a square that will have a piece on it, 
-	 * find which piece is on te given square by iterating the list of pieces and  
-	 * searching for the piece that has the same name as the text on the square.
+	 * find which piece is on the given square by iterating the list of pieces and  
+	 * searching for the square that is equal to the location of the piece.
 	 */
 	public static Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
 	{
 		for(Piece p : allPieces)
 		{
-			if(p.getPieceType().equals(srcSquare.getText()))
+			if(p.getPieceLocation().equals(srcSquare))
 			{
 				return p;
 			}
@@ -198,7 +198,7 @@ public class Piece {
 
 	public Color getPieceColour() {
 		return pieceColour;}
-	public String getPieceType() {
+	public char getPieceType() {
 		return pieceType;}
 	public JToggleButton getPieceLocation() {
 		return location;}

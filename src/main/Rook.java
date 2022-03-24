@@ -8,7 +8,7 @@ import javax.swing.JToggleButton;
 public class Rook extends Piece{
 
 	//constructor call
-	public Rook(Color tempPieceColour, String tempPieceType, JToggleButton tempLocation) {
+	public Rook(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
 		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
 		super(tempPieceColour, tempPieceType, tempLocation);
 	}
