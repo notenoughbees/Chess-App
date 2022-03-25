@@ -3,16 +3,15 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
 public class King extends Piece{
 
 	//constructor call
-	public King(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
-		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
-		super(tempPieceColour, tempPieceType, tempLocation);
+	public King(Color tempPieceColour, ImageIcon pieceType, JToggleButton tempLocation) {
+		super(tempPieceColour, pieceType, tempLocation);
 	}
-	
 	
 	public ArrayList<JToggleButton> findValidDestinations()
 	{

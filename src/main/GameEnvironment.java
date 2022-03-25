@@ -1,16 +1,33 @@
 package main;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.MetalButtonUI;
 
 public class GameEnvironment
 {
+	public final static ImageIcon WHITE_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_pawn_48px.png"));
+	public final static ImageIcon WHITE_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_knight_48px.png"));
+	public final static ImageIcon WHITE_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_bishop_48px.png"));
+	public final static ImageIcon WHITE_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_rook_48px.png"));
+	public final static ImageIcon WHITE_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_queen_48px.png"));
+	public final static ImageIcon WHITE_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_king_48px.png"));
+	public final static ImageIcon BLACK_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_pawn_48px.png"));
+	public final static ImageIcon BLACK_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_knight_48px.png"));
+	public final static ImageIcon BLACK_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_bishop_48px.png"));
+	public final static ImageIcon BLACK_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_rook_48px.png"));
+	public final static ImageIcon BLACK_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_queen_48px.png"));
+	public final static ImageIcon BLACK_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_king_48px.png"));
+	
 	public final static Color WHITE_SQUARE_COLOUR = Color.white;
 	public final static Color BLACK_SQUARE_COLOUR = Color.black;
 	public final static Color WHITE_PIECE_COLOUR = Color.orange;
@@ -23,19 +40,6 @@ public class GameEnvironment
 	private static String currentPlayer;
 	private static boolean hasWhiteMoved = false;
 	private static boolean gameOver;
-	private static final char WHITE_PAWN = '\u2659';
-	private static final char WHITE_KNIGHT = '\u2658';
-	private static final char WHITE_BISHOP = '\u2657';
-	private static final char WHITE_ROOK = '\u2656';
-	private static final char WHITE_QUEEN = '\u2655';
-	private static final char WHITE_KING = '\u2654';
-	
-	private static final char BLACK_PAWN = '\u265F';
-	private static final char BLACK_KNIGHT = '\u265E';
-	private static final char BLACK_BISHOP = '\u265D';
-	private static final char BLACK_ROOK = '\u265C';
-	private static final char BLACK_QUEEN = '\u265B';
-	private static final char BLACK_KING = '\u265A';
 	
 	
 	/**
@@ -261,9 +265,14 @@ public class GameEnvironment
 			if(btn.getForeground() == WHITE_PIECE_COLOUR)
 			{
 				btn.setEnabled(enableWhiteButtons);
+				//TODO
 //				//NEW STUFF >>>>>>
 //				if(enableWhiteButtons = false) //if we're disabling the buttons
 //				{
+//					for(ActionListener al: btn.getActionListeners())
+//					{
+//						btn.removeActionListener(al);
+//					}
 //					btn.setUI(new MetalButtonUI()
 //					{
 //						protected Color getDisabledTextColor()
@@ -314,42 +323,75 @@ public class GameEnvironment
 	 */
 	public static void main(String[] args)
 	{	
+		//UIManager.put("ToggleButton.disabledText", new ColorUIResource(Color.PINK));
+		
+		for(int i = 0; i < whitePieces.size(); i++)
+		{
+			Piece piece = whitePieces.get(i);
+			JToggleButton btn = piece.getPieceLocation();
+			Color pieceColour = piece.getPieceColour();
+			if(pieceColour == WHITE_PIECE_COLOUR)
+			{
+				btn.setUI(new MetalButtonUI()
+				{
+					protected Color getDisabledTextColor()
+					{
+						return Color.CYAN;
+					}
+				});
+			}
+			if(pieceColour == BLACK_PIECE_COLOUR)
+			{
+				btn.setUI(new MetalButtonUI()
+				{
+					protected Color getDisabledTextColor()
+					{
+						return Color.MAGENTA;
+					}
+				});
+			}
+			
+			
+			
+		}
+		
+		
 		openBoardWindow();
-		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getA2());
-		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getB2());
-		Pawn whitePawn3 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getC2());
-		Pawn whitePawn4 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getD2());
-		Pawn whitePawn5 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getE2());
-		Pawn whitePawn6 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getF2());
-		Pawn whitePawn7 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getG2());
-		Pawn whitePawn8 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN, BoardWindow.getH2());
-		Knight whiteKnight1 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT, BoardWindow.getB1());
-		Knight whiteKnight2 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT, BoardWindow.getG1());
-		Bishop whiteBishop1 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP, BoardWindow.getC1());
-		Bishop whiteBishop2 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP, BoardWindow.getF1());
-		Rook whiteRook1 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK, BoardWindow.getA1());
-		Rook whiteRook2 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK, BoardWindow.getH1());
-		Queen whiteQueen = new Queen(WHITE_PIECE_COLOUR, WHITE_QUEEN, BoardWindow.getD1());
-		King whiteKing = new King(WHITE_PIECE_COLOUR, WHITE_KING, BoardWindow.getE1());
+		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getA2());
+		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getB2());
+		Pawn whitePawn3 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getC2());
+		Pawn whitePawn4 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getD2());
+		Pawn whitePawn5 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getE2());
+		Pawn whitePawn6 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getF2());
+		Pawn whitePawn7 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getG2());
+		Pawn whitePawn8 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getH2());
+		Knight whiteKnight1 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT_ICON, BoardWindow.getB1());
+		Knight whiteKnight2 = new Knight(WHITE_PIECE_COLOUR, WHITE_KNIGHT_ICON, BoardWindow.getG1());
+		Bishop whiteBishop1 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP_ICON, BoardWindow.getC1());
+		Bishop whiteBishop2 = new Bishop(WHITE_PIECE_COLOUR, WHITE_BISHOP_ICON, BoardWindow.getF1());
+		Rook whiteRook1 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK_ICON, BoardWindow.getA1());
+		Rook whiteRook2 = new Rook(WHITE_PIECE_COLOUR, WHITE_ROOK_ICON, BoardWindow.getH1());
+		Queen whiteQueen = new Queen(WHITE_PIECE_COLOUR, WHITE_QUEEN_ICON, BoardWindow.getD1());
+		King whiteKing = new King(WHITE_PIECE_COLOUR, WHITE_KING_ICON, BoardWindow.getE1());
 		Collections.addAll(whitePieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing); //https://stackoverflow.com/a/43457156/8042538
-		Pawn blackPawn1 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getA7());
-		Pawn blackPawn2 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getB7());
-		Pawn blackPawn3 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getC7());
-		Pawn blackPawn4 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getD7());
-		Pawn blackPawn5 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getE7());
-		Pawn blackPawn6 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getF7());
-		Pawn blackPawn7 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getG7());
-		Pawn blackPawn8 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN, BoardWindow.getH7());
-		Knight blackKnight1 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT, BoardWindow.getB8());
-		Knight blackKnight2 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT, BoardWindow.getG8());
-		Bishop blackBishop1 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP, BoardWindow.getC8());
-		Bishop blackBishop2 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP, BoardWindow.getF8());
-		Rook blackRook1 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK, BoardWindow.getA8());
-		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK, BoardWindow.getH8());
-		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, BLACK_QUEEN, BoardWindow.getD8());
-		King blackKing = new King(BLACK_PIECE_COLOUR, BLACK_KING, BoardWindow.getE8());
+		Pawn blackPawn1 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getA7());
+		Pawn blackPawn2 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getB7());
+		Pawn blackPawn3 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getC7());
+		Pawn blackPawn4 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getD7());
+		Pawn blackPawn5 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getE7());
+		Pawn blackPawn6 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getF7());
+		Pawn blackPawn7 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getG7());
+		Pawn blackPawn8 = new Pawn(BLACK_PIECE_COLOUR, BLACK_PAWN_ICON, BoardWindow.getH7());
+		Knight blackKnight1 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT_ICON, BoardWindow.getB8());
+		Knight blackKnight2 = new Knight(BLACK_PIECE_COLOUR, BLACK_KNIGHT_ICON, BoardWindow.getG8());
+		Bishop blackBishop1 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP_ICON, BoardWindow.getC8());
+		Bishop blackBishop2 = new Bishop(BLACK_PIECE_COLOUR, BLACK_BISHOP_ICON, BoardWindow.getF8());
+		Rook blackRook1 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK_ICON, BoardWindow.getA8());
+		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK_ICON, BoardWindow.getH8());
+		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, BLACK_QUEEN_ICON, BoardWindow.getD8());
+		King blackKing = new King(BLACK_PIECE_COLOUR, BLACK_KING_ICON, BoardWindow.getE8());
 		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
 				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
 				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);

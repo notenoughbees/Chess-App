@@ -3,16 +3,17 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
 public class Piece {
 	//initialise
 	private Color pieceColour;
-	private char pieceType;
+	private ImageIcon pieceType;
 	private JToggleButton location;
 	
 	//constructor
-	public Piece(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
+	public Piece(Color tempPieceColour, ImageIcon tempPieceType, JToggleButton tempLocation) {
 		pieceColour = tempPieceColour;
 		pieceType = tempPieceType;
 		location = tempLocation;
@@ -63,7 +64,7 @@ public class Piece {
 						//  would have to take the piece on this square, which ends the turn
 						break;
 					}
-					if(nextSquare.getText().isEmpty())
+					if(nextSquare.getIcon() == null)
 					{
 						possibleDestinations.add(nextSquare);
 						//System.out.println("ADDED2:" + nextSquare.second);
@@ -111,7 +112,7 @@ public class Piece {
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(!(this instanceof Pawn))
 			{
-				if(destinationSquare.getText().isEmpty() || destinationSquare.getForeground() == opponentColour) {
+				if(destinationSquare.getIcon() == null || destinationSquare.getForeground() == opponentColour) {
 					possibleDestinations.add(destinationSquare);
 				}
 			}
@@ -122,7 +123,7 @@ public class Piece {
 						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
 						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 				boolean is_moving_diagonally = !(is_moving_forward);
-				if(destinationSquare.getText().isEmpty() && is_moving_forward
+				if(destinationSquare.getIcon() == null && is_moving_forward
 						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally) {
 					possibleDestinations.add(destinationSquare);
 				}
@@ -163,7 +164,7 @@ public class Piece {
 		
 		//remove the piece from the source square
 		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
-		srcSquare.setText("");
+		srcSquare.setIcon(null);
 		srcSquare.setForeground(null);
 		
 		//put it on the destination square
@@ -198,7 +199,7 @@ public class Piece {
 
 	public Color getPieceColour() {
 		return pieceColour;}
-	public char getPieceType() {
+	public ImageIcon getPieceType() {
 		return pieceType;}
 	public JToggleButton getPieceLocation() {
 		return location;}

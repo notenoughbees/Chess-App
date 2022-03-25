@@ -3,14 +3,15 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
 public class Knight extends Piece{
 
 	//constructor call
-	public Knight(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
+	public Knight(Color tempPieceColour, ImageIcon pieceType, JToggleButton tempLocation) {
 		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
-		super(tempPieceColour, tempPieceType, tempLocation);
+		super(tempPieceColour, pieceType, tempLocation);
 	}
 	
 	

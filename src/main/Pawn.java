@@ -3,14 +3,14 @@ package main;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
 public class Pawn extends Piece{
 
 	//constructor call
-	public Pawn(Color tempPieceColour, char tempPieceType, JToggleButton tempLocation) {
-		//superclass constructor call: initialise the superclass instance variables (Big Java p318)
-		super(tempPieceColour, tempPieceType, tempLocation);
+	public Pawn(Color tempPieceColour, ImageIcon pieceType, JToggleButton tempLocation) {
+		super(tempPieceColour, pieceType, tempLocation);
 	}
 	
 
@@ -32,7 +32,7 @@ public class Pawn extends Piece{
 		{
 			//first check if there is a piece in the way
 			JToggleButton squareAhead = allSquares.get(allSquares.indexOf(currentSquare)+BoardWindow.SQUARE_TOP_CALCULATION);
-			if(squareAhead.getText() == "")
+			if(squareAhead.getIcon() == null)
 			{
 				//the square two spaces ahead is just the square one space ahead minus 8
 				validDestinations = super.testNewDestinationSquare(validDestinations, allSquares, 

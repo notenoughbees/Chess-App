@@ -1,10 +1,14 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JToggleButton;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 
@@ -13,28 +17,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class BoardWindow {
 	//initialise instance variables
-	private JFrame frmChessApp;
-	private static JToggleButton a1 = new JToggleButton("");
-	private static JToggleButton b1 = new JToggleButton("");
-	private static JToggleButton c1 = new JToggleButton("");
-	private static JToggleButton d1 = new JToggleButton("");
-	private static JToggleButton e1 = new JToggleButton("");
-	private static JToggleButton f1 = new JToggleButton("");
-	private static JToggleButton g1 = new JToggleButton("");
-	private static JToggleButton h1 = new JToggleButton("");
-	private static JToggleButton a2 = new JToggleButton("");
-	private static JToggleButton b2 = new JToggleButton("");
-	private static JToggleButton c2 = new JToggleButton("");
-	private static JToggleButton d2 = new JToggleButton("");
-	private static JToggleButton e2 = new JToggleButton("");
-	private static JToggleButton f2 = new JToggleButton("");
-	private static JToggleButton g2 = new JToggleButton("");
-	private static JToggleButton h2 = new JToggleButton("");
+	private JFrame frmChessApp;	
+	private static JToggleButton a1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton a3 = new JToggleButton("");
 	private static JToggleButton b3 = new JToggleButton("");
 	private static JToggleButton c3 = new JToggleButton("");
@@ -67,22 +69,22 @@ public class BoardWindow {
 	private static JToggleButton f6 = new JToggleButton("");
 	private static JToggleButton g6 = new JToggleButton("");
 	private static JToggleButton h6 = new JToggleButton("");
-	private static JToggleButton a7 = new JToggleButton("");
-	private static JToggleButton b7 = new JToggleButton("");
-	private static JToggleButton c7 = new JToggleButton("");
-	private static JToggleButton d7 = new JToggleButton("");
-	private static JToggleButton e7 = new JToggleButton("");
-	private static JToggleButton f7 = new JToggleButton("");
-	private static JToggleButton g7 = new JToggleButton("");
-	private static JToggleButton h7 = new JToggleButton("");
-	private static JToggleButton a8 = new JToggleButton("");
-	private static JToggleButton b8 = new JToggleButton("");
-	private static JToggleButton c8 = new JToggleButton("");
-	private static JToggleButton d8 = new JToggleButton("");
-	private static JToggleButton e8 = new JToggleButton("");
-	private static JToggleButton f8 = new JToggleButton("");
-	private static JToggleButton g8 = new JToggleButton("");
-	private static JToggleButton h8 = new JToggleButton("");
+	private static JToggleButton a7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static ArrayList<JToggleButton> allSquares = new ArrayList<JToggleButton>();
 	public static final int BOARD_LENGTH = 8;
 	
@@ -882,8 +884,12 @@ public class BoardWindow {
 			}
 		});
 		
+		//TODO
+//		b2.setIcon(new ImageIcon(im2));
+		//b2.setIcon(new ImageIcon(BoardWindow.class.getResource("/img/white_pawn.png")));
+		
+		//b2.setDisabledIcon(TEST_ICON);
 		b2.setBackground(Color.BLACK);
-		b2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
 		frmChessApp.getContentPane().add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1097,21 +1103,21 @@ public class BoardWindow {
 		frmChessApp.getContentPane().add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				setButtonSelectedColour(h1, GameEnvironment.SELECTED_COLOUR);
-//				if(sourceSquare == null) {
-//					findValidDestinationsFromButton(h1);}
-//				else {
-//					Piece.movePiece(sourceSquare, h1);
-//					GameEnvironment.setHasWhiteMoved(true);
-//					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
-//					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
+				setButtonSelectedColour(h1, GameEnvironment.SELECTED_COLOUR);
+				if(sourceSquare == null) {
+					findValidDestinationsFromButton(h1);}
+				else {
+					Piece.movePiece(sourceSquare, h1);
+					GameEnvironment.setHasWhiteMoved(true);
+					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
+					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			
-				for(int i=0; i < allSquares.size(); i++)
-				{
-					JToggleButton s = allSquares.get(i);
-					s.setEnabled(true);
-					
-				}
+//				for(int i=0; i < allSquares.size(); i++)
+//				{
+//					JToggleButton s = allSquares.get(i);
+//					s.setEnabled(true);
+//					
+//				}
 			
 			
 			}
@@ -1124,7 +1130,7 @@ public class BoardWindow {
 				a4, b4, c4, d4, e4, f4, g4, h4,
 				a3, b3, c3, d3, e3, f3, g3, h3, 
 				a2, b2, c2, d2, e2, f2, g2, h2,
-				a1, b1, c1, d1, e1, f1, g1, h1);
+				a1, b1, c1, d1, e1, f1, g1);
 	}
 	
 	
@@ -1367,10 +1373,10 @@ public class BoardWindow {
 	
 	
 	//setters
-	public static void setSquareText(JToggleButton square, char text, Color textColour)
+	public static void setSquareText(JToggleButton square, ImageIcon icon, Color textColour)
 	{
-		String text2 = Character.toString(text);
-		square.setText(text2);
+		square.setIcon(icon);
+		square.setDisabledIcon(icon); //prevents the icon getting greyed out when the button is disabled
 		square.setForeground(textColour);
 	}
 
