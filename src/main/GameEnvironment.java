@@ -1,20 +1,27 @@
 package main;
 
 import java.awt.Color;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalButtonUI;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 
 public class GameEnvironment
 {
+	final static String LOOKANDFEEL = "Motif"; //Motif GTK System
+	final static String THEME = "Ocean";
+	
 	public final static ImageIcon WHITE_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_pawn_48px.png"));
 	public final static ImageIcon WHITE_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_knight_48px.png"));
 	public final static ImageIcon WHITE_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_bishop_48px.png"));
@@ -28,18 +35,21 @@ public class GameEnvironment
 	public final static ImageIcon BLACK_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_queen_48px.png"));
 	public final static ImageIcon BLACK_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_king_48px.png"));
 	
-	public final static Color WHITE_SQUARE_COLOUR = Color.white;
-	public final static Color BLACK_SQUARE_COLOUR = Color.black;
-	public final static Color WHITE_PIECE_COLOUR = Color.orange;
-	public final static Color BLACK_PIECE_COLOUR = Color.red;
-	public final static Color SELECTED_COLOUR = Color.blue;
-	public final static Color VALID_DESTINATION_COLOUR = Color.green;
+	public final static Color WHITE_SQUARE_COLOUR = Color.WHITE;
+	public final static Color BLACK_SQUARE_COLOUR = Color.BLACK;
+	public final static Color WHITE_PIECE_COLOUR = Color.ORANGE;
+	public final static Color BLACK_PIECE_COLOUR = Color.RED;
+	public final static Color SELECTED_COLOUR = Color.BLUE;
+	public final static Color VALID_DESTINATION_COLOUR = Color.GREEN;
 	private static ArrayList<Piece> whitePieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> blackPieces = new ArrayList<Piece>();
 	private static ArrayList<Piece> allPieces = new ArrayList<Piece>();
-	private static String currentPlayer;
+	
+	private static Integer turnCounter = 1;
 	private static boolean hasWhiteMoved = false;
 	private static boolean gameOver;
+	
+	
 	
 	
 	/**
@@ -56,12 +66,10 @@ public class GameEnvironment
 	 */
 	public static String playGame(String humanPlayer) 
 	{
-		//the human plays white, so they start first
-		currentPlayer = humanPlayer;
 		while(gameOver() == false)
 		{
-			System.out.println(currentPlayer);
-			playOneTurn(currentPlayer, humanPlayer); //pass in humanPlayer for if they are the current player
+			//the human plays white, so they start first
+			makeHumanMove();
 			//wait for the human player to make a move
 			while(hasWhiteMoved == false)
 			{
@@ -71,8 +79,12 @@ public class GameEnvironment
 				catch(InterruptedException e) {
 				}
 			}
-			currentPlayer = switchPlayers(currentPlayer);
+			makeComputerMove();
 			
+			//TODO
+			String text = turnCounter.toString();
+			writeNotation(text); //destination, ...);
+			turnCounter ++;
 		}
 			
 			
@@ -92,36 +104,11 @@ public class GameEnvironment
 	}
 	
 	
-	/**
-	 * Lets one turn happen, whether the player is the human or the computer.
-	 * @param currentPlayer
-	 * @param humanPlayer
-	 */
-	public static void playOneTurn(String currentPlayer, String humanPlayer)
+	public static void writeNotation(String text)
 	{
-		//makeHumanMove();
-		//TODO
-		if (currentPlayer == humanPlayer)
-		{
-			makeHumanMove();
-		}
-		else
-		{
-			makeComputerMove();
-		}
-	}
-	
-	
-	/**
-	 * Changes the current player.
-	 * @param currentPlayer
-	 * @return
-	 */
-	public static String switchPlayers(String currentPlayer)
-	{
-		if (currentPlayer == "white") {
-			return "black";}
-		return "white";
+		JTextArea box = BoardWindow.getMovesHistory();
+		String currentText = box.getText();
+		box.setText(currentText + "\n" + text);
 	}
 	
 	
@@ -181,9 +168,6 @@ public class GameEnvironment
 		//TODO: !
 		//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 		GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);
-		
-		
-		//gameOver = true;
 	}
 	
 	
@@ -265,41 +249,11 @@ public class GameEnvironment
 			if(btn.getForeground() == WHITE_PIECE_COLOUR)
 			{
 				btn.setEnabled(enableWhiteButtons);
-				//TODO
-//				//NEW STUFF >>>>>>
-//				if(enableWhiteButtons = false) //if we're disabling the buttons
-//				{
-//					for(ActionListener al: btn.getActionListeners())
-//					{
-//						btn.removeActionListener(al);
-//					}
-//					btn.setUI(new MetalButtonUI()
-//					{
-//						protected Color getDisabledTextColor()
-//						{
-//							return Color.GREEN;
-//						}
-//					});
-//				}
-//				//<<<<<<NEW STUFF
-				
 				whitePieceButtons.add(btn);
 			}
 			else if(checkNonwhiteButtons == true)
 			{
 				btn.setEnabled(enableNonwhiteButtons);
-//				//NEW STUFF >>>>>>
-//				if(enableNonwhiteButtons = false) //if we're disabling the buttons
-//				{
-//					btn.setUI(new MetalButtonUI()
-//					{
-//						protected Color getDisabledTextColor()
-//						{
-//							return Color.GREEN;
-//						}
-//					});
-//				}
-//				//<<<<<<NEW STUFF
 			}
 		}
 	}
@@ -323,7 +277,109 @@ public class GameEnvironment
 	 */
 	public static void main(String[] args)
 	{	
-		//UIManager.put("ToggleButton.disabledText", new ColorUIResource(Color.PINK));
+		//use the UI Manager to change the default background colour of a toggle button when toggled on
+		UIManager.put("ToggleButton.select", GameEnvironment.SELECTED_COLOUR);
+		
+
+
+		
+		
+		
+        String lookAndFeel = null;
+        
+        if (LOOKANDFEEL != null) {
+            if (LOOKANDFEEL.equals("Metal")) {
+                lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
+              //  an alternative way to set the Metal L&F is to replace the 
+              // previous line with:
+              // lookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
+                
+            }
+            
+            else if (LOOKANDFEEL.equals("System")) {
+                lookAndFeel = UIManager.getSystemLookAndFeelClassName();
+            } 
+            
+            else if (LOOKANDFEEL.equals("Motif")) {
+                lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+            } 
+            
+            else if (LOOKANDFEEL.equals("GTK")) { 
+                lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+            } 
+            
+            else {
+                System.err.println("Unexpected value of LOOKANDFEEL specified: "
+                                   + LOOKANDFEEL);
+                lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
+            }
+
+            try {
+            	
+            	
+                UIManager.setLookAndFeel(lookAndFeel);
+                
+                // If L&F = "Metal", set the theme
+                
+                if (LOOKANDFEEL.equals("Metal")) {
+                  if (THEME.equals("DefaultMetal"))
+                     MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+                  else if (THEME.equals("Ocean"))
+                     MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+                  //else
+                     //MetalLookAndFeel.setCurrentTheme(new TestTheme());
+                     
+                  UIManager.setLookAndFeel(new MetalLookAndFeel()); 
+                }	
+                	
+                	
+                  
+                
+            } 
+            
+            catch (ClassNotFoundException e) {
+                System.err.println("Couldn't find class for specified look and feel:"
+                                   + lookAndFeel);
+                System.err.println("Did you include the L&F library in the class path?");
+                System.err.println("Using the default look and feel.");
+            } 
+            
+            catch (UnsupportedLookAndFeelException e) {
+                System.err.println("Can't use the specified look and feel ("
+                                   + lookAndFeel
+                                   + ") on this platform.");
+                System.err.println("Using the default look and feel.");
+            } 
+            
+            catch (Exception e) {
+                System.err.println("Couldn't get specified look and feel ("
+                                   + lookAndFeel
+                                   + "), for some reason.");
+                System.err.println("Using the default look and feel.");
+                e.printStackTrace();
+            }
+        }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		for(int i = 0; i < whitePieces.size(); i++)
 		{

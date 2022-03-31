@@ -1,26 +1,32 @@
 package main;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import java.awt.GridLayout;
-import java.awt.Image;
 
 import javax.swing.JToggleButton;
-import javax.swing.plaf.metal.MetalToggleButtonUI;
 
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Insets;
 
 public class BoardWindow {
 	//initialise instance variables
-	private JFrame frmChessApp;	
+	private JFrame frmMaster;
+	private static JPanel panelBoard = new JPanel();
+	private static JTextArea movesHistory = new JTextArea();
 	private static JToggleButton a1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton b1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton c1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
@@ -121,7 +127,7 @@ public class BoardWindow {
 			public void run() {
 				try {
 					BoardWindow window = new BoardWindow();
-					window.frmChessApp.setVisible(true);
+					window.frmMaster.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -135,41 +141,87 @@ public class BoardWindow {
 	//constructor
 	public BoardWindow() {
 		initialize();
-		frmChessApp.setVisible(true); //show the window
+		frmMaster.setVisible(true); //show the window
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmChessApp = new JFrame();
-		frmChessApp.setTitle("Chess App");
-		frmChessApp.setBounds(100, 100, 560, 560);
-		frmChessApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmChessApp.getContentPane().setLayout(new GridLayout(8, 8, 0, 0));
+		//master frame with GridBagLayout that holds the board and moves history
+		frmMaster = new JFrame();
+		frmMaster.setTitle("Chess App");
+		frmMaster.setBounds(100, 100, (70*8+70*2), 70*8);
+		frmMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GridBagLayout gbcMaster = new GridBagLayout();
+//		gbcMaster.columnWidths = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8}; //{70, 70};
+//		gbcMaster.rowHeights = new int[]{100};
+		gbcMaster.columnWeights = new double[]{frmMaster.getWidth()/10};
+		gbcMaster.rowWeights = new double[]{frmMaster.getWidth()/10};
+		frmMaster.getContentPane().setLayout(gbcMaster);
 		
+		//panel with GridBagLayout that gets added to frmMaster
+		JPanel boardContainer = new JPanel();
+		GridBagConstraints gbcBoardContainer = new GridBagConstraints();
+		//gbcBoardContainer.insets = new Insets(0, 0, 5, 0);
+		gbcBoardContainer.fill = GridBagConstraints.BOTH;
+		gbcBoardContainer.gridx = 0;
+		gbcBoardContainer.gridy = 0;
+		frmMaster.getContentPane().add(boardContainer, gbcBoardContainer);
+		GridBagLayout gblBoardContainer = new GridBagLayout();
+		gblBoardContainer.columnWidths = new int[]{frmMaster.getWidth()/10};
+		gblBoardContainer.rowHeights = new int[]{frmMaster.getWidth()/10};
+		gblBoardContainer.columnWeights = new double[]{frmMaster.getWidth()/10};
+		gblBoardContainer.rowWeights = new double[]{frmMaster.getWidth()/10};
+		
+//		gbcBoardContainer.weightx = 1;
+//		gbcBoardContainer.weighty = 1;
+		
+		boardContainer.setLayout(gblBoardContainer);
+		boardContainer.setPreferredSize(new Dimension(560, 560));
+		
+		//moves history text box that gets added to frmMaster
+		GridBagConstraints gbcMovesHistory = new GridBagConstraints();
+		gbcMovesHistory.fill = GridBagConstraints.VERTICAL; //make component only expand vertically if resized
+		gbcMovesHistory.gridx = 1;
+		gbcMovesHistory.gridy = 0;
+		frmMaster.getContentPane().add(movesHistory, gbcMovesHistory);
+		//vvv !!!!!!!!!!!!!!!!
+		movesHistory.setPreferredSize(new Dimension(140, 560)); //makes the text box take up a specific size even if the text in it doesn't need that much space
+//		movesHistory.setMinimumSize(new Dimension(60, 480));
+		
+		//panel with GridLayout that holds the buttons of the board
+		JPanel panelBoard = new JPanel();
+		GridBagConstraints gbcPanelBoard = new GridBagConstraints();
+		gbcPanelBoard.fill = GridBagConstraints.BOTH;
+		boardContainer.add(panelBoard, gbcPanelBoard);
+		panelBoard.setLayout(new GridLayout(8, 8, 0, 0));
+		
+		frmMaster.pack();
+		frmMaster.setMinimumSize(frmMaster.getSize()); //enable this line to prevent reszing the window to be any smaller
+//		frmMaster.setMinimumSize(new Dimension(480, 480)); //do not let board squares go smaller than 60px
+		
+		
+	    
 		a8.setBackground(Color.WHITE);
-		a8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a8);
+		panelBoard.add(a8);
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a8, GameEnvironment.SELECTED_COLOUR);
 				//if the user selects this button, it must contain a white piece
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a8);}
 				else {
 					Piece.movePiece(sourceSquare, a8);
 					GameEnvironment.setHasWhiteMoved(true);
+					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
 		});
 		
 		b8.setBackground(Color.BLACK);
-		b8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b8);
+		panelBoard.add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b8);}
 				else {
@@ -180,11 +232,9 @@ public class BoardWindow {
 		});
 		
 		c8.setBackground(Color.WHITE);
-		c8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c8);
+		panelBoard.add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c8);}
 				else {
@@ -195,11 +245,9 @@ public class BoardWindow {
 		});
 		
 		d8.setBackground(Color.BLACK);
-		d8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d8);
+		panelBoard.add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d8);}
 				else {
@@ -210,11 +258,9 @@ public class BoardWindow {
 		});
 		
 		e8.setBackground(Color.WHITE);
-		e8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e8);
+		panelBoard.add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e8);}
 				else {
@@ -225,11 +271,9 @@ public class BoardWindow {
 		});
 		
 		f8.setBackground(Color.BLACK);
-		f8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f8);
+		panelBoard.add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f8);}
 				else {
@@ -240,11 +284,9 @@ public class BoardWindow {
 		});
 		
 		g8.setBackground(Color.WHITE);
-		g8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g8);
+		panelBoard.add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g8);}
 				else {
@@ -255,11 +297,9 @@ public class BoardWindow {
 		});
 		
 		h8.setBackground(Color.BLACK);
-		h8.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h8);
+		panelBoard.add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h8, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h8);}
 				else {
@@ -270,11 +310,9 @@ public class BoardWindow {
 		});
 		
 		a7.setBackground(Color.BLACK);
-		a7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a7);
+		panelBoard.add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a7);}
 				else {
@@ -285,11 +323,9 @@ public class BoardWindow {
 		});
 		
 		b7.setBackground(Color.WHITE);
-		b7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b7);
+		panelBoard.add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b7);}
 				else {
@@ -300,11 +336,9 @@ public class BoardWindow {
 		});
 		
 		c7.setBackground(Color.BLACK);
-		c7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c7);
+		panelBoard.add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c7);}
 				else {
@@ -315,11 +349,9 @@ public class BoardWindow {
 		});
 		
 		d7.setBackground(Color.WHITE);
-		d7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d7);
+		panelBoard.add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d7);}
 				else {
@@ -330,11 +362,9 @@ public class BoardWindow {
 		});
 		
 		e7.setBackground(Color.BLACK);
-		e7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e7);
+		panelBoard.add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e7);}
 				else {
@@ -345,11 +375,9 @@ public class BoardWindow {
 		});
 		
 		f7.setBackground(Color.WHITE);
-		f7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f7);
+		panelBoard.add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f7);}
 				else {
@@ -360,11 +388,9 @@ public class BoardWindow {
 		});
 		
 		g7.setBackground(Color.BLACK);
-		g7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g7);
+		panelBoard.add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g7);}
 				else {
@@ -375,11 +401,9 @@ public class BoardWindow {
 		});
 		
 		h7.setBackground(Color.WHITE);
-		h7.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h7);
+		panelBoard.add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h7, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h7);}
 				else {
@@ -390,11 +414,9 @@ public class BoardWindow {
 		});
 		
 		a6.setBackground(Color.WHITE);
-		a6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a6);
+		panelBoard.add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a6);}
 				else {
@@ -405,11 +427,9 @@ public class BoardWindow {
 		});
 		
 		b6.setBackground(Color.BLACK);
-		b6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b6);
+		panelBoard.add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b6);}
 				else {
@@ -420,11 +440,9 @@ public class BoardWindow {
 		});
 		
 		c6.setBackground(Color.WHITE);
-		c6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c6);
+		panelBoard.add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c6);}
 				else {
@@ -435,11 +453,9 @@ public class BoardWindow {
 		});
 		
 		d6.setBackground(Color.BLACK);
-		d6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d6);
+		panelBoard.add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d6);}
 				else {
@@ -450,11 +466,9 @@ public class BoardWindow {
 		});
 		
 		e6.setBackground(Color.WHITE);
-		e6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e6);
+		panelBoard.add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e6);}
 				else {
@@ -465,11 +479,9 @@ public class BoardWindow {
 		});
 		
 		f6.setBackground(Color.BLACK);
-		f6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f6);
+		panelBoard.add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f6);}
 				else {
@@ -480,11 +492,9 @@ public class BoardWindow {
 		});
 		
 		g6.setBackground(Color.WHITE);
-		g6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g6);
+		panelBoard.add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g6);}
 				else {
@@ -495,11 +505,9 @@ public class BoardWindow {
 		});
 		
 		h6.setBackground(Color.BLACK);
-		h6.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h6);
+		panelBoard.add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h6, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h6);}
 				else {
@@ -510,11 +518,9 @@ public class BoardWindow {
 		});
 		
 		a5.setBackground(Color.BLACK);
-		a5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a5);
+		panelBoard.add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a5);}
 				else {
@@ -525,11 +531,9 @@ public class BoardWindow {
 		});
 		
 		b5.setBackground(Color.WHITE);
-		b5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b5);
+		panelBoard.add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b5);}
 				else {
@@ -540,11 +544,9 @@ public class BoardWindow {
 		});
 		
 		c5.setBackground(Color.BLACK);
-		c5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c5);
+		panelBoard.add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c5);}
 				else {
@@ -555,11 +557,9 @@ public class BoardWindow {
 		});
 		
 		d5.setBackground(Color.WHITE);
-		d5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d5);
+		panelBoard.add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d5);}
 				else {
@@ -570,11 +570,9 @@ public class BoardWindow {
 		});
 		
 		e5.setBackground(Color.BLACK);
-		e5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e5);
+		panelBoard.add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e5);}
 				else {
@@ -585,11 +583,9 @@ public class BoardWindow {
 		});
 		
 		f5.setBackground(Color.WHITE);
-		f5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f5);
+		panelBoard.add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f5);}
 				else {
@@ -600,11 +596,9 @@ public class BoardWindow {
 		});
 		
 		g5.setBackground(Color.BLACK);
-		g5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g5);
+		panelBoard.add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g5);}
 				else {
@@ -615,11 +609,9 @@ public class BoardWindow {
 		});
 		
 		h5.setBackground(Color.WHITE);
-		h5.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h5);
+		panelBoard.add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h5, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h5);}
 				else {
@@ -630,11 +622,9 @@ public class BoardWindow {
 		});
 		
 		a4.setBackground(Color.WHITE);
-		a4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a4);
+		panelBoard.add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a4);}
 				else {
@@ -645,11 +635,9 @@ public class BoardWindow {
 		});
 		
 		b4.setBackground(Color.BLACK);
-		b4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b4);
+		panelBoard.add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b4);}
 				else {
@@ -660,11 +648,9 @@ public class BoardWindow {
 		});
 		
 		c4.setBackground(Color.WHITE);
-		c4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c4);
+		panelBoard.add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c4);}
 				else {
@@ -675,11 +661,9 @@ public class BoardWindow {
 		});
 		
 		d4.setBackground(Color.BLACK);
-		d4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d4);
+		panelBoard.add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d4);}
 				else {
@@ -690,11 +674,9 @@ public class BoardWindow {
 		});
 		
 		e4.setBackground(Color.WHITE);
-		e4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e4);
+		panelBoard.add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e4);}
 				else {
@@ -705,11 +687,9 @@ public class BoardWindow {
 		});
 		
 		f4.setBackground(Color.BLACK);
-		f4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f4);
+		panelBoard.add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f4);}
 				else {
@@ -720,11 +700,9 @@ public class BoardWindow {
 		});
 		
 		g4.setBackground(Color.WHITE);
-		g4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g4);
+		panelBoard.add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g4);}
 				else {
@@ -735,11 +713,9 @@ public class BoardWindow {
 		});
 		
 		h4.setBackground(Color.BLACK);
-		h4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h4);
+		panelBoard.add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h4);}
 				else {
@@ -750,11 +726,9 @@ public class BoardWindow {
 		});
 		
 		a3.setBackground(Color.BLACK);
-		a3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a3);
+		panelBoard.add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a4, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a3);}
 				else {
@@ -765,11 +739,9 @@ public class BoardWindow {
 		});
 		
 		b3.setBackground(Color.WHITE);
-		b3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b3);
+		panelBoard.add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b3);}
 				else {
@@ -780,11 +752,9 @@ public class BoardWindow {
 		});
 		
 		c3.setBackground(Color.BLACK);
-		c3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c3);
+		panelBoard.add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c3);}
 				else {
@@ -795,11 +765,9 @@ public class BoardWindow {
 		});
 		
 		d3.setBackground(Color.WHITE);
-		d3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d3);
+		panelBoard.add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d3);}
 				else {
@@ -810,11 +778,9 @@ public class BoardWindow {
 		});
 		
 		e3.setBackground(Color.BLACK);
-		e3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e3);
+		panelBoard.add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e3);}
 				else {
@@ -825,11 +791,9 @@ public class BoardWindow {
 		});
 		
 		f3.setBackground(Color.WHITE);
-		f3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f3);
+		panelBoard.add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f3);}
 				else {
@@ -840,11 +804,9 @@ public class BoardWindow {
 		});
 		
 		g3.setBackground(Color.BLACK);
-		g3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g3);
+		panelBoard.add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g3);}
 				else {
@@ -855,11 +817,9 @@ public class BoardWindow {
 		});
 		
 		h3.setBackground(Color.WHITE);
-		h3.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h3);
+		panelBoard.add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h3, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h3);}
 				else {
@@ -870,11 +830,14 @@ public class BoardWindow {
 		});
 		
 		a2.setBackground(Color.WHITE);
-		a2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a2);
+		panelBoard.add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a2, GameEnvironment.SELECTED_COLOUR);
+				System.out.println(a2.isForegroundSet());
+				System.out.println(a2.isBackgroundSet());
+				System.out.println(a2.getForeground());
+				System.out.println(a2.getBackground());
+				a2.setBackground(GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a2);}
 				else {
@@ -884,16 +847,10 @@ public class BoardWindow {
 			}
 		});
 		
-		//TODO
-//		b2.setIcon(new ImageIcon(im2));
-		//b2.setIcon(new ImageIcon(BoardWindow.class.getResource("/img/white_pawn.png")));
-		
-		//b2.setDisabledIcon(TEST_ICON);
 		b2.setBackground(Color.BLACK);
-		frmChessApp.getContentPane().add(b2);
+		panelBoard.add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b2);}
 				else {
@@ -904,11 +861,9 @@ public class BoardWindow {
 		});
 		
 		c2.setBackground(Color.WHITE);
-		c2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c2);
+		panelBoard.add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c2);}
 				else {
@@ -919,11 +874,9 @@ public class BoardWindow {
 		});
 		
 		d2.setBackground(Color.BLACK);
-		d2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d2);
+		panelBoard.add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d2);}
 				else {
@@ -934,11 +887,9 @@ public class BoardWindow {
 		});
 		
 		e2.setBackground(Color.WHITE);
-		e2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e2);
+		panelBoard.add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e2);}
 				else {
@@ -949,11 +900,9 @@ public class BoardWindow {
 		});
 		
 		f2.setBackground(Color.BLACK);
-		f2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f2);
+		panelBoard.add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f2);}
 				else {
@@ -964,11 +913,9 @@ public class BoardWindow {
 		});
 		
 		g2.setBackground(Color.WHITE);
-		g2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g2);
+		panelBoard.add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g2);}
 				else {
@@ -979,11 +926,9 @@ public class BoardWindow {
 		});
 		
 		h2.setBackground(Color.BLACK);
-		h2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h2);
+		panelBoard.add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h2, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h2);}
 				else {
@@ -994,11 +939,9 @@ public class BoardWindow {
 		});
 		
 		a1.setBackground(Color.BLACK);
-		a1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(a1);
+		panelBoard.add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(a1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a1);}
 				else {
@@ -1009,11 +952,9 @@ public class BoardWindow {
 		});
 		
 		b1.setBackground(Color.WHITE);
-		b1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(b1);
+		panelBoard.add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(b1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(b1);}
 				else {
@@ -1024,11 +965,9 @@ public class BoardWindow {
 		});
 		
 		c1.setBackground(Color.BLACK);
-		c1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(c1);
+		panelBoard.add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(c1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(c1);}
 				else {
@@ -1039,11 +978,9 @@ public class BoardWindow {
 		});
 		
 		d1.setBackground(Color.WHITE);
-		d1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(d1);
+		panelBoard.add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(d1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(d1);}
 				else {
@@ -1054,11 +991,9 @@ public class BoardWindow {
 		});
 		
 		e1.setBackground(Color.BLACK);
-		e1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(e1);
+		panelBoard.add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(e1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(e1);}
 				else {
@@ -1069,11 +1004,9 @@ public class BoardWindow {
 		});
 		
 		f1.setBackground(Color.WHITE);
-		f1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(f1);
+		panelBoard.add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(f1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(f1);}
 				else {
@@ -1084,11 +1017,9 @@ public class BoardWindow {
 		});
 		
 		g1.setBackground(Color.BLACK);
-		g1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(g1);
+		panelBoard.add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(g1, GameEnvironment.SELECTED_COLOUR);
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(g1);}
 				else {
@@ -1099,27 +1030,18 @@ public class BoardWindow {
 		});
 		
 		h1.setBackground(Color.WHITE);
-		h1.setFont(new Font("Segoe UI Symbol", Font.BOLD, 33));
-		frmChessApp.getContentPane().add(h1);
+		panelBoard.add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setButtonSelectedColour(h1, GameEnvironment.SELECTED_COLOUR);
+				
+				checkButtons();
+				
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(h1);}
 				else {
 					Piece.movePiece(sourceSquare, h1);
 					GameEnvironment.setHasWhiteMoved(true);
-					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
-			
-//				for(int i=0; i < allSquares.size(); i++)
-//				{
-//					JToggleButton s = allSquares.get(i);
-//					s.setEnabled(true);
-//					
-//				}
-			
-			
 			}
 		});
 		
@@ -1130,22 +1052,18 @@ public class BoardWindow {
 				a4, b4, c4, d4, e4, f4, g4, h4,
 				a3, b3, c3, d3, e3, f3, g3, h3, 
 				a2, b2, c2, d2, e2, f2, g2, h2,
-				a1, b1, c1, d1, e1, f1, g1);
+				a1, b1, c1, d1, e1, f1, g1, h1);
 	}
 	
 	
-	/*
-	 * set the background colour of the given button when it is selected
-	 */
-	public static void setButtonSelectedColour(JToggleButton btn, Color selectedColour)
+	
+	public static void checkButtons()
 	{
-		//(https://stackoverflow.com/a/22739788/8042538)
-		btn.setUI(new MetalToggleButtonUI() 
+		for(int i = 0; i < allSquares.size(); i++)
 		{
-		    @Override
-		    protected Color getSelectColor() {
-		        return selectedColour;}
-		});
+			JToggleButton btn = allSquares.get(i);
+			System.out.println(btn.isSelected()); //isEnabled() = is the button pressable? aka does it have a white piece on it
+		}
 	}
 	
 	
@@ -1175,11 +1093,11 @@ public class BoardWindow {
 		else if(selectedPiece instanceof King) {
 			validDestinations = ((King) selectedPiece).findValidDestinations();}
 		
-		for(int i = 0; i < validDestinations.size(); i++)
-		{
-			int dstIndex = allSquares.indexOf(validDestinations.get(i));
-			System.out.println("a destination:" + "\t" + dstIndex);
-		}
+//		for(int i = 0; i < validDestinations.size(); i++)
+//		{
+//			int dstIndex = allSquares.indexOf(validDestinations.get(i));
+//			System.out.println("a destination:" + "\t" + dstIndex);
+//		}
 		
 		//colour the destinations and enable the associated buttons so that they can be clicked as the destination
 		for(int i = 0; i < validDestinations.size(); i++)
@@ -1370,6 +1288,8 @@ public class BoardWindow {
 		return allSquares;}
 	public static ArrayList<JToggleButton> getValidDestinations() {
 		return validDestinations;}
+	public static JTextArea getMovesHistory() {
+		return movesHistory;}
 	
 	
 	//setters

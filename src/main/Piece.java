@@ -187,6 +187,8 @@ public class Piece {
 		//unselect the source button and destination button
 		srcSquare.setSelected(false);
 		dstSquare.setSelected(false);
+		srcSquare.setEnabled(false);
+		dstSquare.setEnabled(false);
 		
 		
 		//say that there is no source square anymore in preparation for the next move
