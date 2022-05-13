@@ -39,12 +39,11 @@ public class Piece {
 			Color opponentColour,
 			int nextSquareCalculation)
 	{
-		for(int i = 0; i < BoardWindow.BOARD_LENGTH; i++)
+		for(int i = 0; i < BoardWindow.BOARD_SIZE; i++)
 		{
 			try
 			{
-				//int column = (int) Math.ceil(allSquares.indexOf(currentSquare) % 8);
-				int column = (int) Math.ceil((allSquares.indexOf(currentSquare)) % 8);
+				int column = (int) Math.ceil((allSquares.indexOf(currentSquare)) % BoardWindow.BOARD_SIZE);
 				//these variables check if the pieces is headed for a square that requires *wrap-around* on the board
 				boolean is_headed_left = nextSquareCalculation == -9 || nextSquareCalculation == -1 || (nextSquareCalculation == 7);
 				boolean is_headed_right = nextSquareCalculation == -7 || nextSquareCalculation == 1 || (nextSquareCalculation == 9); 

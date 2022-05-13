@@ -19,7 +19,6 @@ import javax.swing.JToggleButton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.TreeMap;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
@@ -29,62 +28,6 @@ public class BoardWindow {
 	private JFrame frmMaster;
 	private static JPanel panelBoard = new JPanel();
 	private static JTextArea movesHistory = new JTextArea();
-	private static JToggleButton a1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton a2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton a3 = new JToggleButton("");
-	private static JToggleButton b3 = new JToggleButton("");
-	private static JToggleButton c3 = new JToggleButton("");
-	private static JToggleButton d3 = new JToggleButton("");
-	private static JToggleButton e3 = new JToggleButton("");
-	private static JToggleButton f3 = new JToggleButton("");
-	private static JToggleButton g3 = new JToggleButton("");
-	private static JToggleButton h3 = new JToggleButton("");
-	private static JToggleButton a4 = new JToggleButton("");
-	private static JToggleButton b4 = new JToggleButton("");
-	private static JToggleButton c4 = new JToggleButton("");
-	private static JToggleButton d4 = new JToggleButton("");
-	private static JToggleButton e4 = new JToggleButton("");
-	private static JToggleButton f4 = new JToggleButton("");
-	private static JToggleButton g4 = new JToggleButton("");
-	private static JToggleButton h4 = new JToggleButton("");
-	private static JToggleButton a5 = new JToggleButton("");
-	private static JToggleButton b5 = new JToggleButton("");
-	private static JToggleButton c5 = new JToggleButton("");
-	private static JToggleButton d5 = new JToggleButton("");
-	private static JToggleButton e5 = new JToggleButton("");
-	private static JToggleButton f5 = new JToggleButton("");
-	private static JToggleButton g5 = new JToggleButton("");
-	private static JToggleButton h5 = new JToggleButton("");
-	private static JToggleButton a6 = new JToggleButton("");
-	private static JToggleButton b6 = new JToggleButton("");
-	private static JToggleButton c6 = new JToggleButton("");
-	private static JToggleButton d6 = new JToggleButton("");
-	private static JToggleButton e6 = new JToggleButton("");
-	private static JToggleButton f6 = new JToggleButton("");
-	private static JToggleButton g6 = new JToggleButton("");
-	private static JToggleButton h6 = new JToggleButton("");
-	private static JToggleButton a7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton a8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton b8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton c8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
@@ -93,9 +36,65 @@ public class BoardWindow {
 	private static JToggleButton f8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton g8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton h8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a6 = new JToggleButton("");
+	private static JToggleButton b6 = new JToggleButton("");
+	private static JToggleButton c6 = new JToggleButton("");
+	private static JToggleButton d6 = new JToggleButton("");
+	private static JToggleButton e6 = new JToggleButton("");
+	private static JToggleButton f6 = new JToggleButton("");
+	private static JToggleButton g6 = new JToggleButton("");
+	private static JToggleButton h6 = new JToggleButton("");
+	private static JToggleButton a5 = new JToggleButton("");
+	private static JToggleButton b5 = new JToggleButton("");
+	private static JToggleButton c5 = new JToggleButton("");
+	private static JToggleButton d5 = new JToggleButton("");
+	private static JToggleButton e5 = new JToggleButton("");
+	private static JToggleButton f5 = new JToggleButton("");
+	private static JToggleButton g5 = new JToggleButton("");
+	private static JToggleButton h5 = new JToggleButton("");
+	private static JToggleButton a4 = new JToggleButton("");
+	private static JToggleButton b4 = new JToggleButton("");
+	private static JToggleButton c4 = new JToggleButton("");
+	private static JToggleButton d4 = new JToggleButton("");
+	private static JToggleButton e4 = new JToggleButton("");
+	private static JToggleButton f4 = new JToggleButton("");
+	private static JToggleButton g4 = new JToggleButton("");
+	private static JToggleButton h4 = new JToggleButton("");
+	private static JToggleButton a3 = new JToggleButton("");
+	private static JToggleButton b3 = new JToggleButton("");
+	private static JToggleButton c3 = new JToggleButton("");
+	private static JToggleButton d3 = new JToggleButton("");
+	private static JToggleButton e3 = new JToggleButton("");
+	private static JToggleButton f3 = new JToggleButton("");
+	private static JToggleButton g3 = new JToggleButton("");
+	private static JToggleButton h3 = new JToggleButton("");
+	private static JToggleButton a2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton b1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton c1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton d1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton e1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton f1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton g1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton h1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	public static ArrayList<JToggleButton> allSquares = new ArrayList<>();
 	public static HashMap<JToggleButton, String> squaresMap = new HashMap<>();
-	public static final int BOARD_LENGTH = 8;
+	public static final int BOARD_SIZE = 8;
 	
 	//constants for the position of squares relative to the current square a piece is on
 	public static final int SQUARE_TOPLEFT_CALCULATION = -9;
@@ -195,7 +194,6 @@ public class BoardWindow {
 //		movesHistory.setMinimumSize(new Dimension(60, 480));
 		
 		//panel with GridLayout that holds the buttons of the board
-		JPanel panelBoard = new JPanel();
 		GridBagConstraints gbcPanelBoard = new GridBagConstraints();
 		gbcPanelBoard.fill = GridBagConstraints.BOTH;
 		boardContainer.add(panelBoard, gbcPanelBoard);
@@ -1125,28 +1123,15 @@ public class BoardWindow {
 				a1, b1, c1, d1, e1, f1, g1, h1);
 		
 		//TODO: map buttons to their names (for use in notation)
-//		HashMap<JToggleButton, String> squaresMap = new HashMap<>();
-//		String letters = "abcdefgh";
-//		String numbers = "12345678";
-//		for(int i = 0; i < allSquares.size(); i++)
-//		{
-//			JToggleButton squareButton = allSquares.get(i);
-//			// the letter will go a-b-c-d-e-f-g-h-a..., while the number will go 1-1-1-1-1-1-1-1-2...
-//			String squareName = letters.substring(i % 8, i % 8 + 1) + numbers.substring(i % (i*i));
-//			squaresMap.put(squareButton, squareName);
-//		}
-		
-		
 		//use hashmap instead of treemap because JToggleButtons are not comparable, but they need to be if put in treemap
-//		HashMap<JToggleButton, String> squaresMap = new HashMap<>();
 		Integer buttonIndex = 0;
 		String letters = "abcdefgh";
-		String numbers = "12345678";
-		for(int i = 0; i < allSquares.size()/8; i++)
+		String numbers = "87654321";
+		for(int i = 0; i < BOARD_SIZE; i++)
 		{
 			String numberName = numbers.substring(i, i + 1);
 			
-			for(int j = 0; j < allSquares.size()/8; j++)
+			for(int j = 0; j < BOARD_SIZE; j++)
 			{
 				String letterName = letters.substring(j, j + 1);
 				
@@ -1159,11 +1144,19 @@ public class BoardWindow {
 			}
 		}
 		
-//		System.out.println(squaresMap.size());
+	
+//		System.out.println("allSquares:");
+//		for(int i = 0; i < allSquares.size(); i++)
+//		{
+//			System.out.println(allSquares.get(i));
+//		}
+//		
+//		System.out.println("squaresMap:");
 //		for(int i = 0; i < squaresMap.size(); i++)
 //		{
 //			System.out.println(squaresMap.get(allSquares.get(i)));
 //		}
+		
 		
 	}
 	
@@ -1219,9 +1212,10 @@ public class BoardWindow {
 		{
 			JToggleButton btn = validDests.get(i);
 			btn.setBackground(GameEnvironment.VALID_DESTINATION_COLOUR);
-			btn.setEnabled(true);
-			setSrcSquare(srcBtn);
+			btn.setEnabled(true);	
 		}
+		
+		setSrcSquare(srcBtn);
 		
 		//disable all buttons with white pieces on them because they are not possible destinations
 		GameEnvironment.toggleSelectWhitePieceButtons(false, false, false);
@@ -1234,15 +1228,15 @@ public class BoardWindow {
 		Color squareOriginalColour = null;
 		//find out the col
 		//  if the col is even, then the distribution of squares is different to if it was odd
-		if(squareIndex % 8 == 0 
-				|| squareIndex % 8 == 2
-				|| squareIndex % 8 == 4
-				|| squareIndex % 8 == 6)
+		if(squareIndex % BOARD_SIZE == 0 
+				|| squareIndex % BOARD_SIZE == 2
+				|| squareIndex % BOARD_SIZE == 4
+				|| squareIndex % BOARD_SIZE == 6)
 		{
-			if(squareIndex % 16 == 0
-					|| squareIndex % 16 == 2
-					|| squareIndex % 16 == 4
-					|| squareIndex % 16 == 6)
+			if(squareIndex % (BOARD_SIZE*2) == 0
+					|| squareIndex % (BOARD_SIZE*2) == 2
+					|| squareIndex % (BOARD_SIZE*2) == 4
+					|| squareIndex % (BOARD_SIZE*2) == 6)
 			{
 				squareOriginalColour = GameEnvironment.WHITE_SQUARE_COLOUR;
 			}
@@ -1271,118 +1265,6 @@ public class BoardWindow {
 	
 	
 	//getters
-	public static JToggleButton getA1() {
-		return a1;}
-	public static JToggleButton getB1() {
-		return b1;}
-	public static JToggleButton getC1() {
-		return c1;}
-	public static JToggleButton getD1() {
-		return d1;}
-	public static JToggleButton getE1() {
-		return e1;}
-	public static JToggleButton getF1() {
-		return f1;}
-	public static JToggleButton getG1() {
-		return g1;}
-	public static JToggleButton getH1() {
-		return h1;}
-	public static JToggleButton getA2() {
-		return a2;}
-	public static JToggleButton getB2() {
-		return b2;}
-	public static JToggleButton getC2() {
-		return c2;}
-	public static JToggleButton getD2() {
-		return d2;}
-	public static JToggleButton getE2() {
-		return e2;}
-	public static JToggleButton getF2() {
-		return f2;}
-	public static JToggleButton getG2() {
-		return g2;}
-	public static JToggleButton getH2() {
-		return h2;}
-	public static JToggleButton getA3() {
-		return a3;}
-	public static JToggleButton getB3() {
-		return b3;}
-	public static JToggleButton getC3() {
-		return c3;}
-	public static JToggleButton getD3() {
-		return d3;}
-	public static JToggleButton getE3() {
-		return e3;}
-	public static JToggleButton getF3() {
-		return f3;}
-	public static JToggleButton getG3() {
-		return g3;}
-	public static JToggleButton getH3() {
-		return h3;}
-	public static JToggleButton getA4() {
-		return a4;}
-	public static JToggleButton getB4() {
-		return b4;}
-	public static JToggleButton getC4() {
-		return c4;}
-	public static JToggleButton getD4() {
-		return d4;}
-	public static JToggleButton getE4() {
-		return e4;}
-	public static JToggleButton getF4() {
-		return f4;}
-	public static JToggleButton getG4() {
-		return g4;}
-	public static JToggleButton getH4() {
-		return h4;}
-	public static JToggleButton getA5() {
-		return a5;}
-	public static JToggleButton getB5() {
-		return b5;}
-	public static JToggleButton getC5() {
-		return c5;}
-	public static JToggleButton getD5() {
-		return d5;}
-	public static JToggleButton getE5() {
-		return e5;}
-	public static JToggleButton getF5() {
-		return f5;}
-	public static JToggleButton getG5() {
-		return g5;}
-	public static JToggleButton getH5() {
-		return h5;}
-	public static JToggleButton getA6() {
-		return a6;}
-	public static JToggleButton getB6() {
-		return b6;}
-	public static JToggleButton getC6() {
-		return c6;}
-	public static JToggleButton getD6() {
-		return d6;}
-	public static JToggleButton getE6() {
-		return e6;}
-	public static JToggleButton getF6() {
-		return f6;}
-	public static JToggleButton getG6() {
-		return g6;}
-	public static JToggleButton getH6() {
-		return h6;}
-	public static JToggleButton getA7() {
-		return a7;}
-	public static JToggleButton getB7() {
-		return b7;}
-	public static JToggleButton getC7() {
-		return c7;}
-	public static JToggleButton getD7() {
-		return d7;}
-	public static JToggleButton getE7() {
-		return e7;}
-	public static JToggleButton getF7() {
-		return f7;}
-	public static JToggleButton getG7() {
-		return g7;}
-	public static JToggleButton getH7() {
-		return h7;}
 	public static JToggleButton getA8() {
 		return a8;}
 	public static JToggleButton getB8() {
@@ -1399,6 +1281,118 @@ public class BoardWindow {
 		return g8;}
 	public static JToggleButton getH8() {
 		return h8;}
+	public static JToggleButton getA7() {
+		return a7;}
+	public static JToggleButton getB7() {
+		return b7;}
+	public static JToggleButton getC7() {
+		return c7;}
+	public static JToggleButton getD7() {
+		return d7;}
+	public static JToggleButton getE7() {
+		return e7;}
+	public static JToggleButton getF7() {
+		return f7;}
+	public static JToggleButton getG7() {
+		return g7;}
+	public static JToggleButton getH7() {
+		return h7;}
+	public static JToggleButton getA6() {
+		return a6;}
+	public static JToggleButton getB6() {
+		return b6;}
+	public static JToggleButton getC6() {
+		return c6;}
+	public static JToggleButton getD6() {
+		return d6;}
+	public static JToggleButton getE6() {
+		return e6;}
+	public static JToggleButton getF6() {
+		return f6;}
+	public static JToggleButton getG6() {
+		return g6;}
+	public static JToggleButton getH6() {
+		return h6;}
+	public static JToggleButton getA5() {
+		return a5;}
+	public static JToggleButton getB5() {
+		return b5;}
+	public static JToggleButton getC5() {
+		return c5;}
+	public static JToggleButton getD5() {
+		return d5;}
+	public static JToggleButton getE5() {
+		return e5;}
+	public static JToggleButton getF5() {
+		return f5;}
+	public static JToggleButton getG5() {
+		return g5;}
+	public static JToggleButton getH5() {
+		return h5;}
+	public static JToggleButton getA4() {
+		return a4;}
+	public static JToggleButton getB4() {
+		return b4;}
+	public static JToggleButton getC4() {
+		return c4;}
+	public static JToggleButton getD4() {
+		return d4;}
+	public static JToggleButton getE4() {
+		return e4;}
+	public static JToggleButton getF4() {
+		return f4;}
+	public static JToggleButton getG4() {
+		return g4;}
+	public static JToggleButton getH4() {
+		return h4;}
+	public static JToggleButton getA3() {
+		return a3;}
+	public static JToggleButton getB3() {
+		return b3;}
+	public static JToggleButton getC3() {
+		return c3;}
+	public static JToggleButton getD3() {
+		return d3;}
+	public static JToggleButton getE3() {
+		return e3;}
+	public static JToggleButton getF3() {
+		return f3;}
+	public static JToggleButton getG3() {
+		return g3;}
+	public static JToggleButton getH3() {
+		return h3;}
+	public static JToggleButton getA2() {
+		return a2;}
+	public static JToggleButton getB2() {
+		return b2;}
+	public static JToggleButton getC2() {
+		return c2;}
+	public static JToggleButton getD2() {
+		return d2;}
+	public static JToggleButton getE2() {
+		return e2;}
+	public static JToggleButton getF2() {
+		return f2;}
+	public static JToggleButton getG2() {
+		return g2;}
+	public static JToggleButton getH2() {
+		return h2;}
+	public static JToggleButton getA1() {
+		return a1;}
+	public static JToggleButton getB1() {
+		return b1;}
+	public static JToggleButton getC1() {
+		return c1;}
+	public static JToggleButton getD1() {
+		return d1;}
+	public static JToggleButton getE1() {
+		return e1;}
+	public static JToggleButton getF1() {
+		return f1;}
+	public static JToggleButton getG1() {
+		return g1;}
+	public static JToggleButton getH1() {
+		return h1;}
 	public static ArrayList<JToggleButton> getAllSquares() {
 		return allSquares;}
 	public static ArrayList<JToggleButton> getValidDests() {
@@ -1412,6 +1406,7 @@ public class BoardWindow {
 		}
 		else
 		{
+			//for first move of the game
 			return null;
 		}
 	}

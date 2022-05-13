@@ -98,7 +98,7 @@ public class GameEnvironment
 			
 			
 			
-			makeComputerMove();
+			//makeComputerMove();
 			
 			turnNumber = turnCounter.toString();
 			srcSquare = BoardWindow.getSrcSquare();
