@@ -280,7 +280,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a8);}
 				else {
 					//TODO: USE THIS CODE
-					destSquare = a8;
+					setDestSquare(a8);
 					Piece.movePiece(srcSquare, destSquare);
 					GameEnvironment.setHasWhiteMoved(true);
 					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
@@ -1220,7 +1220,7 @@ public class BoardWindow {
 			JToggleButton btn = validDests.get(i);
 			btn.setBackground(GameEnvironment.VALID_DESTINATION_COLOUR);
 			btn.setEnabled(true);
-			srcSquare = srcBtn;
+			setSrcSquare(srcBtn);
 		}
 		
 		//disable all buttons with white pieces on them because they are not possible destinations
@@ -1420,17 +1420,13 @@ public class BoardWindow {
 	
 	
 	//setters
-	public static void setSrcSquare(JToggleButton square)
-	{
-		srcSquare = square;
-	}
+	public static void setSrcSquare(JToggleButton square) {
+		srcSquare = square;}
 	
-	public static void setDestSquare(JToggleButton square)
-	{
-		destSquare = square;
-	}
+	public static void setDestSquare(JToggleButton square) {
+		destSquare = square;}
 	
-	public static void setSquareText(JToggleButton square, ImageIcon icon, Color textColour)
+	public static void setSquareText(JToggleButton square, ImageIcon icon, Color textColour) 
 	{
 		square.setIcon(icon);
 		square.setDisabledIcon(icon); //prevents the icon getting greyed out when the button is disabled
@@ -1438,7 +1434,7 @@ public class BoardWindow {
 	}
 
 	public static void resetSrcSquare() {
-		srcSquare = null;
+		setSrcSquare(null);
 	}
 
 	

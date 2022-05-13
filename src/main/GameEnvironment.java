@@ -92,7 +92,6 @@ public class GameEnvironment
 			System.out.println(srcSquareText);
 			System.out.println(destSquareText);
 			writeNotation(turnNumber, srcSquareText, destSquareText);
-			turnCounter ++;
 			
 			//say that there is no source square anymore in preparation for the next move
 			BoardWindow.resetSrcSquare();
@@ -145,7 +144,7 @@ public class GameEnvironment
 	 */
 	public static void makeHumanMove()
 	{
-		hasWhiteMoved = false;
+		setHasWhiteMoved(false);
 		toggleSelectWhitePieceButtons(true, true, false); //enable the buttons with white pieces on them and disable all others
 		
 	}
@@ -296,7 +295,7 @@ public class GameEnvironment
 	public static ArrayList<Piece> getAllPieces() {
 		return allPieces;}
 	
-	
+	//setters
 	public static void setHasWhiteMoved(boolean b) {
 		hasWhiteMoved = b;}
 	

@@ -205,9 +205,7 @@ public class Piece {
 		return location;}
 	
 	private void setLocation(JToggleButton destSquare) {
-		location = destSquare;
-		
-	}
+		location = destSquare;}
 	
 	
 	
