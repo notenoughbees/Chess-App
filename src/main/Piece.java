@@ -191,8 +191,6 @@ public class Piece {
 		dstSquare.setEnabled(false);
 		
 		
-		//say that there is no source square anymore in preparation for the next move
-		BoardWindow.resetSourceSquare();
 	}
 	
 	

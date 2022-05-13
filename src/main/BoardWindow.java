@@ -18,6 +18,8 @@ import javax.swing.JToggleButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
@@ -91,7 +93,8 @@ public class BoardWindow {
 	private static JToggleButton f8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton g8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton h8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static ArrayList<JToggleButton> allSquares = new ArrayList<JToggleButton>();
+	public static ArrayList<JToggleButton> allSquares = new ArrayList<JToggleButton>();
+	public static HashMap<JToggleButton, String> squaresMap = new HashMap<>();
 	public static final int BOARD_LENGTH = 8;
 	
 	//constants for the position of squares relative to the current square a piece is on
@@ -115,6 +118,7 @@ public class BoardWindow {
 	
 	//for knowing what stage the player is at in making their move
 	private static JToggleButton sourceSquare;
+	private static JToggleButton destinationSquare;
 	
 	private static ArrayList<JToggleButton> validDestinations = new ArrayList<>();
 	
@@ -202,6 +206,70 @@ public class BoardWindow {
 //		frmMaster.setMinimumSize(new Dimension(480, 480)); //do not let board squares go smaller than 60px
 		
 		
+		a8.setText("a8");
+		b8.setText("b8");
+		c8.setText("c8");
+		d8.setText("d8");
+		e8.setText("e8");
+		f8.setText("f8");
+		g8.setText("g8");
+		h8.setText("h8");
+		a7.setText("a7");
+		b7.setText("b7");
+		c7.setText("c7");
+		d7.setText("d7");
+		e7.setText("e7");
+		f7.setText("f7");
+		g7.setText("g7");
+		h7.setText("h7");
+		a6.setText("a6");
+		b6.setText("b6");
+		c6.setText("c6");
+		d6.setText("d6");
+		e6.setText("e6");
+		f6.setText("f6");
+		g6.setText("g6");
+		h6.setText("h6");
+		a5.setText("a5");
+		b5.setText("b5");
+		c5.setText("c5");
+		d5.setText("d5");
+		e5.setText("e5");
+		f5.setText("f5");
+		g5.setText("g5");
+		h5.setText("h5");
+		a4.setText("a4");
+		b4.setText("b4");
+		c4.setText("c4");
+		d4.setText("d4");
+		e4.setText("e4");
+		f4.setText("f4");
+		g4.setText("g4");
+		h4.setText("h4");
+		a3.setText("a3");
+		b3.setText("b3");
+		c3.setText("c3");
+		d3.setText("d3");
+		e3.setText("e3");
+		f3.setText("f3");
+		g3.setText("g3");
+		h3.setText("h3");
+		a2.setText("a2");
+		b2.setText("b2");
+		c2.setText("c2");
+		d2.setText("d2");
+		e2.setText("e2");
+		f2.setText("f2");
+		g2.setText("g2");
+		h2.setText("h2");
+		a1.setText("a1");
+		b1.setText("b1");
+		c1.setText("c1");
+		d1.setText("d1");
+		e1.setText("e1");
+		f1.setText("f1");
+		g1.setText("g1");
+		h1.setText("h1");
 	    
 		a8.setBackground(Color.WHITE);
 		panelBoard.add(a8);
@@ -211,7 +279,9 @@ public class BoardWindow {
 				if(sourceSquare == null) {
 					findValidDestinationsFromButton(a8);}
 				else {
-					Piece.movePiece(sourceSquare, a8);
+					//TODO: USE THIS CODE
+					destinationSquare = a8;
+					Piece.movePiece(sourceSquare, destinationSquare);
 					GameEnvironment.setHasWhiteMoved(true);
 					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
@@ -1053,7 +1123,52 @@ public class BoardWindow {
 				a3, b3, c3, d3, e3, f3, g3, h3, 
 				a2, b2, c2, d2, e2, f2, g2, h2,
 				a1, b1, c1, d1, e1, f1, g1, h1);
+		
+		//TODO: map buttons to their names (for use in notation)
+//		HashMap<JToggleButton, String> squaresMap = new HashMap<>();
+//		String letters = "abcdefgh";
+//		String numbers = "12345678";
+//		for(int i = 0; i < allSquares.size(); i++)
+//		{
+//			JToggleButton squareButton = allSquares.get(i);
+//			// the letter will go a-b-c-d-e-f-g-h-a..., while the number will go 1-1-1-1-1-1-1-1-2...
+//			String squareName = letters.substring(i % 8, i % 8 + 1) + numbers.substring(i % (i*i));
+//			squaresMap.put(squareButton, squareName);
+//		}
+		
+		
+		//use hashmap instead of treemap because JToggleButtons are not comparable, but they need to be if put in treemap
+//		HashMap<JToggleButton, String> squaresMap = new HashMap<>();
+		Integer buttonIndex = 0;
+		String letters = "abcdefgh";
+		String numbers = "12345678";
+		for(int i = 0; i < allSquares.size()/8; i++)
+		{
+			String numberName = numbers.substring(i, i + 1);
+			
+			for(int j = 0; j < allSquares.size()/8; j++)
+			{
+				String letterName = letters.substring(j, j + 1);
+				
+				JToggleButton squareButton = allSquares.get(buttonIndex);
+				// the letter will go a-b-c-d-e-f-g-h-a..., while the number will go 8-8-8-8-8-8-8-8-7...
+				String squareName = letterName + numberName;
+				squaresMap.put(squareButton, squareName);
+				
+				buttonIndex ++;
+			}
+		}
+		
+//		System.out.println(squaresMap.size());
+//		for(int i = 0; i < squaresMap.size(); i++)
+//		{
+//			System.out.println(squaresMap.get(allSquares.get(i)));
+//		}
+		
 	}
+	
+	
+	
 	
 	
 	
@@ -1290,9 +1405,31 @@ public class BoardWindow {
 		return validDestinations;}
 	public static JTextArea getMovesHistory() {
 		return movesHistory;}
+	public static JToggleButton getSourceSquare() {
+		if(sourceSquare != null)
+		{
+			return sourceSquare;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	public static JToggleButton getDestinationSquare() {
+		return destinationSquare;}
 	
 	
 	//setters
+	public static void setSourceSquare(JToggleButton square)
+	{
+		sourceSquare = square;
+	}
+	
+	public static void setDestinationSquare(JToggleButton square)
+	{
+		destinationSquare = square;
+	}
+	
 	public static void setSquareText(JToggleButton square, ImageIcon icon, Color textColour)
 	{
 		square.setIcon(icon);
@@ -1303,6 +1440,8 @@ public class BoardWindow {
 	public static void resetSourceSquare() {
 		sourceSquare = null;
 	}
+
+	
 	
 
 }

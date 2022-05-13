@@ -79,12 +79,40 @@ public class GameEnvironment
 				catch(InterruptedException e) {
 				}
 			}
-			makeComputerMove();
+			
 			
 			//TODO
-			String text = turnCounter.toString();
-			writeNotation(text); //destination, ...);
+			//TODO: need to get the square's name as a string - "a2" rather than JToggleButton a2,
+			// so that we can write this location in the moves textbox
+			String turnNumber = turnCounter.toString();
+			JToggleButton sourceSquare = BoardWindow.getSourceSquare();
+			JToggleButton destinationSquare = BoardWindow.getDestinationSquare();
+			String sourceSquareText = BoardWindow.squaresMap.get(sourceSquare);
+			String destinationSquareText = BoardWindow.squaresMap.get(destinationSquare);
+			System.out.println(sourceSquareText);
+			System.out.println(destinationSquareText);
+			writeNotation(turnNumber, sourceSquareText, destinationSquareText);
 			turnCounter ++;
+			
+			//say that there is no source square anymore in preparation for the next move
+			BoardWindow.resetSourceSquare();
+			
+			
+			
+			makeComputerMove();
+			
+			turnNumber = turnCounter.toString();
+			sourceSquare = BoardWindow.getSourceSquare();
+			destinationSquare = BoardWindow.getDestinationSquare();
+			sourceSquareText = BoardWindow.squaresMap.get(sourceSquare);
+			destinationSquareText = BoardWindow.squaresMap.get(destinationSquare);
+			System.out.println(sourceSquareText);
+			System.out.println(destinationSquareText);
+			writeNotation(turnNumber, sourceSquareText, destinationSquareText);
+			turnCounter ++;
+			
+			//say that there is no source square anymore in preparation for the next move
+			BoardWindow.resetSourceSquare();
 		}
 			
 			
@@ -104,11 +132,11 @@ public class GameEnvironment
 	}
 	
 	
-	public static void writeNotation(String text)
+	public static void writeNotation(String text, String source, String destination)
 	{
 		JTextArea box = BoardWindow.getMovesHistory();
 		String currentText = box.getText();
-		box.setText(currentText + "\n" + text);
+		box.setText(currentText + "\n" + text + ": \t" + source + destination);
 	}
 	
 	
@@ -158,11 +186,11 @@ public class GameEnvironment
 		int randSrcSquareAndDestList = rand.nextInt(validSquares.size());
 		System.out.println("=================================");
 		Pair<JToggleButton, ArrayList<JToggleButton>> chosenSrcSquareAndDestList = validSquares.get(randSrcSquareAndDestList);
-		JToggleButton srcSquare = chosenSrcSquareAndDestList.first;
+		BoardWindow.setSourceSquare(chosenSrcSquareAndDestList.first);							////
 		int randDstSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
-		JToggleButton dstSquare = chosenSrcSquareAndDestList.second.get(randDstSquare);
+		BoardWindow.setDestinationSquare(chosenSrcSquareAndDestList.second.get(randDstSquare));	////
 		
-		Piece.movePiece(srcSquare, dstSquare);
+		Piece.movePiece(BoardWindow.getSourceSquare(), BoardWindow.getDestinationSquare());
 		
 		
 		//TODO: !
@@ -266,6 +294,7 @@ public class GameEnvironment
 		return blackPieces;}
 	public static ArrayList<Piece> getAllPieces() {
 		return allPieces;}
+	
 	
 	public static void setHasWhiteMoved(boolean b) {
 		hasWhiteMoved = b;}
