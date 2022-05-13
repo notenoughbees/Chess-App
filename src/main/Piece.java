@@ -23,17 +23,17 @@ public class Piece {
 	
 	
 	/**
-	 * Gets called by findValidDestinations(). Helps find the possible destinations for pieces that
+	 * Gets called by findValidDests(). Helps find the possible destinations for pieces that
 	 * have a range greater than one and so require a loop (aka bishops, rooks and queens).
-	 * @param possibleDestinations
+	 * @param possibleDests
 	 * @param allSquares
 	 * @param currentSquare
 	 * @param opponentColour
 	 * @param nextSquareCalculation
 	 * @return
 	 */
-	public ArrayList<JToggleButton> findValidDestinationsLoop(
-			ArrayList<JToggleButton> possibleDestinations,
+	public ArrayList<JToggleButton> findValidDestsLoop(
+			ArrayList<JToggleButton> possibleDests,
 			ArrayList<JToggleButton> allSquares,
 			JToggleButton currentSquare,
 			Color opponentColour,
@@ -58,7 +58,7 @@ public class Piece {
 					//System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
 					if(nextSquare.getForeground() == opponentColour)
 					{
-						possibleDestinations.add(nextSquare);
+						possibleDests.add(nextSquare);
 						//System.out.println("ADDED1:" + nextSquare.second);
 						//the piece won't be able to go to any square beyond this one because 
 						//  would have to take the piece on this square, which ends the turn
@@ -66,7 +66,7 @@ public class Piece {
 					}
 					if(nextSquare.getIcon() == null)
 					{
-						possibleDestinations.add(nextSquare);
+						possibleDests.add(nextSquare);
 						//System.out.println("ADDED2:" + nextSquare.second);
 						currentSquare = nextSquare; 
 					}
@@ -82,23 +82,23 @@ public class Piece {
 				break;
 			}
 		}
-		return possibleDestinations;
+		return possibleDests;
 	}
 	
 	
 	/**
 	 * Given a square a piece might be able to move to, checks if that square is a valid destination.
-	 * If so, the square is added to possibleDestinations. Returns possibleDestinations.
+	 * If so, the square is added to possibleDests. Returns possibleDests.
 	 * Used for the following pieces: pawn, knight, king
-	 * @param possibleDestinations
+	 * @param possibleDests
 	 * @param allSquares
 	 * @param currentSquare
 	 * @param opponentColour
 	 * @param destinationSquare
-	 * @return possibleDestinations
+	 * @return possibleDests
 	 */
-	public ArrayList<JToggleButton> testNewDestinationSquare(
-			ArrayList<JToggleButton> possibleDestinations, 
+	public ArrayList<JToggleButton> testNewDestSquare(
+			ArrayList<JToggleButton> possibleDests, 
 			ArrayList<JToggleButton> allSquares, JToggleButton currentSquare, 
 			Color opponentColour, int destinationSquareCalculation)
 	{
@@ -113,7 +113,7 @@ public class Piece {
 			if(!(this instanceof Pawn))
 			{
 				if(destinationSquare.getIcon() == null || destinationSquare.getForeground() == opponentColour) {
-					possibleDestinations.add(destinationSquare);
+					possibleDests.add(destinationSquare);
 				}
 			}
 			else //if the piece is a pawn, then it can only move into an opponent's square if it is moving diagonally
@@ -125,13 +125,13 @@ public class Piece {
 				boolean is_moving_diagonally = !(is_moving_forward);
 				if(destinationSquare.getIcon() == null && is_moving_forward
 						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally) {
-					possibleDestinations.add(destinationSquare);
+					possibleDests.add(destinationSquare);
 				}
 			}
 		}
 		catch (IndexOutOfBoundsException e) {
 		}
-		return possibleDestinations;
+		return possibleDests;
 	}
 	
 	
@@ -157,10 +157,10 @@ public class Piece {
 	 * Given a source square and a destination square, moves the piece on the source square
 	 * to the destination square.
 	 */
-	public static void movePiece(JToggleButton srcSquare, JToggleButton dstSquare)
+	public static void movePiece(JToggleButton srcSquare, JToggleButton destSquare)
 	{
 		System.out.println("movePiece");
-		System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare) + "\t" + BoardWindow.getAllSquares().indexOf(dstSquare));
+		System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare) + "\t" + BoardWindow.getAllSquares().indexOf(destSquare));
 		
 		//remove the piece from the source square
 		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
@@ -168,16 +168,16 @@ public class Piece {
 		srcSquare.setForeground(null);
 		
 		//put it on the destination square
-		BoardWindow.setSquareText(dstSquare, piece.pieceType, piece.pieceColour);
-		piece.setLocation(dstSquare);
+		BoardWindow.setSquareText(destSquare, piece.pieceType, piece.pieceColour);
+		piece.setLocation(destSquare);
 		
 		//change the background colour of the destination square to be the right colour (not green)
-		BoardWindow.setSquareToOriginalColour(dstSquare);
+		BoardWindow.setSquareToOriginalColour(destSquare);
 		
 		
 		//==== the following lines only make a difference during the human's turn ====
 		//iterate the green squares and set their background colours back to their original colour
-		ArrayList<JToggleButton> greenSquares = BoardWindow.getValidDestinations();
+		ArrayList<JToggleButton> greenSquares = BoardWindow.getValidDests();
 		for(int i = 0; i < greenSquares.size(); i++)
 		{
 			JToggleButton square = greenSquares.get(i);
@@ -186,9 +186,9 @@ public class Piece {
 		
 		//unselect the source button and destination button
 		srcSquare.setSelected(false);
-		dstSquare.setSelected(false);
+		destSquare.setSelected(false);
 		srcSquare.setEnabled(false);
-		dstSquare.setEnabled(false);
+		destSquare.setEnabled(false);
 		
 		
 	}
@@ -204,8 +204,8 @@ public class Piece {
 	public JToggleButton getPieceLocation() {
 		return location;}
 	
-	private void setLocation(JToggleButton dstSquare) {
-		location = dstSquare;
+	private void setLocation(JToggleButton destSquare) {
+		location = destSquare;
 		
 	}
 	

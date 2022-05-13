@@ -41,9 +41,9 @@ public class GameEnvironment
 	public final static Color BLACK_PIECE_COLOUR = Color.RED;
 	public final static Color SELECTED_COLOUR = Color.BLUE;
 	public final static Color VALID_DESTINATION_COLOUR = Color.GREEN;
-	private static ArrayList<Piece> whitePieces = new ArrayList<Piece>();
-	private static ArrayList<Piece> blackPieces = new ArrayList<Piece>();
-	private static ArrayList<Piece> allPieces = new ArrayList<Piece>();
+	private static ArrayList<Piece> whitePieces = new ArrayList<>();
+	private static ArrayList<Piece> blackPieces = new ArrayList<>();
+	private static ArrayList<Piece> allPieces = new ArrayList<>();
 	
 	private static Integer turnCounter = 1;
 	private static boolean hasWhiteMoved = false;
@@ -85,34 +85,34 @@ public class GameEnvironment
 			//TODO: need to get the square's name as a string - "a2" rather than JToggleButton a2,
 			// so that we can write this location in the moves textbox
 			String turnNumber = turnCounter.toString();
-			JToggleButton sourceSquare = BoardWindow.getSourceSquare();
-			JToggleButton destinationSquare = BoardWindow.getDestinationSquare();
-			String sourceSquareText = BoardWindow.squaresMap.get(sourceSquare);
-			String destinationSquareText = BoardWindow.squaresMap.get(destinationSquare);
-			System.out.println(sourceSquareText);
-			System.out.println(destinationSquareText);
-			writeNotation(turnNumber, sourceSquareText, destinationSquareText);
+			JToggleButton srcSquare = BoardWindow.getSrcSquare();
+			JToggleButton destSquare = BoardWindow.getDestSquare();
+			String srcSquareText = BoardWindow.squaresMap.get(srcSquare);
+			String destSquareText = BoardWindow.squaresMap.get(destSquare);
+			System.out.println(srcSquareText);
+			System.out.println(destSquareText);
+			writeNotation(turnNumber, srcSquareText, destSquareText);
 			turnCounter ++;
 			
 			//say that there is no source square anymore in preparation for the next move
-			BoardWindow.resetSourceSquare();
+			BoardWindow.resetSrcSquare();
 			
 			
 			
 			makeComputerMove();
 			
 			turnNumber = turnCounter.toString();
-			sourceSquare = BoardWindow.getSourceSquare();
-			destinationSquare = BoardWindow.getDestinationSquare();
-			sourceSquareText = BoardWindow.squaresMap.get(sourceSquare);
-			destinationSquareText = BoardWindow.squaresMap.get(destinationSquare);
-			System.out.println(sourceSquareText);
-			System.out.println(destinationSquareText);
-			writeNotation(turnNumber, sourceSquareText, destinationSquareText);
+			srcSquare = BoardWindow.getSrcSquare();
+			destSquare = BoardWindow.getDestSquare();
+			srcSquareText = BoardWindow.squaresMap.get(srcSquare);
+			destSquareText = BoardWindow.squaresMap.get(destSquare);
+			System.out.println(srcSquareText);
+			System.out.println(destSquareText);
+			writeNotation(turnNumber, srcSquareText, destSquareText);
 			turnCounter ++;
 			
 			//say that there is no source square anymore in preparation for the next move
-			BoardWindow.resetSourceSquare();
+			BoardWindow.resetSrcSquare();
 		}
 			
 			
@@ -132,11 +132,11 @@ public class GameEnvironment
 	}
 	
 	
-	public static void writeNotation(String text, String source, String destination)
+	public static void writeNotation(String text, String src, String dest)
 	{
 		JTextArea box = BoardWindow.getMovesHistory();
 		String currentText = box.getText();
-		box.setText(currentText + "\n" + text + ": \t" + source + destination);
+		box.setText(currentText + "\n" + text + ": \t" + src + dest);
 	}
 	
 	
@@ -173,8 +173,8 @@ public class GameEnvironment
 //				//System.out.println(tuple.second.size());
 //				for(int j = 0; j < tuple.second.size(); j++)
 //				{
-//					int possibleDestination = BoardWindow.getAllSquares().indexOf(tuple.second.get(j));
-//					System.out.println(possibleDestination);
+//					int possibleDest = BoardWindow.getAllSquares().indexOf(tuple.second.get(j));
+//					System.out.println(possibleDest);
 //				}
 //			}
 //		}
@@ -186,11 +186,11 @@ public class GameEnvironment
 		int randSrcSquareAndDestList = rand.nextInt(validSquares.size());
 		System.out.println("=================================");
 		Pair<JToggleButton, ArrayList<JToggleButton>> chosenSrcSquareAndDestList = validSquares.get(randSrcSquareAndDestList);
-		BoardWindow.setSourceSquare(chosenSrcSquareAndDestList.first);							////
-		int randDstSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
-		BoardWindow.setDestinationSquare(chosenSrcSquareAndDestList.second.get(randDstSquare));	////
+		BoardWindow.setSrcSquare(chosenSrcSquareAndDestList.first);							////
+		int randDestSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
+		BoardWindow.setDestSquare(chosenSrcSquareAndDestList.second.get(randDestSquare));	////
 		
-		Piece.movePiece(BoardWindow.getSourceSquare(), BoardWindow.getDestinationSquare());
+		Piece.movePiece(BoardWindow.getSrcSquare(), BoardWindow.getDestSquare());
 		
 		
 		//TODO: !
@@ -203,7 +203,7 @@ public class GameEnvironment
 	 * Calculates and returns all of the squares that the player could move a piece to.
 	 * Runs for the computer player, where the computer player will later select one of these
 	 * valid moves at random.
-	 * @return pieceDestinations: an ArrayList containing pairs of the location (a JToggleButton) 
+	 * @return pieceDests: an ArrayList containing pairs of the location (a JToggleButton) 
 	 * and the destinations (an ArrayList of JToggleButtons)
 	 */
 	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquaresComputer()
@@ -222,31 +222,31 @@ public class GameEnvironment
 	 * Calculates and returns all of the squares that the player could move a piece to.
 	 * Runs for the computer player, where the computer player will later select one of these
 	 * valid moves at random.
-	 * @return pieceDestinations: an ArrayList containing pairs of the location (a JToggleButton) 
+	 * @return pieceDests: an ArrayList containing pairs of the location (a JToggleButton) 
 	 * and the destinations (an ArrayList of JToggleButtons)
 	 */
 	public static ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> findValidSquaresHelper(
 			ArrayList<Pair<JToggleButton, ArrayList<JToggleButton>>> validSquares, Piece pieceToCheck)
 	{
 		JToggleButton pieceLocation = pieceToCheck.getPieceLocation();
-		ArrayList<JToggleButton> pieceDestinations = null;
+		ArrayList<JToggleButton> pieceDests = null;
 		//find out the type of the piece, then cast it as that type to find the possible destinatons
 		if(pieceToCheck instanceof Pawn) {
-			pieceDestinations = ((Pawn) pieceToCheck).findValidDestinations();} // https://stackoverflow.com/a/106351/8042538
+			pieceDests = ((Pawn) pieceToCheck).findValidDests();} // https://stackoverflow.com/a/106351/8042538
 		else if(pieceToCheck instanceof Knight) {
-			pieceDestinations = ((Knight) pieceToCheck).findValidDestinations();}
+			pieceDests = ((Knight) pieceToCheck).findValidDests();}
 		else if(pieceToCheck instanceof Bishop) {
-			pieceDestinations = ((Bishop) pieceToCheck).findValidDestinations();}
+			pieceDests = ((Bishop) pieceToCheck).findValidDests();}
 		else if(pieceToCheck instanceof Rook) {
-			pieceDestinations = ((Rook) pieceToCheck).findValidDestinations();}
+			pieceDests = ((Rook) pieceToCheck).findValidDests();}
 		else if(pieceToCheck instanceof Queen) {
-			pieceDestinations = ((Queen) pieceToCheck).findValidDestinations();}
+			pieceDests = ((Queen) pieceToCheck).findValidDests();}
 		else if(pieceToCheck instanceof King) {
-			pieceDestinations = ((King) pieceToCheck).findValidDestinations();}
+			pieceDests = ((King) pieceToCheck).findValidDests();}
 		
-		if(pieceDestinations.size() > 0) //pieceDestinations will be null if no destinations were found
+		if(pieceDests.size() > 0) //pieceDests will be null if no destinations were found
 		{
-			Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDestinations);
+			Pair<JToggleButton, ArrayList<JToggleButton>> newTuple = new Pair<>(pieceLocation, pieceDests);
 			validSquares.add(newTuple);
 		}
 		return validSquares;
@@ -496,7 +496,4 @@ public class GameEnvironment
 		
 		
 	}
-
-
-	
 }

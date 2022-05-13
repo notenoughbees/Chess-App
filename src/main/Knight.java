@@ -15,9 +15,9 @@ public class Knight extends Piece{
 	}
 	
 	
-	public ArrayList<JToggleButton> findValidDestinations()
+	public ArrayList<JToggleButton> findValidDests()
 	{
-		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
+		ArrayList<JToggleButton> possibleDests = new ArrayList<>();
 		Color opponentColour;
 		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
 		JToggleButton currentSquare = super.getPieceLocation();
@@ -31,50 +31,50 @@ public class Knight extends Piece{
 		int column = (i % 8) + 1;
 		if(column <= 2)
 		{
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPRIGHT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERRIGHT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERRIGHT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION);
 			if(column == 2)
 			{
-				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+				possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPLEFT_CALCULATION);
-				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+				possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
 			}
 		}
 		else
 		{
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPLEFT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERLEFT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERLEFT_CALCULATION);
-			possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+			possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 					currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMLEFT_CALCULATION);
 			//as long as we're not on the far right, we need to check at least 6 destinations here
 			if(column <= 7)
 			{
-				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+				possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_TOPRIGHT_CALCULATION);
-				possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+				possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 						currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION);
 				//this code runs if the col is one of the middle 4 cols, so all 8 destinations should be checked
 				if(column <= 6)
 				{
-					possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+					possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 							currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_UPPERRIGHT_CALCULATION);
-					possibleDestinations = super.testNewDestinationSquare(possibleDestinations, allSquares, 
+					possibleDests = super.testNewDestSquare(possibleDests, allSquares, 
 							currentSquare, opponentColour, BoardWindow.SQUARE_KNIGHT_LOWERRIGHT_CALCULATION);
 				}
 			}
 		}
-		return possibleDestinations;
+		return possibleDests;
 	}
 	
 	

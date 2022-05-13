@@ -93,7 +93,7 @@ public class BoardWindow {
 	private static JToggleButton f8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton g8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton h8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	public static ArrayList<JToggleButton> allSquares = new ArrayList<JToggleButton>();
+	public static ArrayList<JToggleButton> allSquares = new ArrayList<>();
 	public static HashMap<JToggleButton, String> squaresMap = new HashMap<>();
 	public static final int BOARD_LENGTH = 8;
 	
@@ -117,10 +117,10 @@ public class BoardWindow {
 	public static final int SQUARE_KNIGHT_BOTTOMRIGHT_CALCULATION = 17;
 	
 	//for knowing what stage the player is at in making their move
-	private static JToggleButton sourceSquare;
-	private static JToggleButton destinationSquare;
+	private static JToggleButton srcSquare;
+	private static JToggleButton destSquare;
 	
-	private static ArrayList<JToggleButton> validDestinations = new ArrayList<>();
+	private static ArrayList<JToggleButton> validDests = new ArrayList<>();
 	
 	
 	/**
@@ -276,12 +276,12 @@ public class BoardWindow {
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//if the user selects this button, it must contain a white piece
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a8);}
 				else {
 					//TODO: USE THIS CODE
-					destinationSquare = a8;
-					Piece.movePiece(sourceSquare, destinationSquare);
+					destSquare = a8;
+					Piece.movePiece(srcSquare, destSquare);
 					GameEnvironment.setHasWhiteMoved(true);
 					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
@@ -292,10 +292,10 @@ public class BoardWindow {
 		panelBoard.add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b8);}
 				else {
-					Piece.movePiece(sourceSquare, b8);
+					Piece.movePiece(srcSquare, b8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -305,10 +305,10 @@ public class BoardWindow {
 		panelBoard.add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c8);}
 				else {
-					Piece.movePiece(sourceSquare, c8);
+					Piece.movePiece(srcSquare, c8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -318,10 +318,10 @@ public class BoardWindow {
 		panelBoard.add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d8);}
 				else {
-					Piece.movePiece(sourceSquare, d8);
+					Piece.movePiece(srcSquare, d8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -331,10 +331,10 @@ public class BoardWindow {
 		panelBoard.add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e8);}
 				else {
-					Piece.movePiece(sourceSquare, e8);
+					Piece.movePiece(srcSquare, e8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -344,10 +344,10 @@ public class BoardWindow {
 		panelBoard.add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f8);}
 				else {
-					Piece.movePiece(sourceSquare, f8);
+					Piece.movePiece(srcSquare, f8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -357,10 +357,10 @@ public class BoardWindow {
 		panelBoard.add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g8);}
 				else {
-					Piece.movePiece(sourceSquare, g8);
+					Piece.movePiece(srcSquare, g8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -370,10 +370,10 @@ public class BoardWindow {
 		panelBoard.add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h8);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h8);}
 				else {
-					Piece.movePiece(sourceSquare, h8);
+					Piece.movePiece(srcSquare, h8);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -383,10 +383,10 @@ public class BoardWindow {
 		panelBoard.add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a7);}
 				else {
-					Piece.movePiece(sourceSquare, a7);
+					Piece.movePiece(srcSquare, a7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -396,10 +396,10 @@ public class BoardWindow {
 		panelBoard.add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b7);}
 				else {
-					Piece.movePiece(sourceSquare, b7);
+					Piece.movePiece(srcSquare, b7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -409,10 +409,10 @@ public class BoardWindow {
 		panelBoard.add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c7);}
 				else {
-					Piece.movePiece(sourceSquare, c7);
+					Piece.movePiece(srcSquare, c7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -422,10 +422,10 @@ public class BoardWindow {
 		panelBoard.add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d7);}
 				else {
-					Piece.movePiece(sourceSquare, d7);
+					Piece.movePiece(srcSquare, d7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -435,10 +435,10 @@ public class BoardWindow {
 		panelBoard.add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e7);}
 				else {
-					Piece.movePiece(sourceSquare, e7);
+					Piece.movePiece(srcSquare, e7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -448,10 +448,10 @@ public class BoardWindow {
 		panelBoard.add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f7);}
 				else {
-					Piece.movePiece(sourceSquare, f7);
+					Piece.movePiece(srcSquare, f7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -461,10 +461,10 @@ public class BoardWindow {
 		panelBoard.add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g7);}
 				else {
-					Piece.movePiece(sourceSquare, g7);
+					Piece.movePiece(srcSquare, g7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -474,10 +474,10 @@ public class BoardWindow {
 		panelBoard.add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h7);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h7);}
 				else {
-					Piece.movePiece(sourceSquare, h7);
+					Piece.movePiece(srcSquare, h7);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -487,10 +487,10 @@ public class BoardWindow {
 		panelBoard.add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a6);}
 				else {
-					Piece.movePiece(sourceSquare, a6);
+					Piece.movePiece(srcSquare, a6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -500,10 +500,10 @@ public class BoardWindow {
 		panelBoard.add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b6);}
 				else {
-					Piece.movePiece(sourceSquare, b6);
+					Piece.movePiece(srcSquare, b6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -513,10 +513,10 @@ public class BoardWindow {
 		panelBoard.add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c6);}
 				else {
-					Piece.movePiece(sourceSquare, c6);
+					Piece.movePiece(srcSquare, c6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -526,10 +526,10 @@ public class BoardWindow {
 		panelBoard.add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d6);}
 				else {
-					Piece.movePiece(sourceSquare, d6);
+					Piece.movePiece(srcSquare, d6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -539,10 +539,10 @@ public class BoardWindow {
 		panelBoard.add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e6);}
 				else {
-					Piece.movePiece(sourceSquare, e6);
+					Piece.movePiece(srcSquare, e6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -552,10 +552,10 @@ public class BoardWindow {
 		panelBoard.add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f6);}
 				else {
-					Piece.movePiece(sourceSquare, f6);
+					Piece.movePiece(srcSquare, f6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -565,10 +565,10 @@ public class BoardWindow {
 		panelBoard.add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g6);}
 				else {
-					Piece.movePiece(sourceSquare, g6);
+					Piece.movePiece(srcSquare, g6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -578,10 +578,10 @@ public class BoardWindow {
 		panelBoard.add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h6);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h6);}
 				else {
-					Piece.movePiece(sourceSquare, h6);
+					Piece.movePiece(srcSquare, h6);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -591,10 +591,10 @@ public class BoardWindow {
 		panelBoard.add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a5);}
 				else {
-					Piece.movePiece(sourceSquare, a5);
+					Piece.movePiece(srcSquare, a5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -604,10 +604,10 @@ public class BoardWindow {
 		panelBoard.add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b5);}
 				else {
-					Piece.movePiece(sourceSquare, b5);
+					Piece.movePiece(srcSquare, b5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -617,10 +617,10 @@ public class BoardWindow {
 		panelBoard.add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c5);}
 				else {
-					Piece.movePiece(sourceSquare, c5);
+					Piece.movePiece(srcSquare, c5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -630,10 +630,10 @@ public class BoardWindow {
 		panelBoard.add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d5);}
 				else {
-					Piece.movePiece(sourceSquare, d5);
+					Piece.movePiece(srcSquare, d5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -643,10 +643,10 @@ public class BoardWindow {
 		panelBoard.add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e5);}
 				else {
-					Piece.movePiece(sourceSquare, e5);
+					Piece.movePiece(srcSquare, e5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -656,10 +656,10 @@ public class BoardWindow {
 		panelBoard.add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f5);}
 				else {
-					Piece.movePiece(sourceSquare, f5);
+					Piece.movePiece(srcSquare, f5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -669,10 +669,10 @@ public class BoardWindow {
 		panelBoard.add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g5);}
 				else {
-					Piece.movePiece(sourceSquare, g5);
+					Piece.movePiece(srcSquare, g5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -682,10 +682,10 @@ public class BoardWindow {
 		panelBoard.add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h5);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h5);}
 				else {
-					Piece.movePiece(sourceSquare, h5);
+					Piece.movePiece(srcSquare, h5);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -695,10 +695,10 @@ public class BoardWindow {
 		panelBoard.add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a4);}
 				else {
-					Piece.movePiece(sourceSquare, a4);
+					Piece.movePiece(srcSquare, a4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -708,10 +708,10 @@ public class BoardWindow {
 		panelBoard.add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b4);}
 				else {
-					Piece.movePiece(sourceSquare, b4);
+					Piece.movePiece(srcSquare, b4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -721,10 +721,10 @@ public class BoardWindow {
 		panelBoard.add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c4);}
 				else {
-					Piece.movePiece(sourceSquare, c4);
+					Piece.movePiece(srcSquare, c4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -734,10 +734,10 @@ public class BoardWindow {
 		panelBoard.add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d4);}
 				else {
-					Piece.movePiece(sourceSquare, d4);
+					Piece.movePiece(srcSquare, d4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -747,10 +747,10 @@ public class BoardWindow {
 		panelBoard.add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e4);}
 				else {
-					Piece.movePiece(sourceSquare, e4);
+					Piece.movePiece(srcSquare, e4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -760,10 +760,10 @@ public class BoardWindow {
 		panelBoard.add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f4);}
 				else {
-					Piece.movePiece(sourceSquare, f4);
+					Piece.movePiece(srcSquare, f4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -773,10 +773,10 @@ public class BoardWindow {
 		panelBoard.add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g4);}
 				else {
-					Piece.movePiece(sourceSquare, g4);
+					Piece.movePiece(srcSquare, g4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -786,10 +786,10 @@ public class BoardWindow {
 		panelBoard.add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h4);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h4);}
 				else {
-					Piece.movePiece(sourceSquare, h4);
+					Piece.movePiece(srcSquare, h4);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -799,10 +799,10 @@ public class BoardWindow {
 		panelBoard.add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a3);}
 				else {
-					Piece.movePiece(sourceSquare, a3);
+					Piece.movePiece(srcSquare, a3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -812,10 +812,10 @@ public class BoardWindow {
 		panelBoard.add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b3);}
 				else {
-					Piece.movePiece(sourceSquare, b3);
+					Piece.movePiece(srcSquare, b3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -825,10 +825,10 @@ public class BoardWindow {
 		panelBoard.add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c3);}
 				else {
-					Piece.movePiece(sourceSquare, c3);
+					Piece.movePiece(srcSquare, c3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -838,10 +838,10 @@ public class BoardWindow {
 		panelBoard.add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d3);}
 				else {
-					Piece.movePiece(sourceSquare, d3);
+					Piece.movePiece(srcSquare, d3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -851,10 +851,10 @@ public class BoardWindow {
 		panelBoard.add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e3);}
 				else {
-					Piece.movePiece(sourceSquare, e3);
+					Piece.movePiece(srcSquare, e3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -864,10 +864,10 @@ public class BoardWindow {
 		panelBoard.add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f3);}
 				else {
-					Piece.movePiece(sourceSquare, f3);
+					Piece.movePiece(srcSquare, f3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -877,10 +877,10 @@ public class BoardWindow {
 		panelBoard.add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g3);}
 				else {
-					Piece.movePiece(sourceSquare, g3);
+					Piece.movePiece(srcSquare, g3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -890,10 +890,10 @@ public class BoardWindow {
 		panelBoard.add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h3);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h3);}
 				else {
-					Piece.movePiece(sourceSquare, h3);
+					Piece.movePiece(srcSquare, h3);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -908,10 +908,10 @@ public class BoardWindow {
 				System.out.println(a2.getForeground());
 				System.out.println(a2.getBackground());
 				a2.setBackground(GameEnvironment.SELECTED_COLOUR);
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a2);}
 				else {
-					Piece.movePiece(sourceSquare, a2);
+					Piece.movePiece(srcSquare, a2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -921,10 +921,10 @@ public class BoardWindow {
 		panelBoard.add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b2);}
 				else {
-					Piece.movePiece(sourceSquare, b2);
+					Piece.movePiece(srcSquare, b2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -934,10 +934,10 @@ public class BoardWindow {
 		panelBoard.add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c2);}
 				else {
-					Piece.movePiece(sourceSquare, c2);
+					Piece.movePiece(srcSquare, c2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -947,10 +947,10 @@ public class BoardWindow {
 		panelBoard.add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d2);}
 				else {
-					Piece.movePiece(sourceSquare, d2);
+					Piece.movePiece(srcSquare, d2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -960,10 +960,10 @@ public class BoardWindow {
 		panelBoard.add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e2);}
 				else {
-					Piece.movePiece(sourceSquare, e2);
+					Piece.movePiece(srcSquare, e2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -973,10 +973,10 @@ public class BoardWindow {
 		panelBoard.add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f2);}
 				else {
-					Piece.movePiece(sourceSquare, f2);
+					Piece.movePiece(srcSquare, f2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -986,10 +986,10 @@ public class BoardWindow {
 		panelBoard.add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g2);}
 				else {
-					Piece.movePiece(sourceSquare, g2);
+					Piece.movePiece(srcSquare, g2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -999,10 +999,10 @@ public class BoardWindow {
 		panelBoard.add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h2);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h2);}
 				else {
-					Piece.movePiece(sourceSquare, h2);
+					Piece.movePiece(srcSquare, h2);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1012,10 +1012,10 @@ public class BoardWindow {
 		panelBoard.add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(a1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(a1);}
 				else {
-					Piece.movePiece(sourceSquare, a1);
+					Piece.movePiece(srcSquare, a1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1025,10 +1025,10 @@ public class BoardWindow {
 		panelBoard.add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(b1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(b1);}
 				else {
-					Piece.movePiece(sourceSquare, b1);
+					Piece.movePiece(srcSquare, b1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1038,10 +1038,10 @@ public class BoardWindow {
 		panelBoard.add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(c1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(c1);}
 				else {
-					Piece.movePiece(sourceSquare, c1);
+					Piece.movePiece(srcSquare, c1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1051,10 +1051,10 @@ public class BoardWindow {
 		panelBoard.add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(d1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(d1);}
 				else {
-					Piece.movePiece(sourceSquare, d1);
+					Piece.movePiece(srcSquare, d1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1064,10 +1064,10 @@ public class BoardWindow {
 		panelBoard.add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(e1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(e1);}
 				else {
-					Piece.movePiece(sourceSquare, e1);
+					Piece.movePiece(srcSquare, e1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1077,10 +1077,10 @@ public class BoardWindow {
 		panelBoard.add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(f1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(f1);}
 				else {
-					Piece.movePiece(sourceSquare, f1);
+					Piece.movePiece(srcSquare, f1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1090,10 +1090,10 @@ public class BoardWindow {
 		panelBoard.add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(g1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(g1);}
 				else {
-					Piece.movePiece(sourceSquare, g1);
+					Piece.movePiece(srcSquare, g1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1106,10 +1106,10 @@ public class BoardWindow {
 				
 				checkButtons();
 				
-				if(sourceSquare == null) {
-					findValidDestinationsFromButton(h1);}
+				if(srcSquare == null) {
+					findValidDestsFromButton(h1);}
 				else {
-					Piece.movePiece(sourceSquare, h1);
+					Piece.movePiece(srcSquare, h1);
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1187,40 +1187,40 @@ public class BoardWindow {
 	 * Given this button, finds the valid destinations from this button for the piece that is on it.
 	 * @param srcBtn: The selected button.
 	 */
-	public static void findValidDestinationsFromButton(JToggleButton srcBtn)
+	public static void findValidDestsFromButton(JToggleButton srcBtn)
 	{
-		System.out.println("findValidDestinationsFromButton");
+		System.out.println("findValidDestsFromButton");
 		Piece selectedPiece = Piece.findPiece(GameEnvironment.getWhitePieces(), srcBtn);
 		System.out.println(allSquares.indexOf(srcBtn));
 		
 		//first find the valid destinations
 		//TODO: reuse this code from GameEnvironment
 		if(selectedPiece instanceof Pawn) {
-			validDestinations = ((Pawn) selectedPiece).findValidDestinations();}
+			validDests = ((Pawn) selectedPiece).findValidDests();}
 		else if(selectedPiece instanceof Knight) {
-			validDestinations = ((Knight) selectedPiece).findValidDestinations();}
+			validDests = ((Knight) selectedPiece).findValidDests();}
 		else if(selectedPiece instanceof Bishop) {
-			validDestinations = ((Bishop) selectedPiece).findValidDestinations();}
+			validDests = ((Bishop) selectedPiece).findValidDests();}
 		else if(selectedPiece instanceof Rook) {
-			validDestinations = ((Rook) selectedPiece).findValidDestinations();}
+			validDests = ((Rook) selectedPiece).findValidDests();}
 		else if(selectedPiece instanceof Queen) {
-			validDestinations = ((Queen) selectedPiece).findValidDestinations();}
+			validDests = ((Queen) selectedPiece).findValidDests();}
 		else if(selectedPiece instanceof King) {
-			validDestinations = ((King) selectedPiece).findValidDestinations();}
+			validDests = ((King) selectedPiece).findValidDests();}
 		
-//		for(int i = 0; i < validDestinations.size(); i++)
+//		for(int i = 0; i < validDests.size(); i++)
 //		{
-//			int dstIndex = allSquares.indexOf(validDestinations.get(i));
-//			System.out.println("a destination:" + "\t" + dstIndex);
+//			int destIndex = allSquares.indexOf(validDests.get(i));
+//			System.out.println("a destination:" + "\t" + destIndex);
 //		}
 		
 		//colour the destinations and enable the associated buttons so that they can be clicked as the destination
-		for(int i = 0; i < validDestinations.size(); i++)
+		for(int i = 0; i < validDests.size(); i++)
 		{
-			JToggleButton btn = validDestinations.get(i);
+			JToggleButton btn = validDests.get(i);
 			btn.setBackground(GameEnvironment.VALID_DESTINATION_COLOUR);
 			btn.setEnabled(true);
-			sourceSquare = srcBtn;
+			srcSquare = srcBtn;
 		}
 		
 		//disable all buttons with white pieces on them because they are not possible destinations
@@ -1401,33 +1401,33 @@ public class BoardWindow {
 		return h8;}
 	public static ArrayList<JToggleButton> getAllSquares() {
 		return allSquares;}
-	public static ArrayList<JToggleButton> getValidDestinations() {
-		return validDestinations;}
+	public static ArrayList<JToggleButton> getValidDests() {
+		return validDests;}
 	public static JTextArea getMovesHistory() {
 		return movesHistory;}
-	public static JToggleButton getSourceSquare() {
-		if(sourceSquare != null)
+	public static JToggleButton getSrcSquare() {
+		if(srcSquare != null)
 		{
-			return sourceSquare;
+			return srcSquare;
 		}
 		else
 		{
 			return null;
 		}
 	}
-	public static JToggleButton getDestinationSquare() {
-		return destinationSquare;}
+	public static JToggleButton getDestSquare() {
+		return destSquare;}
 	
 	
 	//setters
-	public static void setSourceSquare(JToggleButton square)
+	public static void setSrcSquare(JToggleButton square)
 	{
-		sourceSquare = square;
+		srcSquare = square;
 	}
 	
-	public static void setDestinationSquare(JToggleButton square)
+	public static void setDestSquare(JToggleButton square)
 	{
-		destinationSquare = square;
+		destSquare = square;
 	}
 	
 	public static void setSquareText(JToggleButton square, ImageIcon icon, Color textColour)
@@ -1437,8 +1437,8 @@ public class BoardWindow {
 		square.setForeground(textColour);
 	}
 
-	public static void resetSourceSquare() {
-		sourceSquare = null;
+	public static void resetSrcSquare() {
+		srcSquare = null;
 	}
 
 	

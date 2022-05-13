@@ -14,9 +14,9 @@ public class Bishop extends Piece{
 	}
 	
 	
-	public ArrayList<JToggleButton> findValidDestinations()
+	public ArrayList<JToggleButton> findValidDests()
 	{
-		ArrayList<JToggleButton> possibleDestinations = new ArrayList<>();
+		ArrayList<JToggleButton> possibleDests = new ArrayList<>();
 		Color opponentColour;
 		ArrayList<JToggleButton> allSquares = BoardWindow.getAllSquares();
 		JToggleButton currentSquare = super.getPieceLocation();
@@ -26,16 +26,16 @@ public class Bishop extends Piece{
 		else {
 			opponentColour = GameEnvironment.WHITE_PIECE_COLOUR;}
 		
-		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
+		possibleDests = super.findValidDestsLoop(possibleDests, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOPLEFT_CALCULATION);
-		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
+		possibleDests = super.findValidDestsLoop(possibleDests, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_TOPRIGHT_CALCULATION);
-		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
+		possibleDests = super.findValidDestsLoop(possibleDests, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION);
-		possibleDestinations = super.findValidDestinationsLoop(possibleDestinations, allSquares,
+		possibleDests = super.findValidDestsLoop(possibleDests, allSquares,
 				currentSquare, opponentColour, BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 		
-		return possibleDestinations;
+		return possibleDests;
 	}
 	
 	
