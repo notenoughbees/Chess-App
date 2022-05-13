@@ -94,13 +94,13 @@ public class Piece {
 	 * @param allSquares
 	 * @param currentSquare
 	 * @param opponentColour
-	 * @param destinationSquare
+	 * @param destSquare
 	 * @return possibleDests
 	 */
 	public ArrayList<JToggleButton> testNewDestSquare(
 			ArrayList<JToggleButton> possibleDests, 
 			ArrayList<JToggleButton> allSquares, JToggleButton currentSquare, 
-			Color opponentColour, int destinationSquareCalculation)
+			Color opponentColour, int destSquareCalculation)
 	{
 		//[1] surround in a try-catch block for the case the piece is on the edge of the board
 		//[2] put each possible destination in a seperate try-catch block because 
@@ -108,24 +108,24 @@ public class Piece {
 		try 
 		{   
 			//first calculate the possible destination
-			JToggleButton destinationSquare = allSquares.get(allSquares.indexOf(currentSquare)+destinationSquareCalculation);
+			JToggleButton destSquare = allSquares.get(allSquares.indexOf(currentSquare)+destSquareCalculation);
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(!(this instanceof Pawn))
 			{
-				if(destinationSquare.getIcon() == null || destinationSquare.getForeground() == opponentColour) {
-					possibleDests.add(destinationSquare);
+				if(destSquare.getIcon() == null || destSquare.getForeground() == opponentColour) {
+					possibleDests.add(destSquare);
 				}
 			}
 			else //if the piece is a pawn, then it can only move into an opponent's square if it is moving diagonally
 			{
-				boolean is_moving_forward = (destinationSquareCalculation != BoardWindow.SQUARE_TOPLEFT_CALCULATION 
-						&& destinationSquareCalculation != BoardWindow.SQUARE_TOPRIGHT_CALCULATION
-						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
-						&& destinationSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
+				boolean is_moving_forward = (destSquareCalculation != BoardWindow.SQUARE_TOPLEFT_CALCULATION 
+						&& destSquareCalculation != BoardWindow.SQUARE_TOPRIGHT_CALCULATION
+						&& destSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
+						&& destSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 				boolean is_moving_diagonally = !(is_moving_forward);
-				if(destinationSquare.getIcon() == null && is_moving_forward
-						|| destinationSquare.getForeground() == opponentColour && is_moving_diagonally) {
-					possibleDests.add(destinationSquare);
+				if(destSquare.getIcon() == null && is_moving_forward
+						|| destSquare.getForeground() == opponentColour && is_moving_diagonally) {
+					possibleDests.add(destSquare);
 				}
 			}
 		}

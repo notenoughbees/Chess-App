@@ -262,7 +262,8 @@ public class GameEnvironment
 	 * @param enableNonwhiteButtons: whether to enable buttons that don't have wite pieces on them. 
 	 * This will only be true if checkNonwhiteButtons is also true.
 	 */
-	public static void toggleSelectWhitePieceButtons(boolean enableWhiteButtons, boolean checkNonwhiteButtons, boolean enableNonwhiteButtons)
+	public static void toggleSelectWhitePieceButtons(
+			boolean enableWhiteButtons, boolean checkNonwhiteButtons, boolean enableNonwhiteButtons)
 	{
 		/*
 		 * make a button group to hold the white piece buttons. When one of these buttons is selected,
