@@ -68,50 +68,31 @@ public class GameEnvironment
 	{
 		while(gameOver() == false)
 		{
+			System.out.println("=================================");
 			//the human plays white, so they start first
 			makeHumanMove();
-			//wait for the human player to make a move
-			while(hasWhiteMoved == false)
-			{
-				try {
-					Thread.sleep(200);
-				}
-				catch(InterruptedException e) {
-				}
-			}
-			
-			
-			//TODO
-			//TODO: need to get the square's name as a string - "a2" rather than JToggleButton a2,
-			// so that we can write this location in the moves textbox
 			String turnNumber = turnCounter.toString();
-			JToggleButton srcSquare = BoardWindow.getSrcSquare();
-			JToggleButton destSquare = BoardWindow.getDestSquare();
-			String srcSquareText = BoardWindow.squaresMap.get(srcSquare);
-			String destSquareText = BoardWindow.squaresMap.get(destSquare);
-			System.out.println(srcSquareText);
-			System.out.println(destSquareText);
+			String srcSquareText = BoardWindow.squaresMap.get(BoardWindow.getSrcSquare());
+			String destSquareText = BoardWindow.squaresMap.get(BoardWindow.getDestSquare());
+			System.out.println("HUM:\t" + srcSquareText + "\t" + destSquareText);
 			writeNotation(turnNumber, srcSquareText, destSquareText);
 			
 			//say that there is no source square anymore in preparation for the next move
-			BoardWindow.resetSrcSquare();
+			BoardWindow.setSrcSquare(null);
+			//BoardWindow.setDestSquare(null);
 			
 			
-			
-			//makeComputerMove();
-			
+			makeComputerMove(); //TODO: fix writeNotation() printing NULL if makeComputerMove() hasn't run during the turn
 			turnNumber = turnCounter.toString();
-			srcSquare = BoardWindow.getSrcSquare();
-			destSquare = BoardWindow.getDestSquare();
-			srcSquareText = BoardWindow.squaresMap.get(srcSquare);
-			destSquareText = BoardWindow.squaresMap.get(destSquare);
-			System.out.println(srcSquareText);
-			System.out.println(destSquareText);
+			srcSquareText = BoardWindow.squaresMap.get(BoardWindow.getSrcSquare());
+			destSquareText = BoardWindow.squaresMap.get(BoardWindow.getDestSquare());
+			System.out.println("COM:\t" + srcSquareText + "\t" + destSquareText);
 			writeNotation(turnNumber, srcSquareText, destSquareText);
 			turnCounter ++;
 			
 			//say that there is no source square anymore in preparation for the next move
-			BoardWindow.resetSrcSquare();
+			BoardWindow.setSrcSquare(null);
+			BoardWindow.setDestSquare(null);
 		}
 			
 			
@@ -147,6 +128,15 @@ public class GameEnvironment
 		setHasWhiteMoved(false);
 		toggleSelectWhitePieceButtons(true, true, false); //enable the buttons with white pieces on them and disable all others
 		
+		//wait for the human player to make a move
+		while(hasWhiteMoved == false)
+		{
+			try {
+				Thread.sleep(200);
+			}
+			catch(InterruptedException e) {
+			}
+		}
 	}
 	
 	
@@ -183,7 +173,6 @@ public class GameEnvironment
 		//(https://www.codegrepper.com/code-examples/java/how+to+select+a+random+element+from+an+array+in+java)
 		Random rand = new Random();
 		int randSrcSquareAndDestList = rand.nextInt(validSquares.size());
-		System.out.println("=================================");
 		Pair<JToggleButton, ArrayList<JToggleButton>> chosenSrcSquareAndDestList = validSquares.get(randSrcSquareAndDestList);
 		BoardWindow.setSrcSquare(chosenSrcSquareAndDestList.first);							////
 		int randDestSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());

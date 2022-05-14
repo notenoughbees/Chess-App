@@ -159,7 +159,7 @@ public class Piece {
 	public static void movePiece(JToggleButton srcSquare, JToggleButton destSquare)
 	{
 		System.out.println("movePiece");
-		System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare) + "\t" + BoardWindow.getAllSquares().indexOf(destSquare));
+		//System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare) + "\t" + BoardWindow.getAllSquares().indexOf(destSquare));
 		
 		//remove the piece from the source square
 		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
