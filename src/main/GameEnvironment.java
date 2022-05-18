@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -51,7 +52,6 @@ public class GameEnvironment
 	
 	
 	
-	
 	/**
 	 * Instantiates BoardWindow, which will show the chess board window.
 	 */
@@ -71,23 +71,27 @@ public class GameEnvironment
 			System.out.println("=================================");
 			//the human plays white, so they start first
 			makeHumanMove();
-			String turnNumber = turnCounter.toString();
-			String srcSquareText = BoardWindow.squaresMap.get(BoardWindow.getSrcSquare());
-			String destSquareText = BoardWindow.squaresMap.get(BoardWindow.getDestSquare());
-			System.out.println("HUM:\t" + srcSquareText + "\t" + destSquareText);
-			writeNotation(turnNumber, srcSquareText, destSquareText);
+			writeNotation(turnCounter);
 			
 			//say that there is no source square anymore in preparation for the next move
 			BoardWindow.setSrcSquare(null);
 			//BoardWindow.setDestSquare(null);
 			
 			
+			System.out.println("------------------");
+			///////////////////////////////////
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			///////////////////////////////////
+			
 			makeComputerMove(); //TODO: fix writeNotation() printing NULL if makeComputerMove() hasn't run during the turn
-			turnNumber = turnCounter.toString();
-			srcSquareText = BoardWindow.squaresMap.get(BoardWindow.getSrcSquare());
-			destSquareText = BoardWindow.squaresMap.get(BoardWindow.getDestSquare());
-			System.out.println("COM:\t" + srcSquareText + "\t" + destSquareText);
-			writeNotation(turnNumber, srcSquareText, destSquareText);
+			writeNotation(turnCounter);
 			turnCounter ++;
 			
 			//say that there is no source square anymore in preparation for the next move
@@ -112,11 +116,14 @@ public class GameEnvironment
 	}
 	
 	
-	public static void writeNotation(String text, String src, String dest)
+	public static void writeNotation(Integer turnCounter)
 	{
 		JTextArea box = BoardWindow.getMovesHistory();
 		String currentText = box.getText();
-		box.setText(currentText + "\n" + text + ": \t" + src + dest);
+		String turnNumber = turnCounter.toString();
+		String srcText = BoardWindow.squaresMap.get(BoardWindow.getSrcSquare());
+		String destText = BoardWindow.squaresMap.get(BoardWindow.getDestSquare());
+		box.setText(currentText + "\n" + turnNumber + ": \t" + srcText + destText);
 	}
 	
 	
@@ -178,8 +185,16 @@ public class GameEnvironment
 		int randDestSquare = rand.nextInt(chosenSrcSquareAndDestList.second.size());
 		BoardWindow.setDestSquare(chosenSrcSquareAndDestList.second.get(randDestSquare));	////
 		
-		Piece.movePiece(BoardWindow.getSrcSquare(), BoardWindow.getDestSquare());
+		//JToggleButton nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation);
+		System.out.println(BoardWindow.getAllSquares().indexOf(BoardWindow.getSrcSquare()));
+		System.out.println("SRC,DEST ICONS:\t" + BoardWindow.getSrcSquare().getIcon() + "\t" + BoardWindow.getDestSquare().getIcon());
+		//System.out.println("COM MOVE:\t" + BoardWindow.getSrcSquare().getText() + "\t" + BoardWindow.getDestSquare().getText());
+		Piece.movePiece(BoardWindow.getSrcSquare(), BoardWindow.getDestSquare(), whitePieces);
 		
+		Color pieceColour = Piece.findPiece(BoardWindow.getDestSquare()).getPieceColour();
+		System.out.println("PIECE COLOUR ON THE SQ:\t" + pieceColour);
+		System.out.println("SRC,DEST ICONS 2:\t" + BoardWindow.getSrcSquare().getIcon() + "\t" + BoardWindow.getDestSquare().getIcon());
+		System.out.println(pieceColour);
 		
 		//TODO: !
 		//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
@@ -333,12 +348,9 @@ public class GameEnvironment
             }
 
             try {
-            	
-            	
                 UIManager.setLookAndFeel(lookAndFeel);
                 
                 // If L&F = "Metal", set the theme
-                
                 if (LOOKANDFEEL.equals("Metal")) {
                   if (THEME.equals("DefaultMetal"))
                      MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
@@ -351,7 +363,6 @@ public class GameEnvironment
                 }	
                 	
                 	
-                  
                 
             } 
             
@@ -377,11 +388,6 @@ public class GameEnvironment
                 e.printStackTrace();
             }
         }
-		
-		
-		
-		
-		
 		
 		
 		
@@ -425,8 +431,6 @@ public class GameEnvironment
 				});
 			}
 			
-			
-			
 		}
 		
 		
@@ -466,9 +470,10 @@ public class GameEnvironment
 		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK_ICON, BoardWindow.getH8());
 		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, BLACK_QUEEN_ICON, BoardWindow.getD8());
 		King blackKing = new King(BLACK_PIECE_COLOUR, BLACK_KING_ICON, BoardWindow.getE8());
-		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
-				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		//Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
+		//		blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+		//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
+		Collections.addAll(blackPieces, blackPawn1);
 		Collections.addAll(allPieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing,
@@ -480,7 +485,6 @@ public class GameEnvironment
 		String humanPlayer = "white";
 		String outcome = playGame(humanPlayer);
 		System.out.println("OUTCOME:" + "\t" + outcome);
-		
 		
 		
 		

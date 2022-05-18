@@ -279,7 +279,9 @@ public class BoardWindow {
 					findValidDestsFromButton(a8);}
 				else {
 					setDestSquare(a8);
-					Piece.movePiece(srcSquare, destSquare);
+					//we know that opponentPieces here must be the computer/black pieces bc 
+					// only the human/white player will be clicking the buttons
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					//deselect the valid destinations from the previous move, and reselect the buttons with white pieces
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
@@ -295,7 +297,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b8);}
 				else {
 					setDestSquare(b8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -310,7 +312,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c8);}
 				else {
 					setDestSquare(c8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -325,7 +327,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d8);}
 				else {
 					setDestSquare(d8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -340,7 +342,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e8);}
 				else {
 					setDestSquare(e8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -355,7 +357,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f8);}
 				else {
 					setDestSquare(f8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -370,7 +372,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g8);}
 				else {
 					setDestSquare(g8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -385,7 +387,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h8);}
 				else {
 					setDestSquare(h8);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -400,7 +402,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a7);}
 				else {
 					setDestSquare(a7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -415,7 +417,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b7);}
 				else {
 					setDestSquare(b7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -430,7 +432,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c7);}
 				else {
 					setDestSquare(c7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -445,7 +447,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d7);}
 				else {
 					setDestSquare(d7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -460,7 +462,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e7);}
 				else {
 					setDestSquare(e7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -475,7 +477,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f7);}
 				else {
 					setDestSquare(f7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -490,7 +492,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g7);}
 				else {
 					setDestSquare(g7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -505,7 +507,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h7);}
 				else {
 					setDestSquare(h7);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -520,7 +522,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a6);}
 				else {
 					setDestSquare(a6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -535,7 +537,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b6);}
 				else {
 					setDestSquare(b6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -550,7 +552,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c6);}
 				else {
 					setDestSquare(c6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -565,7 +567,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d6);}
 				else {
 					setDestSquare(d6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -580,7 +582,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e6);}
 				else {
 					setDestSquare(e6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -595,7 +597,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f6);}
 				else {
 					setDestSquare(f6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -610,7 +612,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g6);}
 				else {
 					setDestSquare(g6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -625,7 +627,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h6);}
 				else {
 					setDestSquare(h6);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -640,7 +642,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a5);}
 				else {
 					setDestSquare(a5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -655,7 +657,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b5);}
 				else {
 					setDestSquare(b5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -670,7 +672,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c5);}
 				else {
 					setDestSquare(c5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -685,7 +687,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d5);}
 				else {
 					setDestSquare(d5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -700,7 +702,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e5);}
 				else {
 					setDestSquare(e5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -715,7 +717,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f5);}
 				else {
 					setDestSquare(f5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -730,7 +732,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g5);}
 				else {
 					setDestSquare(g5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -745,7 +747,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h5);}
 				else {
 					setDestSquare(h5);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -760,7 +762,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a4);}
 				else {
 					setDestSquare(a4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -775,7 +777,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b4);}
 				else {
 					setDestSquare(b4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -790,7 +792,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c4);}
 				else {
 					setDestSquare(c4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -805,7 +807,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d4);}
 				else {
 					setDestSquare(d4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -820,7 +822,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e4);}
 				else {
 					setDestSquare(e4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -835,7 +837,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f4);}
 				else {
 					setDestSquare(f4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -850,7 +852,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g4);}
 				else {
 					setDestSquare(g4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -865,7 +867,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h4);}
 				else {
 					setDestSquare(h4);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -880,7 +882,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a3);}
 				else {
 					setDestSquare(a3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -895,7 +897,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b3);}
 				else {
 					setDestSquare(b3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -910,7 +912,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c3);}
 				else {
 					setDestSquare(c3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -925,7 +927,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d3);}
 				else {
 					setDestSquare(d3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -940,7 +942,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e3);}
 				else {
 					setDestSquare(e3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -955,7 +957,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f3);}
 				else {
 					setDestSquare(f3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -970,7 +972,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g3);}
 				else {
 					setDestSquare(g3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -985,7 +987,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h3);}
 				else {
 					setDestSquare(h3);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -995,17 +997,17 @@ public class BoardWindow {
 		panelBoard.add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(a2.isForegroundSet());
-				System.out.println(a2.isBackgroundSet());
-				System.out.println(a2.getForeground());
-				System.out.println(a2.getBackground());
-				a2.setBackground(GameEnvironment.SELECTED_COLOUR);
+				//System.out.println(a2.isForegroundSet());
+				//System.out.println(a2.isBackgroundSet());
+				//System.out.println(a2.getForeground());
+				//System.out.println(a2.getBackground());
+				//a2.setBackground(GameEnvironment.SELECTED_COLOUR); //TODO
 				if(srcSquare == null) {
 					setSrcSquare(a2);
 					findValidDestsFromButton(a2);}
 				else {
 					setDestSquare(a2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1020,7 +1022,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b2);}
 				else {
 					setDestSquare(b2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1035,7 +1037,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c2);}
 				else {
 					setDestSquare(c2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1050,7 +1052,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d2);}
 				else {
 					setDestSquare(d2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1065,7 +1067,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e2);}
 				else {
 					setDestSquare(e2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1080,7 +1082,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f2);}
 				else {
 					setDestSquare(f2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1095,7 +1097,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g2);}
 				else {
 					setDestSquare(g2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1110,7 +1112,7 @@ public class BoardWindow {
 					findValidDestsFromButton(h2);}
 				else {
 					setDestSquare(h2);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1125,7 +1127,7 @@ public class BoardWindow {
 					findValidDestsFromButton(a1);}
 				else {
 					setDestSquare(a1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1140,7 +1142,7 @@ public class BoardWindow {
 					findValidDestsFromButton(b1);}
 				else {
 					setDestSquare(b1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1155,7 +1157,7 @@ public class BoardWindow {
 					findValidDestsFromButton(c1);}
 				else {
 					setDestSquare(c1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1170,7 +1172,7 @@ public class BoardWindow {
 					findValidDestsFromButton(d1);}
 				else {
 					setDestSquare(d1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1185,7 +1187,7 @@ public class BoardWindow {
 					findValidDestsFromButton(e1);}
 				else {
 					setDestSquare(e1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1200,7 +1202,7 @@ public class BoardWindow {
 					findValidDestsFromButton(f1);}
 				else {
 					setDestSquare(f1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1215,7 +1217,7 @@ public class BoardWindow {
 					findValidDestsFromButton(g1);}
 				else {
 					setDestSquare(g1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1226,14 +1228,14 @@ public class BoardWindow {
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				checkButtons();
+				//checkButtons();
 				
 				if(srcSquare == null) {
 					setSrcSquare(h1);
 					findValidDestsFromButton(h1);}
 				else {
 					setDestSquare(h1);
-					Piece.movePiece(srcSquare, destSquare);
+					Piece.movePiece(srcSquare, destSquare, GameEnvironment.getBlackPieces());
 					GameEnvironment.setHasWhiteMoved(true);
 					GameEnvironment.toggleSelectWhitePieceButtons(true, true, false);}
 			}
@@ -1269,24 +1271,7 @@ public class BoardWindow {
 				buttonIndex ++;
 			}
 		}
-		
-	
-//		System.out.println("allSquares:");
-//		for(int i = 0; i < allSquares.size(); i++)
-//		{
-//			System.out.println(allSquares.get(i));
-//		}
-//		
-//		System.out.println("squaresMap:");
-//		for(int i = 0; i < squaresMap.size(); i++)
-//		{
-//			System.out.println(squaresMap.get(allSquares.get(i)));
-//		}
-		
-		
 	}
-	
-	
 	
 	
 	
@@ -1308,9 +1293,9 @@ public class BoardWindow {
 	 */
 	public static void findValidDestsFromButton(JToggleButton srcBtn)
 	{
-		System.out.println("findValidDestsFromButton");
-		Piece selectedPiece = Piece.findPiece(GameEnvironment.getWhitePieces(), srcBtn);
-		System.out.println(allSquares.indexOf(srcBtn));
+		//System.out.println("findValidDestsFromButton");
+		Piece selectedPiece = Piece.findPiece(srcBtn);
+		//System.out.println(allSquares.indexOf(srcBtn));
 		
 		//first find the valid destinations
 		//TODO: reuse this code from GameEnvironment
@@ -1555,7 +1540,6 @@ public class BoardWindow {
 		square.setForeground(textColour);
 	}
 
-	
 	
 
 }

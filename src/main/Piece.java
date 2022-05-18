@@ -9,16 +9,16 @@ import javax.swing.JToggleButton;
 public class Piece {
 	//initialise
 	private Color pieceColour;
-	private ImageIcon pieceType;
+	private ImageIcon pieceIcon;
 	private JToggleButton location;
 	
 	//constructor
 	public Piece(Color tempPieceColour, ImageIcon tempPieceType, JToggleButton tempLocation) {
 		pieceColour = tempPieceColour;
-		pieceType = tempPieceType;
+		pieceIcon = tempPieceType;
 		location = tempLocation;
 		//place the piece in its initial position by setting the text of the square to the piece's name
-		BoardWindow.setSquareText(location, pieceType, pieceColour);
+		BoardWindow.setSquareText(location, pieceIcon, pieceColour);
 	}
 	
 	
@@ -50,15 +50,12 @@ public class Piece {
 				//if the piece is not headed out-of-bounds, continue looking for destinations
 				//if we are NOT on the 1st col headed left, or the 8th col headed right, then 
 				//  we are not headed out-of-bounds, so continue looking for destinations
-				//System.out.println(allSquares.indexOf(currentSquare) + "\t" + column + "\t" + is_headed_left + "\t" + is_headed_right);
 				if(!((column == 0 && (is_headed_left)) || (column == 7 && is_headed_right)))
 				{
 					JToggleButton nextSquare = allSquares.get(allSquares.indexOf(currentSquare)+nextSquareCalculation);
-					//System.out.println(allSquares.indexOf(currentSquare) + "\t" + allSquares.indexOf(nextSquare));
 					if(nextSquare.getForeground() == opponentColour)
 					{
 						possibleDests.add(nextSquare);
-						//System.out.println("ADDED1:" + nextSquare.second);
 						//the piece won't be able to go to any square beyond this one because 
 						//  would have to take the piece on this square, which ends the turn
 						break;
@@ -66,7 +63,6 @@ public class Piece {
 					if(nextSquare.getIcon() == null)
 					{
 						possibleDests.add(nextSquare);
-						//System.out.println("ADDED2:" + nextSquare.second);
 						currentSquare = nextSquare; 
 					}
 					//if the square isn't empty or has an opponent piece, then it must have a same-colour piece,
@@ -139,9 +135,9 @@ public class Piece {
 	 * find which piece is on the given square by iterating the list of pieces and  
 	 * searching for the square that is equal to the location of the piece.
 	 */
-	public static Piece findPiece(ArrayList<Piece> allPieces, JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
+	public static Piece findPiece(JToggleButton srcSquare) //(https://stackoverflow.com/a/17526663/8042538)
 	{
-		for(Piece p : allPieces)
+		for(Piece p : GameEnvironment.getAllPieces())
 		{
 			if(p.getPieceLocation().equals(srcSquare))
 			{
@@ -156,25 +152,49 @@ public class Piece {
 	 * Given a source square and a destination square, moves the piece on the source square
 	 * to the destination square.
 	 */
-	public static void movePiece(JToggleButton srcSquare, JToggleButton destSquare)
+	public static void movePiece(JToggleButton srcSquare, JToggleButton destSquare, ArrayList<Piece> opponentPieces)
 	{
 		System.out.println("movePiece");
-		//System.out.println(BoardWindow.getAllSquares().indexOf(srcSquare) + "\t" + BoardWindow.getAllSquares().indexOf(destSquare));
 		
 		//remove the piece from the source square
-		Piece piece = Piece.findPiece(GameEnvironment.getAllPieces(), srcSquare);
+		Piece piece = Piece.findPiece(srcSquare);
+		System.out.println("PIECE.PIECEICON1:\t" + piece.pieceIcon);
 		srcSquare.setIcon(null);
 		srcSquare.setForeground(null);
+		System.out.println("PIECE.PIECEICON2:\t" + piece.pieceIcon);
+		
+		//if the destination square had a piece on it, remove that piece from the opponent's list of pieces
+		System.out.println(Piece.findPiece(destSquare));
+		Piece opponentPiece = Piece.findPiece(destSquare);
+		if(opponentPiece != null)
+		{
+			opponentPieces.remove(opponentPiece);
+			GameEnvironment.getAllPieces().remove(opponentPiece);
+			//System.out.println(opponentPieces.size());
+			System.out.println(GameEnvironment.getAllPieces().size());
+			System.out.println(GameEnvironment.getWhitePieces().size());
+			System.out.println(GameEnvironment.getBlackPieces().size());
+			System.out.println(opponentPieces.size());
+		}
 		
 		//put it on the destination square
-		BoardWindow.setSquareText(destSquare, piece.pieceType, piece.pieceColour);
+		System.out.println("PIECE.PIECEICON3:\t" + piece.pieceIcon);
+		BoardWindow.setSquareText(destSquare, piece.pieceIcon, piece.pieceColour);
+		//System.out.println(destSquare + "\t" + piece.pieceIcon + "\t" + piece.pieceColour);
+		System.out.println(piece.pieceColour);
 		piece.setLocation(destSquare);
 		
 		//change the background colour of the destination square to be the right colour (not green)
-		BoardWindow.setSquareToOriginalColour(destSquare);
+		//BoardWindow.setSquareToOriginalColour(destSquare); //TODO: uncomment
+		
+		System.out.println(GameEnvironment.getBlackPieces().size());
+		
+		//System.out.println("PIECE ON THE SQ:\t" + Piece.findPiece(destSquare).getPieceColour());
+		//System.out.println("COM MOVE 2:\t" + BoardWindow.getSrcSquare().getIcon() + "\t" + BoardWindow.getDestSquare().getIcon());
+		//System.out.println(piece.pieceColour);
 		
 		
-		//==== the following lines only make a difference during the human's turn ====
+		//==== this section only makes a difference during the human's turn ====
 		//iterate the green squares and set their background colours back to their original colour
 		ArrayList<JToggleButton> greenSquares = BoardWindow.getValidDests();
 		for(int i = 0; i < greenSquares.size(); i++)
@@ -183,7 +203,7 @@ public class Piece {
 			BoardWindow.setSquareToOriginalColour(square);
 		}
 		
-		//unselect the source button and destination button
+		//unselect the source button and destination button to get ready for the next move
 		srcSquare.setSelected(false);
 		destSquare.setSelected(false);
 		srcSquare.setEnabled(false);
@@ -195,11 +215,10 @@ public class Piece {
 	
 	
 
-
 	public Color getPieceColour() {
 		return pieceColour;}
-	public ImageIcon getPieceType() {
-		return pieceType;}
+	public ImageIcon getPieceIcon() {
+		return pieceIcon;}
 	public JToggleButton getPieceLocation() {
 		return location;}
 	
