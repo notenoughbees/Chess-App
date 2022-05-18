@@ -158,43 +158,25 @@ public class Piece {
 		
 		//remove the piece from the source square
 		Piece piece = Piece.findPiece(srcSquare);
-		System.out.println("PIECE.PIECEICON1:\t" + piece.pieceIcon);
 		srcSquare.setIcon(null);
 		srcSquare.setForeground(null);
-		System.out.println("PIECE.PIECEICON2:\t" + piece.pieceIcon);
 		
 		//if the destination square had a piece on it, remove that piece from the opponent's list of pieces
-		System.out.println(Piece.findPiece(destSquare));
 		Piece opponentPiece = Piece.findPiece(destSquare);
 		if(opponentPiece != null)
 		{
 			opponentPieces.remove(opponentPiece);
 			GameEnvironment.getAllPieces().remove(opponentPiece);
-			//System.out.println(opponentPieces.size());
-			System.out.println(GameEnvironment.getAllPieces().size());
-			System.out.println(GameEnvironment.getWhitePieces().size());
-			System.out.println(GameEnvironment.getBlackPieces().size());
-			System.out.println(opponentPieces.size());
 		}
 		
 		//put it on the destination square
-		System.out.println("PIECE.PIECEICON3:\t" + piece.pieceIcon);
 		BoardWindow.setSquareText(destSquare, piece.pieceIcon, piece.pieceColour);
-		//System.out.println(destSquare + "\t" + piece.pieceIcon + "\t" + piece.pieceColour);
-		System.out.println(piece.pieceColour);
 		piece.setLocation(destSquare);
-		
-		//change the background colour of the destination square to be the right colour (not green)
-		//BoardWindow.setSquareToOriginalColour(destSquare); //TODO: uncomment
-		
-		System.out.println(GameEnvironment.getBlackPieces().size());
-		
-		//System.out.println("PIECE ON THE SQ:\t" + Piece.findPiece(destSquare).getPieceColour());
-		//System.out.println("COM MOVE 2:\t" + BoardWindow.getSrcSquare().getIcon() + "\t" + BoardWindow.getDestSquare().getIcon());
-		//System.out.println(piece.pieceColour);
 		
 		
 		//==== this section only makes a difference during the human's turn ====
+//		//set the (blue) source square's background colour back to its original colour
+//		BoardWindow.setSquareToOriginalColour(srcSquare);
 		//iterate the green squares and set their background colours back to their original colour
 		ArrayList<JToggleButton> greenSquares = BoardWindow.getValidDests();
 		for(int i = 0; i < greenSquares.size(); i++)
@@ -203,12 +185,16 @@ public class Piece {
 			BoardWindow.setSquareToOriginalColour(square);
 		}
 		
+		
 		//unselect the source button and destination button to get ready for the next move
+		System.out.println(srcSquare.isSelected());
 		srcSquare.setSelected(false);
 		destSquare.setSelected(false);
+		System.out.println(srcSquare.isSelected());
+		//disable the source square because it will no longer have one of our pieces on it, so cannot be clicked
 		srcSquare.setEnabled(false);
-		destSquare.setEnabled(false);
-		
+		System.out.println(srcSquare.getText() + " is now unselected.");
+		srcSquare.setText("UNSELECTED");
 		
 	}
 	

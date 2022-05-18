@@ -4,11 +4,15 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -22,12 +26,14 @@ import java.util.HashMap;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
+import javax.swing.JToolBar;
 
 public class BoardWindow {
 	//initialise instance variables
-	private JFrame frmMaster;
-	private static JPanel panelBoard = new JPanel();
-	private static JTextArea movesHistory = new JTextArea();
+	private JFrame masterFrm;
+	private static JMenuBar menuBar = new JMenuBar();
+	private static JPanel innerBoardPanel = new JPanel();
+	private static JTextArea movesTextArea = new JTextArea();
 	private static JToggleButton a8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton b8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
 	private static JToggleButton c8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
@@ -121,6 +127,9 @@ public class BoardWindow {
 	
 	private static ArrayList<JToggleButton> validDests = new ArrayList<>();
 	
+	//menu options
+	private Boolean doBlood = false;
+	
 	
 	/**
 	 * Launch the application.
@@ -130,7 +139,7 @@ public class BoardWindow {
 			public void run() {
 				try {
 					BoardWindow window = new BoardWindow();
-					window.frmMaster.setVisible(true);
+					window.masterFrm.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -144,64 +153,100 @@ public class BoardWindow {
 	//constructor
 	public BoardWindow() {
 		initialize();
-		frmMaster.setVisible(true); //show the window
+		masterFrm.setVisible(true); //show the window
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		//master frame with GridBagLayout that holds the board and moves history
-		frmMaster = new JFrame();
-		frmMaster.setTitle("Chess App");
-		frmMaster.setBounds(100, 100, (70*8+70*2), 70*8);
-		frmMaster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//master frame with GridBagLayout that holds the menu bar, board, and moves history
+		masterFrm = new JFrame();
+		masterFrm.setTitle("Chess App");
+		masterFrm.setBounds(100, 100, (70*8+70*2), 70*8);
+		masterFrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gbcMaster = new GridBagLayout();
-//		gbcMaster.columnWidths = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8}; //{70, 70};
-//		gbcMaster.rowHeights = new int[]{100};
-		gbcMaster.columnWeights = new double[]{frmMaster.getWidth()/10};
-		gbcMaster.rowWeights = new double[]{frmMaster.getWidth()/10};
-		frmMaster.getContentPane().setLayout(gbcMaster);
+		gbcMaster.columnWeights = new double[]{masterFrm.getWidth()/10};
+		gbcMaster.rowWeights = new double[]{masterFrm.getWidth()/10};
+		masterFrm.getContentPane().setLayout(gbcMaster);
 		
-		//panel with GridBagLayout that gets added to frmMaster
-		JPanel boardContainer = new JPanel();
-		GridBagConstraints gbcBoardContainer = new GridBagConstraints();
-		//gbcBoardContainer.insets = new Insets(0, 0, 5, 0);
-		gbcBoardContainer.fill = GridBagConstraints.BOTH;
-		gbcBoardContainer.gridx = 0;
-		gbcBoardContainer.gridy = 0;
-		frmMaster.getContentPane().add(boardContainer, gbcBoardContainer);
-		GridBagLayout gblBoardContainer = new GridBagLayout();
-		gblBoardContainer.columnWidths = new int[]{frmMaster.getWidth()/10};
-		gblBoardContainer.rowHeights = new int[]{frmMaster.getWidth()/10};
-		gblBoardContainer.columnWeights = new double[]{frmMaster.getWidth()/10};
-		gblBoardContainer.rowWeights = new double[]{frmMaster.getWidth()/10};
 		
-//		gbcBoardContainer.weightx = 1;
-//		gbcBoardContainer.weighty = 1;
+		//menu bar that gets added to masterFrm
+		GridBagConstraints gbcMenuBar = new GridBagConstraints();
+		gbcMenuBar.gridx = 0;
+		gbcMenuBar.gridy = 0;
+		gbcMenuBar.gridwidth = 2;
+		masterFrm.add(menuBar, gbcMenuBar);
 		
-		boardContainer.setLayout(gblBoardContainer);
-		boardContainer.setPreferredSize(new Dimension(560, 560));
+		//menus
+		JMenu Appearance = new JMenu("Appearance");
+		Appearance.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		menuBar.add(Appearance);
+		JMenu Behaviour = new JMenu("Behaviour");
+		Behaviour.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		menuBar.add(Behaviour);
 		
-		//moves history text box that gets added to frmMaster
-		GridBagConstraints gbcMovesHistory = new GridBagConstraints();
-		gbcMovesHistory.fill = GridBagConstraints.VERTICAL; //make component only expand vertically if resized
-		gbcMovesHistory.gridx = 1;
-		gbcMovesHistory.gridy = 0;
-		frmMaster.getContentPane().add(movesHistory, gbcMovesHistory);
-		//vvv !!!!!!!!!!!!!!!!
-		movesHistory.setPreferredSize(new Dimension(140, 560)); //makes the text box take up a specific size even if the text in it doesn't need that much space
-//		movesHistory.setMinimumSize(new Dimension(60, 480));
+		//submenus
+		
+		//menu items
+		JMenuItem AppearanceBlood = new JMenuItem("Toggle Blood Stains");
+		AppearanceBlood.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		Appearance.add(AppearanceBlood);
+		AppearanceBlood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				doBlood = true;
+			}
+		});
+		JMenuItem BehaviourAiDelay = new JMenuItem("Configure AI Delay");
+		BehaviourAiDelay.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		Behaviour.add(BehaviourAiDelay);
+		BehaviourAiDelay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//
+			}
+		});
+		
+		
+		//moves history text box that gets added to masterFrm
+		GridBagConstraints gbcMovesTextArea = new GridBagConstraints();
+		gbcMovesTextArea.fill = GridBagConstraints.VERTICAL; //make component only expand vertically if resized
+		gbcMovesTextArea.gridx = 1;
+		gbcMovesTextArea.gridy = 1;
+		masterFrm.getContentPane().add(movesTextArea, gbcMovesTextArea);
+		movesTextArea.setPreferredSize(new Dimension(140, 560)); //makes the text box take up a specific size even if the text in it doesn't need that much space
+//		movesTextArea.setMinimumSize(new Dimension(60, 480));
+		movesTextArea.setEditable(false);
+		
+		
+		//panel with GridBagLayout that gets added to masterFrm
+		JPanel outerBoardPanel = new JPanel();
+		GridBagConstraints gbcOuterBoardPanel = new GridBagConstraints();
+		gbcOuterBoardPanel.fill = GridBagConstraints.BOTH;
+		gbcOuterBoardPanel.gridx = 0;
+		gbcOuterBoardPanel.gridy = 1;
+//		gbcOuterBoardPanel.weightx = 1;
+//		gbcOuterBoardPanel.weighty = 1;
+		masterFrm.getContentPane().add(outerBoardPanel, gbcOuterBoardPanel);
+		GridBagLayout gblOuterBoardPanel = new GridBagLayout();
+		gblOuterBoardPanel.columnWidths = new int[]{masterFrm.getWidth()/10};
+		gblOuterBoardPanel.rowHeights = new int[]{0, masterFrm.getWidth()/10};
+		gblOuterBoardPanel.columnWeights = new double[]{masterFrm.getWidth()/10};
+		gblOuterBoardPanel.rowWeights = new double[]{0.0, masterFrm.getWidth()/10};
+		outerBoardPanel.setLayout(gblOuterBoardPanel);
+		outerBoardPanel.setPreferredSize(new Dimension(560, 560));
 		
 		//panel with GridLayout that holds the buttons of the board
-		GridBagConstraints gbcPanelBoard = new GridBagConstraints();
-		gbcPanelBoard.fill = GridBagConstraints.BOTH;
-		boardContainer.add(panelBoard, gbcPanelBoard);
-		panelBoard.setLayout(new GridLayout(8, 8, 0, 0));
+		GridBagConstraints gbcInnerBoardPanel = new GridBagConstraints();
+		gbcInnerBoardPanel.gridx = 0;
+		gbcInnerBoardPanel.gridy = 1;
+		gbcInnerBoardPanel.fill = GridBagConstraints.BOTH;
+		outerBoardPanel.add(innerBoardPanel, gbcInnerBoardPanel);
+		innerBoardPanel.setLayout(new GridLayout(8, 8, 0, 0));
 		
-		frmMaster.pack();
-		frmMaster.setMinimumSize(frmMaster.getSize()); //enable this line to prevent reszing the window to be any smaller
-//		frmMaster.setMinimumSize(new Dimension(480, 480)); //do not let board squares go smaller than 60px
+		
+		masterFrm.pack();
+		masterFrm.setMinimumSize(masterFrm.getSize()); //enable this line to prevent reszing the window to be any smaller
+//		masterFrm.setMinimumSize(new Dimension(480, 480)); //do not let board squares go smaller than 60px
 		
 		
 		a8.setText("a8");
@@ -270,7 +315,7 @@ public class BoardWindow {
 		h1.setText("h1");
 	    
 		a8.setBackground(Color.WHITE);
-		panelBoard.add(a8);
+		innerBoardPanel.add(a8);
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//if the user selects this button, it must contain a white piece
@@ -289,7 +334,7 @@ public class BoardWindow {
 		});
 		
 		b8.setBackground(Color.BLACK);
-		panelBoard.add(b8);
+		innerBoardPanel.add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -304,7 +349,7 @@ public class BoardWindow {
 		});
 		
 		c8.setBackground(Color.WHITE);
-		panelBoard.add(c8);
+		innerBoardPanel.add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -319,7 +364,7 @@ public class BoardWindow {
 		});
 		
 		d8.setBackground(Color.BLACK);
-		panelBoard.add(d8);
+		innerBoardPanel.add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -334,7 +379,7 @@ public class BoardWindow {
 		});
 		
 		e8.setBackground(Color.WHITE);
-		panelBoard.add(e8);
+		innerBoardPanel.add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -349,7 +394,7 @@ public class BoardWindow {
 		});
 		
 		f8.setBackground(Color.BLACK);
-		panelBoard.add(f8);
+		innerBoardPanel.add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -364,7 +409,7 @@ public class BoardWindow {
 		});
 		
 		g8.setBackground(Color.WHITE);
-		panelBoard.add(g8);
+		innerBoardPanel.add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -379,7 +424,7 @@ public class BoardWindow {
 		});
 		
 		h8.setBackground(Color.BLACK);
-		panelBoard.add(h8);
+		innerBoardPanel.add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -394,7 +439,7 @@ public class BoardWindow {
 		});
 		
 		a7.setBackground(Color.BLACK);
-		panelBoard.add(a7);
+		innerBoardPanel.add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -409,7 +454,7 @@ public class BoardWindow {
 		});
 		
 		b7.setBackground(Color.WHITE);
-		panelBoard.add(b7);
+		innerBoardPanel.add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -424,7 +469,7 @@ public class BoardWindow {
 		});
 		
 		c7.setBackground(Color.BLACK);
-		panelBoard.add(c7);
+		innerBoardPanel.add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -439,7 +484,7 @@ public class BoardWindow {
 		});
 		
 		d7.setBackground(Color.WHITE);
-		panelBoard.add(d7);
+		innerBoardPanel.add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -454,7 +499,7 @@ public class BoardWindow {
 		});
 		
 		e7.setBackground(Color.BLACK);
-		panelBoard.add(e7);
+		innerBoardPanel.add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -469,7 +514,7 @@ public class BoardWindow {
 		});
 		
 		f7.setBackground(Color.WHITE);
-		panelBoard.add(f7);
+		innerBoardPanel.add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -484,7 +529,7 @@ public class BoardWindow {
 		});
 		
 		g7.setBackground(Color.BLACK);
-		panelBoard.add(g7);
+		innerBoardPanel.add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -499,7 +544,7 @@ public class BoardWindow {
 		});
 		
 		h7.setBackground(Color.WHITE);
-		panelBoard.add(h7);
+		innerBoardPanel.add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -514,7 +559,7 @@ public class BoardWindow {
 		});
 		
 		a6.setBackground(Color.WHITE);
-		panelBoard.add(a6);
+		innerBoardPanel.add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -529,7 +574,7 @@ public class BoardWindow {
 		});
 		
 		b6.setBackground(Color.BLACK);
-		panelBoard.add(b6);
+		innerBoardPanel.add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -544,7 +589,7 @@ public class BoardWindow {
 		});
 		
 		c6.setBackground(Color.WHITE);
-		panelBoard.add(c6);
+		innerBoardPanel.add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -559,7 +604,7 @@ public class BoardWindow {
 		});
 		
 		d6.setBackground(Color.BLACK);
-		panelBoard.add(d6);
+		innerBoardPanel.add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -574,7 +619,7 @@ public class BoardWindow {
 		});
 		
 		e6.setBackground(Color.WHITE);
-		panelBoard.add(e6);
+		innerBoardPanel.add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -589,7 +634,7 @@ public class BoardWindow {
 		});
 		
 		f6.setBackground(Color.BLACK);
-		panelBoard.add(f6);
+		innerBoardPanel.add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -604,7 +649,7 @@ public class BoardWindow {
 		});
 		
 		g6.setBackground(Color.WHITE);
-		panelBoard.add(g6);
+		innerBoardPanel.add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -619,7 +664,7 @@ public class BoardWindow {
 		});
 		
 		h6.setBackground(Color.BLACK);
-		panelBoard.add(h6);
+		innerBoardPanel.add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -634,7 +679,7 @@ public class BoardWindow {
 		});
 		
 		a5.setBackground(Color.BLACK);
-		panelBoard.add(a5);
+		innerBoardPanel.add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -649,7 +694,7 @@ public class BoardWindow {
 		});
 		
 		b5.setBackground(Color.WHITE);
-		panelBoard.add(b5);
+		innerBoardPanel.add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -664,7 +709,7 @@ public class BoardWindow {
 		});
 		
 		c5.setBackground(Color.BLACK);
-		panelBoard.add(c5);
+		innerBoardPanel.add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -679,7 +724,7 @@ public class BoardWindow {
 		});
 		
 		d5.setBackground(Color.WHITE);
-		panelBoard.add(d5);
+		innerBoardPanel.add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -694,7 +739,7 @@ public class BoardWindow {
 		});
 		
 		e5.setBackground(Color.BLACK);
-		panelBoard.add(e5);
+		innerBoardPanel.add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -709,7 +754,7 @@ public class BoardWindow {
 		});
 		
 		f5.setBackground(Color.WHITE);
-		panelBoard.add(f5);
+		innerBoardPanel.add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -724,7 +769,7 @@ public class BoardWindow {
 		});
 		
 		g5.setBackground(Color.BLACK);
-		panelBoard.add(g5);
+		innerBoardPanel.add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -739,7 +784,7 @@ public class BoardWindow {
 		});
 		
 		h5.setBackground(Color.WHITE);
-		panelBoard.add(h5);
+		innerBoardPanel.add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -754,7 +799,7 @@ public class BoardWindow {
 		});
 		
 		a4.setBackground(Color.WHITE);
-		panelBoard.add(a4);
+		innerBoardPanel.add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -769,7 +814,7 @@ public class BoardWindow {
 		});
 		
 		b4.setBackground(Color.BLACK);
-		panelBoard.add(b4);
+		innerBoardPanel.add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -784,7 +829,7 @@ public class BoardWindow {
 		});
 		
 		c4.setBackground(Color.WHITE);
-		panelBoard.add(c4);
+		innerBoardPanel.add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -799,7 +844,7 @@ public class BoardWindow {
 		});
 		
 		d4.setBackground(Color.BLACK);
-		panelBoard.add(d4);
+		innerBoardPanel.add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -814,7 +859,7 @@ public class BoardWindow {
 		});
 		
 		e4.setBackground(Color.WHITE);
-		panelBoard.add(e4);
+		innerBoardPanel.add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -829,7 +874,7 @@ public class BoardWindow {
 		});
 		
 		f4.setBackground(Color.BLACK);
-		panelBoard.add(f4);
+		innerBoardPanel.add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -844,7 +889,7 @@ public class BoardWindow {
 		});
 		
 		g4.setBackground(Color.WHITE);
-		panelBoard.add(g4);
+		innerBoardPanel.add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -859,7 +904,7 @@ public class BoardWindow {
 		});
 		
 		h4.setBackground(Color.BLACK);
-		panelBoard.add(h4);
+		innerBoardPanel.add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -874,7 +919,7 @@ public class BoardWindow {
 		});
 		
 		a3.setBackground(Color.BLACK);
-		panelBoard.add(a3);
+		innerBoardPanel.add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -889,7 +934,7 @@ public class BoardWindow {
 		});
 		
 		b3.setBackground(Color.WHITE);
-		panelBoard.add(b3);
+		innerBoardPanel.add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -904,7 +949,7 @@ public class BoardWindow {
 		});
 		
 		c3.setBackground(Color.BLACK);
-		panelBoard.add(c3);
+		innerBoardPanel.add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -919,7 +964,7 @@ public class BoardWindow {
 		});
 		
 		d3.setBackground(Color.WHITE);
-		panelBoard.add(d3);
+		innerBoardPanel.add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -934,7 +979,7 @@ public class BoardWindow {
 		});
 		
 		e3.setBackground(Color.BLACK);
-		panelBoard.add(e3);
+		innerBoardPanel.add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -949,7 +994,7 @@ public class BoardWindow {
 		});
 		
 		f3.setBackground(Color.WHITE);
-		panelBoard.add(f3);
+		innerBoardPanel.add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -964,7 +1009,7 @@ public class BoardWindow {
 		});
 		
 		g3.setBackground(Color.BLACK);
-		panelBoard.add(g3);
+		innerBoardPanel.add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -979,7 +1024,7 @@ public class BoardWindow {
 		});
 		
 		h3.setBackground(Color.WHITE);
-		panelBoard.add(h3);
+		innerBoardPanel.add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -994,7 +1039,7 @@ public class BoardWindow {
 		});
 		
 		a2.setBackground(Color.WHITE);
-		panelBoard.add(a2);
+		innerBoardPanel.add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println(a2.isForegroundSet());
@@ -1014,7 +1059,7 @@ public class BoardWindow {
 		});
 		
 		b2.setBackground(Color.BLACK);
-		panelBoard.add(b2);
+		innerBoardPanel.add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1029,7 +1074,7 @@ public class BoardWindow {
 		});
 		
 		c2.setBackground(Color.WHITE);
-		panelBoard.add(c2);
+		innerBoardPanel.add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1044,7 +1089,7 @@ public class BoardWindow {
 		});
 		
 		d2.setBackground(Color.BLACK);
-		panelBoard.add(d2);
+		innerBoardPanel.add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1059,7 +1104,7 @@ public class BoardWindow {
 		});
 		
 		e2.setBackground(Color.WHITE);
-		panelBoard.add(e2);
+		innerBoardPanel.add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1074,7 +1119,7 @@ public class BoardWindow {
 		});
 		
 		f2.setBackground(Color.BLACK);
-		panelBoard.add(f2);
+		innerBoardPanel.add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1089,7 +1134,7 @@ public class BoardWindow {
 		});
 		
 		g2.setBackground(Color.WHITE);
-		panelBoard.add(g2);
+		innerBoardPanel.add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1104,7 +1149,7 @@ public class BoardWindow {
 		});
 		
 		h2.setBackground(Color.BLACK);
-		panelBoard.add(h2);
+		innerBoardPanel.add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1119,7 +1164,7 @@ public class BoardWindow {
 		});
 		
 		a1.setBackground(Color.BLACK);
-		panelBoard.add(a1);
+		innerBoardPanel.add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1134,7 +1179,7 @@ public class BoardWindow {
 		});
 		
 		b1.setBackground(Color.WHITE);
-		panelBoard.add(b1);
+		innerBoardPanel.add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1149,7 +1194,7 @@ public class BoardWindow {
 		});
 		
 		c1.setBackground(Color.BLACK);
-		panelBoard.add(c1);
+		innerBoardPanel.add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1164,7 +1209,7 @@ public class BoardWindow {
 		});
 		
 		d1.setBackground(Color.WHITE);
-		panelBoard.add(d1);
+		innerBoardPanel.add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1179,7 +1224,7 @@ public class BoardWindow {
 		});
 		
 		e1.setBackground(Color.BLACK);
-		panelBoard.add(e1);
+		innerBoardPanel.add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1194,7 +1239,7 @@ public class BoardWindow {
 		});
 		
 		f1.setBackground(Color.WHITE);
-		panelBoard.add(f1);
+		innerBoardPanel.add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1209,7 +1254,7 @@ public class BoardWindow {
 		});
 		
 		g1.setBackground(Color.BLACK);
-		panelBoard.add(g1);
+		innerBoardPanel.add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(srcSquare == null) {
@@ -1224,7 +1269,7 @@ public class BoardWindow {
 		});
 		
 		h1.setBackground(Color.WHITE);
-		panelBoard.add(h1);
+		innerBoardPanel.add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -1507,7 +1552,7 @@ public class BoardWindow {
 	public static ArrayList<JToggleButton> getValidDests() {
 		return validDests;}
 	public static JTextArea getMovesHistory() {
-		return movesHistory;}
+		return movesTextArea;}
 	public static JToggleButton getSrcSquare() {
 		if(srcSquare != null)
 		{

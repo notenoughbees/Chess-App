@@ -4,25 +4,14 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalButtonUI;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.metal.OceanTheme;
 
 public class GameEnvironment
 {
-	final static String LOOKANDFEEL = "Motif"; //Motif GTK System
-	final static String THEME = "Ocean";
-	
 	public final static ImageIcon WHITE_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_pawn_48px.png"));
 	public final static ImageIcon WHITE_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_knight_48px.png"));
 	public final static ImageIcon WHITE_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_bishop_48px.png"));
@@ -310,130 +299,6 @@ public class GameEnvironment
 	 */
 	public static void main(String[] args)
 	{	
-		//use the UI Manager to change the default background colour of a toggle button when toggled on
-		UIManager.put("ToggleButton.select", GameEnvironment.SELECTED_COLOUR);
-		
-
-
-		
-		
-		
-        String lookAndFeel = null;
-        
-        if (LOOKANDFEEL != null) {
-            if (LOOKANDFEEL.equals("Metal")) {
-                lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
-              //  an alternative way to set the Metal L&F is to replace the 
-              // previous line with:
-              // lookAndFeel = "javax.swing.plaf.metal.MetalLookAndFeel";
-                
-            }
-            
-            else if (LOOKANDFEEL.equals("System")) {
-                lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-            } 
-            
-            else if (LOOKANDFEEL.equals("Motif")) {
-                lookAndFeel = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-            } 
-            
-            else if (LOOKANDFEEL.equals("GTK")) { 
-                lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
-            } 
-            
-            else {
-                System.err.println("Unexpected value of LOOKANDFEEL specified: "
-                                   + LOOKANDFEEL);
-                lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
-            }
-
-            try {
-                UIManager.setLookAndFeel(lookAndFeel);
-                
-                // If L&F = "Metal", set the theme
-                if (LOOKANDFEEL.equals("Metal")) {
-                  if (THEME.equals("DefaultMetal"))
-                     MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
-                  else if (THEME.equals("Ocean"))
-                     MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-                  //else
-                     //MetalLookAndFeel.setCurrentTheme(new TestTheme());
-                     
-                  UIManager.setLookAndFeel(new MetalLookAndFeel()); 
-                }	
-                	
-                	
-                
-            } 
-            
-            catch (ClassNotFoundException e) {
-                System.err.println("Couldn't find class for specified look and feel:"
-                                   + lookAndFeel);
-                System.err.println("Did you include the L&F library in the class path?");
-                System.err.println("Using the default look and feel.");
-            } 
-            
-            catch (UnsupportedLookAndFeelException e) {
-                System.err.println("Can't use the specified look and feel ("
-                                   + lookAndFeel
-                                   + ") on this platform.");
-                System.err.println("Using the default look and feel.");
-            } 
-            
-            catch (Exception e) {
-                System.err.println("Couldn't get specified look and feel ("
-                                   + lookAndFeel
-                                   + "), for some reason.");
-                System.err.println("Using the default look and feel.");
-                e.printStackTrace();
-            }
-        }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		for(int i = 0; i < whitePieces.size(); i++)
-		{
-			Piece piece = whitePieces.get(i);
-			JToggleButton btn = piece.getPieceLocation();
-			Color pieceColour = piece.getPieceColour();
-			if(pieceColour == WHITE_PIECE_COLOUR)
-			{
-				btn.setUI(new MetalButtonUI()
-				{
-					protected Color getDisabledTextColor()
-					{
-						return Color.CYAN;
-					}
-				});
-			}
-			if(pieceColour == BLACK_PIECE_COLOUR)
-			{
-				btn.setUI(new MetalButtonUI()
-				{
-					protected Color getDisabledTextColor()
-					{
-						return Color.MAGENTA;
-					}
-				});
-			}
-			
-		}
-		
-		
 		openBoardWindow();
 		Pawn whitePawn1 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getA2());
 		Pawn whitePawn2 = new Pawn(WHITE_PIECE_COLOUR, WHITE_PAWN_ICON, BoardWindow.getB2());
@@ -470,10 +335,9 @@ public class GameEnvironment
 		Rook blackRook2 = new Rook(BLACK_PIECE_COLOUR, BLACK_ROOK_ICON, BoardWindow.getH8());
 		Queen blackQueen = new Queen(BLACK_PIECE_COLOUR, BLACK_QUEEN_ICON, BoardWindow.getD8());
 		King blackKing = new King(BLACK_PIECE_COLOUR, BLACK_KING_ICON, BoardWindow.getE8());
-		//Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
-		//		blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
-		//		blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
-		Collections.addAll(blackPieces, blackPawn1);
+		Collections.addAll(blackPieces, blackPawn1, blackPawn2, blackPawn3, blackPawn4,
+				blackPawn5, blackPawn6, blackPawn7, blackPawn8, blackKnight1, blackKnight2, 
+				blackBishop1, blackBishop2, blackRook1, blackRook2, blackQueen, blackKing);
 		Collections.addAll(allPieces, whitePawn1, whitePawn2, whitePawn3, whitePawn4, 
 				whitePawn5, whitePawn6, whitePawn7, whitePawn8, whiteKnight1, whiteKnight2, 
 				whiteBishop1, whiteBishop2, whiteRook1, whiteRook2, whiteQueen, whiteKing,
