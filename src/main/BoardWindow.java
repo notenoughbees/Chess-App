@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -26,7 +25,6 @@ import java.util.HashMap;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Insets;
-import javax.swing.JToolBar;
 
 public class BoardWindow {
 	//initialise instance variables
@@ -34,70 +32,70 @@ public class BoardWindow {
 	private static JMenuBar menuBar = new JMenuBar();
 	private static JPanel innerBoardPanel = new JPanel();
 	private static JTextArea movesTextArea = new JTextArea();
-	private static JToggleButton a8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h8 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton a7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h7 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton a6 = new JToggleButton("");
-	private static JToggleButton b6 = new JToggleButton("");
-	private static JToggleButton c6 = new JToggleButton("");
-	private static JToggleButton d6 = new JToggleButton("");
-	private static JToggleButton e6 = new JToggleButton("");
-	private static JToggleButton f6 = new JToggleButton("");
-	private static JToggleButton g6 = new JToggleButton("");
-	private static JToggleButton h6 = new JToggleButton("");
-	private static JToggleButton a5 = new JToggleButton("");
-	private static JToggleButton b5 = new JToggleButton("");
-	private static JToggleButton c5 = new JToggleButton("");
-	private static JToggleButton d5 = new JToggleButton("");
-	private static JToggleButton e5 = new JToggleButton("");
-	private static JToggleButton f5 = new JToggleButton("");
-	private static JToggleButton g5 = new JToggleButton("");
-	private static JToggleButton h5 = new JToggleButton("");
-	private static JToggleButton a4 = new JToggleButton("");
-	private static JToggleButton b4 = new JToggleButton("");
-	private static JToggleButton c4 = new JToggleButton("");
-	private static JToggleButton d4 = new JToggleButton("");
-	private static JToggleButton e4 = new JToggleButton("");
-	private static JToggleButton f4 = new JToggleButton("");
-	private static JToggleButton g4 = new JToggleButton("");
-	private static JToggleButton h4 = new JToggleButton("");
-	private static JToggleButton a3 = new JToggleButton("");
-	private static JToggleButton b3 = new JToggleButton("");
-	private static JToggleButton c3 = new JToggleButton("");
-	private static JToggleButton d3 = new JToggleButton("");
-	private static JToggleButton e3 = new JToggleButton("");
-	private static JToggleButton f3 = new JToggleButton("");
-	private static JToggleButton g3 = new JToggleButton("");
-	private static JToggleButton h3 = new JToggleButton("");
-	private static JToggleButton a2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h2 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton a1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton b1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton c1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton d1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton e1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton f1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton g1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
-	private static JToggleButton h1 = new JToggleButton(GameEnvironment.WHITE_PAWN_ICON);
+	private static JToggleButton a8 = new JToggleButton();
+	private static JToggleButton b8 = new JToggleButton();
+	private static JToggleButton c8 = new JToggleButton();
+	private static JToggleButton d8 = new JToggleButton();
+	private static JToggleButton e8 = new JToggleButton();
+	private static JToggleButton f8 = new JToggleButton();
+	private static JToggleButton g8 = new JToggleButton();
+	private static JToggleButton h8 = new JToggleButton();
+	private static JToggleButton a7 = new JToggleButton();
+	private static JToggleButton b7 = new JToggleButton();
+	private static JToggleButton c7 = new JToggleButton();
+	private static JToggleButton d7 = new JToggleButton();
+	private static JToggleButton e7 = new JToggleButton();
+	private static JToggleButton f7 = new JToggleButton();
+	private static JToggleButton g7 = new JToggleButton();
+	private static JToggleButton h7 = new JToggleButton();
+	private static JToggleButton a6 = new JToggleButton();
+	private static JToggleButton b6 = new JToggleButton();
+	private static JToggleButton c6 = new JToggleButton();
+	private static JToggleButton d6 = new JToggleButton();
+	private static JToggleButton e6 = new JToggleButton();
+	private static JToggleButton f6 = new JToggleButton();
+	private static JToggleButton g6 = new JToggleButton();
+	private static JToggleButton h6 = new JToggleButton();
+	private static JToggleButton a5 = new JToggleButton();
+	private static JToggleButton b5 = new JToggleButton();
+	private static JToggleButton c5 = new JToggleButton();
+	private static JToggleButton d5 = new JToggleButton();
+	private static JToggleButton e5 = new JToggleButton();
+	private static JToggleButton f5 = new JToggleButton();
+	private static JToggleButton g5 = new JToggleButton();
+	private static JToggleButton h5 = new JToggleButton();
+	private static JToggleButton a4 = new JToggleButton();
+	private static JToggleButton b4 = new JToggleButton();
+	private static JToggleButton c4 = new JToggleButton();
+	private static JToggleButton d4 = new JToggleButton();
+	private static JToggleButton e4 = new JToggleButton();
+	private static JToggleButton f4 = new JToggleButton();
+	private static JToggleButton g4 = new JToggleButton();
+	private static JToggleButton h4 = new JToggleButton();
+	private static JToggleButton a3 = new JToggleButton();
+	private static JToggleButton b3 = new JToggleButton();
+	private static JToggleButton c3 = new JToggleButton();
+	private static JToggleButton d3 = new JToggleButton();
+	private static JToggleButton e3 = new JToggleButton();
+	private static JToggleButton f3 = new JToggleButton();
+	private static JToggleButton g3 = new JToggleButton();
+	private static JToggleButton h3 = new JToggleButton();
+	private static JToggleButton a2 = new JToggleButton();
+	private static JToggleButton b2 = new JToggleButton();
+	private static JToggleButton c2 = new JToggleButton();
+	private static JToggleButton d2 = new JToggleButton();
+	private static JToggleButton e2 = new JToggleButton();
+	private static JToggleButton f2 = new JToggleButton();
+	private static JToggleButton g2 = new JToggleButton();
+	private static JToggleButton h2 = new JToggleButton();
+	private static JToggleButton a1 = new JToggleButton();
+	private static JToggleButton b1 = new JToggleButton();
+	private static JToggleButton c1 = new JToggleButton();
+	private static JToggleButton d1 = new JToggleButton();
+	private static JToggleButton e1 = new JToggleButton();
+	private static JToggleButton f1 = new JToggleButton();
+	private static JToggleButton g1 = new JToggleButton();
+	private static JToggleButton h1 = new JToggleButton();
 	public static ArrayList<JToggleButton> allSquares = new ArrayList<>();
 	public static HashMap<JToggleButton, String> squaresMap = new HashMap<>();
 	public static final int BOARD_SIZE = 8;
@@ -249,72 +247,10 @@ public class BoardWindow {
 //		masterFrm.setMinimumSize(new Dimension(480, 480)); //do not let board squares go smaller than 60px
 		
 		
-		a8.setText("a8");
-		b8.setText("b8");
-		c8.setText("c8");
-		d8.setText("d8");
-		e8.setText("e8");
-		f8.setText("f8");
-		g8.setText("g8");
-		h8.setText("h8");
-		a7.setText("a7");
-		b7.setText("b7");
-		c7.setText("c7");
-		d7.setText("d7");
-		e7.setText("e7");
-		f7.setText("f7");
-		g7.setText("g7");
-		h7.setText("h7");
-		a6.setText("a6");
-		b6.setText("b6");
-		c6.setText("c6");
-		d6.setText("d6");
-		e6.setText("e6");
-		f6.setText("f6");
-		g6.setText("g6");
-		h6.setText("h6");
-		a5.setText("a5");
-		b5.setText("b5");
-		c5.setText("c5");
-		d5.setText("d5");
-		e5.setText("e5");
-		f5.setText("f5");
-		g5.setText("g5");
-		h5.setText("h5");
-		a4.setText("a4");
-		b4.setText("b4");
-		c4.setText("c4");
-		d4.setText("d4");
-		e4.setText("e4");
-		f4.setText("f4");
-		g4.setText("g4");
-		h4.setText("h4");
-		a3.setText("a3");
-		b3.setText("b3");
-		c3.setText("c3");
-		d3.setText("d3");
-		e3.setText("e3");
-		f3.setText("f3");
-		g3.setText("g3");
-		h3.setText("h3");
-		a2.setText("a2");
-		b2.setText("b2");
-		c2.setText("c2");
-		d2.setText("d2");
-		e2.setText("e2");
-		f2.setText("f2");
-		g2.setText("g2");
-		h2.setText("h2");
-		a1.setText("a1");
-		b1.setText("b1");
-		c1.setText("c1");
-		d1.setText("d1");
-		e1.setText("e1");
-		f1.setText("f1");
-		g1.setText("g1");
-		h1.setText("h1");
 	    
-		a8.setBackground(Color.WHITE);
+		a8.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		a8.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		a8.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(a8);
 		a8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -333,7 +269,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b8.setBackground(Color.BLACK);
+		b8.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		b8.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(b8);
 		b8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -348,7 +285,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c8.setBackground(Color.WHITE);
+		c8.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		c8.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(c8);
 		c8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -363,7 +301,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d8.setBackground(Color.BLACK);
+		d8.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		d8.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(d8);
 		d8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -378,7 +317,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e8.setBackground(Color.WHITE);
+		e8.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		e8.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(e8);
 		e8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -393,7 +333,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f8.setBackground(Color.BLACK);
+		f8.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		f8.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(f8);
 		f8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -408,7 +349,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g8.setBackground(Color.WHITE);
+		g8.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		g8.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(g8);
 		g8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -423,7 +365,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h8.setBackground(Color.BLACK);
+		h8.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		h8.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(h8);
 		h8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -438,7 +381,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a7.setBackground(Color.BLACK);
+		a7.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		a7.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(a7);
 		a7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -453,7 +397,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b7.setBackground(Color.WHITE);
+		b7.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		b7.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(b7);
 		b7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -468,7 +413,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c7.setBackground(Color.BLACK);
+		c7.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		c7.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(c7);
 		c7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -483,7 +429,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d7.setBackground(Color.WHITE);
+		d7.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		d7.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(d7);
 		d7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -498,7 +445,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e7.setBackground(Color.BLACK);
+		e7.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		e7.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(e7);
 		e7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -513,7 +461,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f7.setBackground(Color.WHITE);
+		f7.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		f7.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(f7);
 		f7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -528,7 +477,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g7.setBackground(Color.BLACK);
+		g7.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		g7.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(g7);
 		g7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -543,7 +493,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h7.setBackground(Color.WHITE);
+		h7.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		h7.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(h7);
 		h7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -558,7 +509,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a6.setBackground(Color.WHITE);
+		a6.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		a6.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(a6);
 		a6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -573,7 +525,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b6.setBackground(Color.BLACK);
+		b6.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		b6.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(b6);
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -588,7 +541,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c6.setBackground(Color.WHITE);
+		c6.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		c6.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(c6);
 		c6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -603,7 +557,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d6.setBackground(Color.BLACK);
+		d6.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		d6.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(d6);
 		d6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -618,7 +573,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e6.setBackground(Color.WHITE);
+		e6.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		e6.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(e6);
 		e6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -633,7 +589,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f6.setBackground(Color.BLACK);
+		f6.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		f6.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(f6);
 		f6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -648,7 +605,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g6.setBackground(Color.WHITE);
+		g6.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		g6.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(g6);
 		g6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -663,7 +621,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h6.setBackground(Color.BLACK);
+		h6.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		h6.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(h6);
 		h6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -678,7 +637,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a5.setBackground(Color.BLACK);
+		a5.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		a5.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(a5);
 		a5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -693,7 +653,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b5.setBackground(Color.WHITE);
+		b5.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		b5.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(b5);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -708,7 +669,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c5.setBackground(Color.BLACK);
+		c5.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		c5.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(c5);
 		c5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -723,7 +685,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d5.setBackground(Color.WHITE);
+		d5.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		d5.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(d5);
 		d5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -738,7 +701,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e5.setBackground(Color.BLACK);
+		e5.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		e5.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(e5);
 		e5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -753,7 +717,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f5.setBackground(Color.WHITE);
+		f5.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		f5.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(f5);
 		f5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -768,7 +733,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g5.setBackground(Color.BLACK);
+		g5.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		g5.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(g5);
 		g5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -783,7 +749,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h5.setBackground(Color.WHITE);
+		h5.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		h5.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(h5);
 		h5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -798,7 +765,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a4.setBackground(Color.WHITE);
+		a4.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		a4.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(a4);
 		a4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -813,7 +781,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b4.setBackground(Color.BLACK);
+		b4.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		b4.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(b4);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -828,7 +797,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c4.setBackground(Color.WHITE);
+		c4.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		c4.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(c4);
 		c4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -843,7 +813,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d4.setBackground(Color.BLACK);
+		d4.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		d4.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(d4);
 		d4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -858,7 +829,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e4.setBackground(Color.WHITE);
+		e4.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		e4.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(e4);
 		e4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -873,7 +845,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f4.setBackground(Color.BLACK);
+		f4.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		f4.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(f4);
 		f4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -888,7 +861,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g4.setBackground(Color.WHITE);
+		g4.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		g4.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(g4);
 		g4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -903,7 +877,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h4.setBackground(Color.BLACK);
+		h4.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		h4.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(h4);
 		h4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -918,7 +893,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a3.setBackground(Color.BLACK);
+		a3.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		a3.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(a3);
 		a3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -933,7 +909,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b3.setBackground(Color.WHITE);
+		b3.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		b3.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(b3);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -948,7 +925,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c3.setBackground(Color.BLACK);
+		c3.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		c3.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(c3);
 		c3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -963,7 +941,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d3.setBackground(Color.WHITE);
+		d3.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		d3.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(d3);
 		d3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -978,7 +957,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e3.setBackground(Color.BLACK);
+		e3.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		e3.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(e3);
 		e3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -993,7 +973,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f3.setBackground(Color.WHITE);
+		f3.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		f3.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(f3);
 		f3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1008,7 +989,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g3.setBackground(Color.BLACK);
+		g3.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		g3.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(g3);
 		g3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1023,7 +1005,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h3.setBackground(Color.WHITE);
+		h3.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		h3.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(h3);
 		h3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1038,15 +1021,11 @@ public class BoardWindow {
 			}
 		});
 		
-		a2.setBackground(Color.WHITE);
+		a2.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		a2.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(a2);
 		a2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println(a2.isForegroundSet());
-				//System.out.println(a2.isBackgroundSet());
-				//System.out.println(a2.getForeground());
-				//System.out.println(a2.getBackground());
-				//a2.setBackground(GameEnvironment.SELECTED_COLOUR); //TODO
 				if(srcSquare == null) {
 					setSrcSquare(a2);
 					findValidDestsFromButton(a2);}
@@ -1058,7 +1037,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b2.setBackground(Color.BLACK);
+		b2.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		b2.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(b2);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1073,7 +1053,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c2.setBackground(Color.WHITE);
+		c2.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		c2.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(c2);
 		c2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1088,7 +1069,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d2.setBackground(Color.BLACK);
+		d2.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		d2.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(d2);
 		d2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1103,7 +1085,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e2.setBackground(Color.WHITE);
+		e2.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		e2.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(e2);
 		e2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1118,7 +1101,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f2.setBackground(Color.BLACK);
+		f2.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		f2.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(f2);
 		f2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1133,7 +1117,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g2.setBackground(Color.WHITE);
+		g2.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		g2.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(g2);
 		g2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1148,7 +1133,8 @@ public class BoardWindow {
 			}
 		});
 		
-		h2.setBackground(Color.BLACK);
+		h2.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		h2.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(h2);
 		h2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1163,7 +1149,8 @@ public class BoardWindow {
 			}
 		});
 		
-		a1.setBackground(Color.BLACK);
+		a1.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		a1.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(a1);
 		a1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1178,7 +1165,8 @@ public class BoardWindow {
 			}
 		});
 		
-		b1.setBackground(Color.WHITE);
+		b1.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		b1.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(b1);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1193,7 +1181,8 @@ public class BoardWindow {
 			}
 		});
 		
-		c1.setBackground(Color.BLACK);
+		c1.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		c1.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(c1);
 		c1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1208,7 +1197,8 @@ public class BoardWindow {
 			}
 		});
 		
-		d1.setBackground(Color.WHITE);
+		d1.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		d1.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(d1);
 		d1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1223,7 +1213,8 @@ public class BoardWindow {
 			}
 		});
 		
-		e1.setBackground(Color.BLACK);
+		e1.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		e1.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(e1);
 		e1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1238,7 +1229,8 @@ public class BoardWindow {
 			}
 		});
 		
-		f1.setBackground(Color.WHITE);
+		f1.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		f1.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(f1);
 		f1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1253,7 +1245,8 @@ public class BoardWindow {
 			}
 		});
 		
-		g1.setBackground(Color.BLACK);
+		g1.setIcon(GameEnvironment.BLACK_SQUARE_ICON);
+		g1.setDisabledIcon(GameEnvironment.BLACK_SQUARE_ICON);
 		innerBoardPanel.add(g1);
 		g1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1268,13 +1261,11 @@ public class BoardWindow {
 			}
 		});
 		
-		h1.setBackground(Color.WHITE);
+		h1.setIcon(GameEnvironment.WHITE_SQUARE_ICON);
+		h1.setDisabledIcon(GameEnvironment.WHITE_SQUARE_ICON);
 		innerBoardPanel.add(h1);
 		h1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//checkButtons();
-				
 				if(srcSquare == null) {
 					setSrcSquare(h1);
 					findValidDestsFromButton(h1);}
@@ -1303,32 +1294,18 @@ public class BoardWindow {
 		for(int i = 0; i < BOARD_SIZE; i++)
 		{
 			String numberName = numbers.substring(i, i + 1);
-			
 			for(int j = 0; j < BOARD_SIZE; j++)
 			{
 				String letterName = letters.substring(j, j + 1);
-				
 				JToggleButton squareButton = allSquares.get(buttonIndex);
 				// the letter will go a-b-c-d-e-f-g-h-a..., while the number will go 8-8-8-8-8-8-8-8-7...
 				String squareName = letterName + numberName;
 				squaresMap.put(squareButton, squareName);
-				
 				buttonIndex ++;
 			}
 		}
 	}
 	
-	
-	
-	
-	public static void checkButtons()
-	{
-		for(int i = 0; i < allSquares.size(); i++)
-		{
-			JToggleButton btn = allSquares.get(i);
-			System.out.println(btn.isSelected()); //isEnabled() = is the button pressable? aka does it have a white piece on it
-		}
-	}
 	
 	
 	/**
@@ -1338,7 +1315,7 @@ public class BoardWindow {
 	 */
 	public static void findValidDestsFromButton(JToggleButton srcBtn)
 	{
-		//System.out.println("findValidDestsFromButton");
+		System.out.println("findValidDestsFromButton");
 		Piece selectedPiece = Piece.findPiece(srcBtn);
 		//System.out.println(allSquares.indexOf(srcBtn));
 		
@@ -1357,17 +1334,17 @@ public class BoardWindow {
 		else if(selectedPiece instanceof King) {
 			validDests = ((King) selectedPiece).findValidDests();}
 		
-//		for(int i = 0; i < validDests.size(); i++)
-//		{
-//			int destIndex = allSquares.indexOf(validDests.get(i));
-//			System.out.println("a destination:" + "\t" + destIndex);
-//		}
+		for(int i = 0; i < validDests.size(); i++)
+		{
+			int destIndex = allSquares.indexOf(validDests.get(i));
+			System.out.println("a destination:" + "\t" + destIndex);
+		}
 		
 		//colour the destinations and enable the associated buttons so that they can be clicked as the destination
 		for(int i = 0; i < validDests.size(); i++)
 		{
 			JToggleButton btn = validDests.get(i);
-			btn.setBackground(GameEnvironment.VALID_DESTINATION_COLOUR);
+			btn.setIcon(GameEnvironment.VALID_DEST_SQUARE_ICON);
 			btn.setEnabled(true);	
 		}
 		
@@ -1379,7 +1356,7 @@ public class BoardWindow {
 	public static void setSquareToOriginalColour(JToggleButton square)
 	{
 		int squareIndex = BoardWindow.getAllSquares().indexOf(square);
-		Color squareOriginalColour = null;
+		ImageIcon squareOriginalColour = null;
 		//find out the col
 		//  if the col is even, then the distribution of squares is different to if it was odd
 		if(squareIndex % BOARD_SIZE == 0 
@@ -1392,11 +1369,11 @@ public class BoardWindow {
 					|| squareIndex % (BOARD_SIZE*2) == 4
 					|| squareIndex % (BOARD_SIZE*2) == 6)
 			{
-				squareOriginalColour = GameEnvironment.WHITE_SQUARE_COLOUR;
+				squareOriginalColour = GameEnvironment.WHITE_SQUARE_ICON;
 			}
 			else //for when srcSquareIndex % 16 == 8 or 10 or 12 or 14 (or other)
 			{
-				squareOriginalColour = GameEnvironment.BLACK_SQUARE_COLOUR;
+				squareOriginalColour = GameEnvironment.BLACK_SQUARE_ICON;
 			}		
 		}
 		
@@ -1407,14 +1384,25 @@ public class BoardWindow {
 					|| squareIndex % 16 == 5
 					|| squareIndex % 16 == 7)
 			{
-				squareOriginalColour = GameEnvironment.BLACK_SQUARE_COLOUR;
+				squareOriginalColour = GameEnvironment.BLACK_SQUARE_ICON;
 			}
 			else //for when srcSquareIndex % 16 == something else
 			{
-				squareOriginalColour = GameEnvironment.WHITE_SQUARE_COLOUR;
+				squareOriginalColour = GameEnvironment.WHITE_SQUARE_ICON;
 			}		
 		}
-		square.setBackground(squareOriginalColour);
+		square.setIcon(squareOriginalColour);
+	}
+	
+	
+	/*
+	 * Given a square, checks if that square does not have a piece on it 
+	 * - IE the icon for it is just a white or black square, rather than a piece.
+	 */
+	public static boolean isSquareEmpty(JToggleButton s)
+	{
+		return s.getIcon() == GameEnvironment.WHITE_SQUARE_ICON || 
+				s.getIcon() == GameEnvironment.BLACK_SQUARE_ICON;
 	}
 	
 	

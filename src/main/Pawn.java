@@ -32,7 +32,7 @@ public class Pawn extends Piece{
 		{
 			//first check if there is a piece in the way
 			JToggleButton squareAhead = allSquares.get(allSquares.indexOf(currentSquare)+BoardWindow.SQUARE_TOP_CALCULATION);
-			if(squareAhead.getIcon() == null)
+			if(BoardWindow.isSquareEmpty(squareAhead))
 			{
 				//the square two spaces ahead is just the square one space ahead minus 8
 				validDests = super.testNewDestSquare(validDests, allSquares, 

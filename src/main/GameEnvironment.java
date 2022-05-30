@@ -12,25 +12,25 @@ import javax.swing.JToggleButton;
 
 public class GameEnvironment
 {
-	public final static ImageIcon WHITE_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_pawn_48px.png"));
-	public final static ImageIcon WHITE_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_knight_48px.png"));
-	public final static ImageIcon WHITE_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_bishop_48px.png"));
-	public final static ImageIcon WHITE_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_rook_48px.png"));
-	public final static ImageIcon WHITE_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_queen_48px.png"));
-	public final static ImageIcon WHITE_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/w_king_48px.png"));
-	public final static ImageIcon BLACK_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_pawn_48px.png"));
-	public final static ImageIcon BLACK_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_knight_48px.png"));
-	public final static ImageIcon BLACK_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_bishop_48px.png"));
-	public final static ImageIcon BLACK_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_rook_48px.png"));
-	public final static ImageIcon BLACK_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_queen_48px.png"));
-	public final static ImageIcon BLACK_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/b_king_48px.png"));
+	public final static ImageIcon WHITE_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_pawn_48px.png"));
+	public final static ImageIcon WHITE_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_knight_48px.png"));
+	public final static ImageIcon WHITE_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_bishop_48px.png"));
+	public final static ImageIcon WHITE_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_rook_48px.png"));
+	public final static ImageIcon WHITE_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_queen_48px.png"));
+	public final static ImageIcon WHITE_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/w_king_48px.png"));
+	public final static ImageIcon BLACK_PAWN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_pawn_48px.png"));
+	public final static ImageIcon BLACK_KNIGHT_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_knight_48px.png"));
+	public final static ImageIcon BLACK_BISHOP_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_bishop_48px.png"));
+	public final static ImageIcon BLACK_ROOK_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_rook_48px.png"));
+	public final static ImageIcon BLACK_QUEEN_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_queen_48px.png"));
+	public final static ImageIcon BLACK_KING_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/pieces/b_king_48px.png"));
 	
-	public final static Color WHITE_SQUARE_COLOUR = Color.WHITE;
-	public final static Color BLACK_SQUARE_COLOUR = Color.BLACK;
-	public final static Color WHITE_PIECE_COLOUR = Color.ORANGE;
-	public final static Color BLACK_PIECE_COLOUR = Color.RED;
-	public final static Color SELECTED_COLOUR = Color.BLUE;
-	public final static Color VALID_DESTINATION_COLOUR = Color.GREEN;
+	public final static Color WHITE_PIECE_COLOUR = Color.WHITE;
+	public final static Color BLACK_PIECE_COLOUR = Color.BLACK;
+	public final static ImageIcon WHITE_SQUARE_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/squares/s_white_default_72px.png"));
+	public final static ImageIcon BLACK_SQUARE_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/squares/s_black_default_72px.png"));
+	public final static ImageIcon SELECTED_SQUARE_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/squares/s_selected_default_72px.png"));
+	public final static ImageIcon VALID_DEST_SQUARE_ICON = new ImageIcon(GameEnvironment.class.getResource("/img/squares/s_valid_dest_default_72px.png"));
 	private static ArrayList<Piece> whitePieces = new ArrayList<>();
 	private static ArrayList<Piece> blackPieces = new ArrayList<>();
 	private static ArrayList<Piece> allPieces = new ArrayList<>();

@@ -21,6 +21,11 @@ public class Piece {
 		BoardWindow.setSquareText(location, pieceIcon, pieceColour);
 	}
 	
+	public Piece()
+	{
+		//
+	}
+	
 	
 	/**
 	 * Gets called by findValidDests(). Helps find the possible destinations for pieces that
@@ -107,7 +112,12 @@ public class Piece {
 			//now find out if that space is a valid destination - it is either empty or has an opponent piece on it
 			if(!(this instanceof Pawn))
 			{
-				if(destSquare.getIcon() == null || destSquare.getForeground() == opponentColour) {
+				
+				//destSquare.getForeground() == opponentColour
+				//findPiece(destSquare).getPieceColour() == opponentColour
+				//TODO: !!!
+				if(BoardWindow.isSquareEmpty(destSquare) 
+						|| findPiece(destSquare).getPieceColour() == opponentColour) {
 					possibleDests.add(destSquare);
 				}
 			}
@@ -118,8 +128,19 @@ public class Piece {
 						&& destSquareCalculation != BoardWindow.SQUARE_BOTTOMLEFT_CALCULATION
 						&& destSquareCalculation != BoardWindow.SQUARE_BOTTOMRIGHT_CALCULATION);
 				boolean is_moving_diagonally = !(is_moving_forward);
-				if(destSquare.getIcon() == null && is_moving_forward
-						|| destSquare.getForeground() == opponentColour && is_moving_diagonally) {
+				
+//				System.out.println("v");
+//				System.out.println("1\t" + destSquare.getIcon());
+//				System.out.println("2\t" + (destSquare.getIcon() == GameEnvironment.WHITE_SQUARE_ICON || destSquare.getIcon() == GameEnvironment.BLACK_SQUARE_ICON));
+//				System.out.println("3\t" + is_moving_forward);
+//				System.out.println("4\t" + findPiece(destSquare));
+//				System.out.println("5\t" + findPiece(destSquare).getPieceColour());
+//				System.out.println("6\t" + (findPiece(destSquare).getPieceColour() == opponentColour));
+//				System.out.println("^");
+				
+				if(BoardWindow.isSquareEmpty(destSquare)
+						&& is_moving_forward
+						|| findPiece(destSquare).getPieceColour() == opponentColour && is_moving_diagonally) {
 					possibleDests.add(destSquare);
 				}
 			}
@@ -144,7 +165,8 @@ public class Piece {
 				return p;
 			}
 		}
-		return null;
+		Piece dummyPiece = new Piece();
+		return dummyPiece;
 	}
 	
 	
@@ -193,8 +215,6 @@ public class Piece {
 		System.out.println(srcSquare.isSelected());
 		//disable the source square because it will no longer have one of our pieces on it, so cannot be clicked
 		srcSquare.setEnabled(false);
-		System.out.println(srcSquare.getText() + " is now unselected.");
-		srcSquare.setText("UNSELECTED");
 		
 	}
 	
@@ -202,7 +222,9 @@ public class Piece {
 	
 
 	public Color getPieceColour() {
-		return pieceColour;}
+		//System.out.println(pieceColour);
+		return pieceColour;
+		}
 	public ImageIcon getPieceIcon() {
 		return pieceIcon;}
 	public JToggleButton getPieceLocation() {
